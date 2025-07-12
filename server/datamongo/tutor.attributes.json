@@ -1,0 +1,203 @@
+[{
+  "_id": {
+    "$oid": "684b751b717187a689b777fd"
+  },
+  "name": "RAM",
+  "values": [
+    "4GB",
+    "8GB",
+    "16GB",
+    "32GB",
+    "64GB"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b7592717187a689b777ff"
+  },
+  "name": "CPU",
+  "values": [
+    "Intel Core i3",
+    "Intel Core i5",
+    "Intel Core i7",
+    "Intel Core i9",
+    "AMD Ryzen 3",
+    "AMD Ryzen 5",
+    "AMD Ryzen 7",
+    "Apple M1",
+    "Apple M2",
+    "Apple M3"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b75a7717187a689b77801"
+  },
+  "name": "GPU",
+  "values": [
+    "Intel Iris Xe",
+    "NVIDIA GTX 1650",
+    "NVIDIA RTX 3050",
+    "NVIDIA RTX 4060",
+    "NVIDIA RTX 4070",
+    "AMD Radeon RX 6600M",
+    "Apple GPU"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b761e717187a689b77803"
+  },
+  "name": "Dung lượng",
+  "values": [
+    "128GB SSD",
+    "256GB SSD",
+    "512GB SSD",
+    "1TB SSD",
+    "2TB SSD",
+    "1TB HDD"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b762f717187a689b77805"
+  },
+  "name": "Kích thước màn hình",
+  "values": [
+    "13 inch",
+    "14 inch",
+    "15.6 inch",
+    "16 inch",
+    "17.3 inch"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b76ca717187a689b77808"
+  },
+  "name": "Độ phân giải",
+  "values": [
+    "HD",
+    "Full HD",
+    "2K",
+    "4K",
+    "Retina"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b76d7717187a689b7780a"
+  },
+  "name": "Màu",
+  "values": [
+    "Đen",
+    "Bạc",
+    "Xám",
+    "Trắng",
+    "Xanh",
+    "Vàng"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b76e8717187a689b7780c"
+  },
+  "name": "Cân nặng",
+  "values": [
+    "<1.2kg",
+    "1.2kg - 1.5kg",
+    "1.5kg - 2kg",
+    ">2kg"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b7702717187a689b7780e"
+  },
+  "name": "Pin",
+  "values": [
+    "3-cell",
+    "4-cell",
+    "6-cell",
+    "8-cell",
+    "Li-ion 50Wh",
+    "Li-Po 70Wh"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b7716717187a689b77810"
+  },
+  "name": "Hệ điều hành",
+  "values": [
+    "Windows 10",
+    "Windows 11",
+    "macOS",
+    "Ubuntu",
+    "FreeDOS"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b7721717187a689b77812"
+  },
+  "name": "Bàn phím",
+  "values": [
+    "Thường",
+    "Có đèn nền",
+    "Cơ",
+    "Chống tràn"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b772c717187a689b77814"
+  },
+  "name": "Cảm ứng",
+  "values": [
+    "Không",
+    "Có",
+    "Hỗ trợ bút stylus"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b7752717187a689b77816"
+  },
+  "name": "Bảo hành",
+  "values": [
+    "6 tháng",
+    "12 tháng",
+    "24 tháng",
+    "36 tháng"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "684b775e717187a689b77818"
+  },
+  "name": "Webcam",
+  "values": [
+    "Không",
+    "HD",
+    "Full HD",
+    "IR Camera",
+    "1080p with Windows Hello"
+  ],
+  "__v": 0
+}
+
+]

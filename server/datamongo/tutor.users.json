@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "684a8d54c58434ab98bfb4eb"
+  },
+  "name": "Phung Thanh Tung",
+  "email": "phungthanhtung@gmail.com",
+  "password": "$2b$10$fvA2K4OI4a7p2jpO0pCCh.XTxLsDyJ5dtqXFMWxtYC.nR1CpcdEc6",
+  "role": 0,
+  "createdAt": {
+    "$date": "2025-06-12T08:18:28.588Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-12T08:36:42.562Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68522dd9eb15b5810ce2ab3f"
+  },
+  "name": "thanh tung",
+  "email": "12345@gmail.com",
+  "password": "$2b$10$bXeHu0m5nyTV.YGU/SFTjOeV9knT2QurCSq0OUc9fXGgNbWlYs2J2",
+  "role": 0,
+  "createdAt": {
+    "$date": "2025-06-18T03:09:13.069Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T03:09:13.069Z"
+  },
+  "__v": 0
+}]

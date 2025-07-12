@@ -1,0 +1,59 @@
+[
+    {
+        "id": "1",
+        "slug": "cach-mo-laptop-dell",
+        "title": "Cách mở laptop Dell đơn giản, nhanh chóng và hiệu quả nhất",
+        "excerpt": "Hướng dẫn chi tiết cách mở laptop Dell một cách an toàn và hiệu quả nhất, giúp bạn vệ sinh, nâng cấp và bảo trì máy tính của mình.",
+        "author": {
+            "name": "Lê Hoàng Thoại",
+            "avatar": "/avatars/le-hoang-thoai.jpg",
+            "bio": "Kỹ thuật viên máy tính với 10 năm kinh nghiệm"
+        },
+        "publishDate": "25/06/2025",
+        "updatedDate": "25/06/2025",
+        "category": "Thủ thuật",
+        "tags": [
+            "Dell",
+            "laptop",
+            "sửa chữa",
+            "bảo trì"
+        ],
+        "image": "/blog/dell-laptop-open.jpg",
+        "readTime": "12 phút đọc",
+        "featured": true,
+        "status": "published",
+        "seo": {
+            "metaTitle": "Cách mở laptop Dell - Hướng dẫn chi tiết từ A-Z",
+            "metaDescription": "Hướng dẫn chi tiết cách mở laptop Dell an toàn, hiệu quả. Các bước chuẩn bị, dụng cụ cần thiết và mẹo tránh lỗi thường gặp.",
+            "keywords": [
+                "mở laptop Dell",
+                "sửa laptop",
+                "bảo trì laptop",
+                "hướng dẫn laptop"
+            ]
+        }
+    },
+    {
+        "id": "2",
+        "slug": "cach-chinh-phim-fn",
+        "title": "Cách chỉnh phím Fn trên laptop - Bật/tắt, sửa lỗi, tùy chỉnh",
+        "excerpt": "Hướng dẫn chi tiết cách chỉnh phím Fn trên laptop, bật tắt và khắc phục các lỗi thường gặp với phím chức năng.",
+        "author": {
+            "name": "Vũ Luân",
+            "avatar": "/avatars/vu-luan.jpg",
+            "bio": "Chuyên gia về phần cứng và phím tắt laptop"
+        },
+        "publishDate": "25/06/2025",
+        "category": "Thủ thuật",
+        "tags": [
+            "phím Fn",
+            "laptop",
+            "phím tắt",
+            "cài đặt"
+        ],
+        "image": "/blog/fn-key-guide.jpg",
+        "readTime": "8 phút đọc",
+        "featured": false,
+        "status": "published"
+    }
+]

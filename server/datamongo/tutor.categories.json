@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "6862565f93b2189bb5a28ffb"
+  },
+  "name": "Laptop Gaming",
+  "description": "Laptop cấu hình cao, card rời mạnh mẽ, phù hợp chơi game và làm đồ họa.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862566f93b2189bb5a28ffd"
+  },
+  "name": "Laptop Văn Phòng",
+  "description": "Laptop thiết kế gọn nhẹ, pin lâu, phù hợp cho công việc và học tập.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862567993b2189bb5a28fff"
+  },
+  "name": "Laptop Đồ Họa - Kỹ Thuật",
+  "description": "Trang bị CPU mạnh, GPU rời, màn hình chuẩn màu, dành cho thiết kế đồ họa và dựng phim.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862568593b2189bb5a29001"
+  },
+  "name": "Laptop Mỏng Nhẹ",
+  "description": "Thiết kế siêu mỏng, nhẹ, pin trâu, phù hợp cho người hay di chuyển.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862568f93b2189bb5a29003"
+  },
+  "name": "Laptop Sinh Viên",
+  "description": "Giá rẻ, cấu hình ổn định, phù hợp cho nhu cầu học tập cơ bản.",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862569893b2189bb5a29005"
+  },
+  "name": "Laptop Cao Cấp",
+  "description": "Thiết kế sang trọng, hiệu năng mạnh mẽ, dành cho doanh nhân hoặc người dùng cao cấp.",
+  "__v": 0
+}]
