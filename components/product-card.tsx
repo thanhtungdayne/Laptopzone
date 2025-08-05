@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ laptop }: ProductCardProps) {
-  const { dispatch } = useCart();
+  const { dispatch,setIsOpen } = useCart();
 
   const handleAddToCart = () => {
   if (!laptop.productVariants || laptop.productVariants.length === 0) {

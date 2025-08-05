@@ -24,10 +24,28 @@ const productController = require("../controllers/product.controller.js");
 //http://localhost:3000/product/
 router.get("/", async (req, res) => {
   try {
-    const products = await productController.getAllPro(); // Lấy tất cả sản phẩm
+    const products = await productController.getAllPro(); // Lấy sản phẩm có status = true
     return res.status(200).json({ status: true, result: products });
   } catch (error) {
-    res.status(500).json({ message: "Lỗi server", error });
+    console.error("Lỗi khi lấy sản phẩm:", error.message);
+    res.status(500).json({
+      status: false,
+      message: "Lỗi server khi lấy sản phẩm.",
+    });
+  }
+});
+// Lấy sản phẩm k đk
+// http://localhost:3000/product/getpro
+router.get("/getpro", async (req, res) => {
+  try {
+    const products = await productController.getPro(); // Lấy tất cả sản phẩm
+    return res.status(200).json({ status: true, result: products });  
+  } catch (error) {
+    console.error("Lỗi khi lấy sản phẩm:", error.message);
+    res.status(500).json({
+      status: false,
+      message: "Lỗi server khi lấy sản phẩm.",
+    });
   }
 });
 
@@ -134,6 +152,33 @@ router.put("/updatepro/:id", async (req, res) => {
     return res
       .status(500)
       .json({ status: false, message: "Lỗi cập nhật dữ liệu" });
+  }
+});
+router.patch("/toggle-status/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updatedProduct = await productController.toggleStatus(productId);
+    return res.status(200).json({
+      status: true,
+      message: "Cập nhật trạng thái thành công",
+      result: updatedProduct,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: false,
+      message: error.message || "Cập nhật trạng thái thất bại",
+    });
+  }
+});
+//lấy sản phẩm theo brand
+router.get("/brand/:brandId", async (req, res) => {
+  try {
+    const { brandId } = req.params;
+    const products = await productController.getProductsByBrand(brandId);
+    return res.status(200).json({ status: true, result: products });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: false, message: "Lỗi lấy dữ liệu" });
   }
 });
 module.exports = router;

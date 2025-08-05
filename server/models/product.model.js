@@ -36,7 +36,8 @@ const productSchema = new Schema({
     brandId: { type: ObjectId },
     brandName: { type: String },
   },
-});
-
+  status: {type: Boolean, default: "true"}
+}
+)
 module.exports =
   mongoose.models.Product || mongoose.model("product", productSchema);

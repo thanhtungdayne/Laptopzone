@@ -5,10 +5,10 @@ interface CheckoutProgressProps {
 }
 
 const steps = [
-  { id: 1, name: "Cart", description: "Review items" },
-  { id: 2, name: "Shipping", description: "Delivery details" },
-  { id: 3, name: "Payment", description: "Payment method" },
-  { id: 4, name: "Confirmation", description: "Order complete" },
+ { id: 1, name: "Giỏ hàng", description: "Xem sản phẩm đã chọn" },
+  { id: 2, name: "Vận chuyển", description: "Thông tin giao hàng" },
+  { id: 3, name: "Thanh toán", description: "Phương thức thanh toán" },
+  { id: 4, name: "Xác nhận", description: "Hoàn tất đơn hàng" },
 ]
 
 export default function CheckoutProgress({ currentStep }: CheckoutProgressProps) {

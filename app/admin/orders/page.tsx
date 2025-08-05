@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -29,67 +29,48 @@ import {
   Search,
   Filter,
   MoreHorizontal,
-  Eye,
   ShoppingCart,
   Clock,
   CheckCircle,
   XCircle,
+  Package,
+  Truck,
+  RotateCcw,
 } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
 import AdminSidebar from "@/components/admin/admin-sidebar";
 
-// Mock orders data
-const ordersData = [
-  {
-    id: "ORD-001",
-    customer: "Nguyễn Văn A",
-    email: "nguyenvana@email.com",
-    products: ["MacBook Pro M3", "Mouse Magic"],
-    total: 45200000,
-    status: "completed",
-    date: "2024-07-01T10:30:00",
-    payment: "paid",
-  },
-  {
-    id: "ORD-002",
-    customer: "Trần Thị B",
-    email: "tranthib@email.com",
-    products: ["Dell XPS 13"],
-    total: 35000000,
-    status: "processing",
-    date: "2024-07-01T14:15:00",
-    payment: "paid",
-  },
-  {
-    id: "ORD-003",
-    customer: "Lê Văn C",
-    email: "levanc@email.com",
-    products: ["ASUS ROG Strix", "Gaming Keyboard"],
-    total: 28500000,
-    status: "pending",
-    date: "2024-07-02T09:20:00",
-    payment: "pending",
-  },
-  {
-    id: "ORD-004",
-    customer: "Phạm Thị D",
-    email: "phamthid@email.com",
-    products: ["HP Spectre x360"],
-    total: 32000000,
-    status: "cancelled",
-    date: "2024-06-30T16:45:00",
-    payment: "refunded",
-  },
-  {
-    id: "ORD-005",
-    customer: "Hoàng Văn E",
-    email: "hoangvane@email.com",
-    products: ["ThinkPad X1", "Docking Station"],
-    total: 42000000,
-    status: "shipped",
-    date: "2024-06-29T11:00:00",
-    payment: "paid",
-  },
-];
+// Interface cho dữ liệu đơn hàng
+interface OrderItem {
+  productVariantId: string;
+  quantity: number;
+  price: number;
+  productName: string;
+  productImage: string;
+  attributes: { name: string; value: string; _id?: string }[];
+  _id?: string;
+}
+
+interface ShippingAddress {
+  fullName?: string;
+  phone?: string;
+  address?: string;
+}
+
+interface Order {
+  _id: string;
+  userId: string;
+  items: OrderItem[];
+  shippingAddress?: ShippingAddress;
+  status: "pending" | "confirmed" | "shipping" | "delivered" | "cancelled" | "returned";
+  paymentMethod: "cash" | "momo";
+  orderCode?: string;
+  isPaid: boolean;
+  paidAt?: string;
+  totalAmount: number;
+  createdAt: string;
+  __v?: number;
+}
 
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat("vi-VN", {
@@ -104,54 +85,333 @@ const formatDate = (dateString: string) => {
 
 const getStatusBadge = (status: string) => {
   switch (status) {
-    case "completed":
-      return <Badge className="bg-green-100 text-green-800">Hoàn thành</Badge>;
-    case "processing":
-      return <Badge className="bg-blue-100 text-blue-800">Đang xử lý</Badge>;
-    case "shipped":
-      return <Badge className="bg-purple-100 text-purple-800">Đã gửi</Badge>;
+    case "delivered":
+      return <Badge className="bg-green-100 text-green-800">Đã giao</Badge>;
+    case "shipping":
+      return <Badge className="bg-purple-100 text-purple-800">Đang giao</Badge>;
+    case "confirmed":
+      return <Badge className="bg-blue-100 text-blue-800">Đã xác nhận</Badge>;
     case "pending":
-      return <Badge className="bg-yellow-100 text-yellow-800">Chờ xử lý</Badge>;
+      return <Badge className="bg-yellow-100 text-yellow-800">Chờ xác nhận</Badge>;
     case "cancelled":
       return <Badge variant="destructive">Đã hủy</Badge>;
+    case "returned":
+      return <Badge className="bg-gray-100 text-gray-800">Đã trả hàng</Badge>;
     default:
       return <Badge variant="secondary">Không xác định</Badge>;
   }
 };
 
-const getPaymentBadge = (payment: string) => {
-  switch (payment) {
-    case "paid":
-      return <Badge className="bg-green-100 text-green-800">Đã thanh toán</Badge>;
-    case "pending":
-      return <Badge className="bg-yellow-100 text-yellow-800">Chờ thanh toán</Badge>;
-    case "refunded":
-      return <Badge className="bg-gray-100 text-gray-800">Đã hoàn tiền</Badge>;
-    default:
-      return <Badge variant="secondary">Không xác định</Badge>;
+const getPaymentBadge = (isPaid: boolean, paymentMethod: string) => {
+  if (isPaid) {
+    return <Badge className="bg-green-100 text-green-800">Đã thanh toán ({paymentMethod})</Badge>;
+  }
+  return <Badge className="bg-yellow-100 text-yellow-800">Chưa thanh toán ({paymentMethod})</Badge>;
+};
+
+const getTotalQuantity = (items: OrderItem[]) => {
+  return items.reduce((sum, item) => sum + item.quantity, 0);
+};
+
+// Hàm gọi API để cập nhật trạng thái
+const updateOrderStatus = async (orderId: string, status: string) => {
+  console.log("Gửi yêu cầu cập nhật trạng thái:", { orderId, status });
+  console.log("URL:", `http://localhost:5000/order/status/${orderId}`);
+  try {
+    const response = await fetch(`http://localhost:5000/order/status/${orderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status }),
+    });
+    console.log("Response status:", response.status);
+    if (!response.ok) {
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (e) {
+        errorData = { message: response.statusText || "Không thể phân tích lỗi từ server" };
+      }
+      console.log("Error response:", errorData);
+      throw new Error(`Cập nhật trạng thái thất bại: ${errorData.message || response.statusText}`);
+    }
+    const updatedOrder = await response.json();
+    console.log("Updated order:", updatedOrder);
+    return updatedOrder;
+  } catch (error: any) {
+    console.error("Lỗi khi cập nhật trạng thái:", error.message);
+    throw error;
   }
 };
+
+// Hàm gọi API để cập nhật trạng thái thanh toán
+const updateOrderPaymentStatus = async (orderId: string, isPaid: boolean) => {
+  console.log("Gửi yêu cầu cập nhật trạng thái thanh toán:", { orderId, isPaid });
+  console.log("URL:", `http://localhost:5000/order/update-ispaid/${orderId}`);
+  try {
+    const response = await fetch(`http://localhost:5000/order/update-ispaid/${orderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ isPaid }),
+    });
+    console.log("Response status:", response.status);
+    if (!response.ok) {
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (e) {
+        errorData = { message: response.statusText || "Không thể phân tích lỗi từ server" };
+      }
+      console.log("Error response:", errorData);
+      throw new Error(`Cập nhật trạng thái thanh toán thất bại: ${errorData.message || response.statusText}`);
+    }
+    const updatedOrder = await response.json();
+    console.log("Updated order:", updatedOrder);
+    return updatedOrder.order || updatedOrder;
+  } catch (error: any) {
+    console.error("Lỗi khi cập nhật trạng thái thanh toán:", error.message);
+    throw error;
+  }
+};
+
+// Mapping trạng thái với icon và nhãn
+const statusOptions = [
+  { value: "pending", label: "Chờ xác nhận", icon: Clock },
+  { value: "confirmed", label: "Đã xác nhận", icon: CheckCircle },
+  { value: "shipping", label: "Đang giao", icon: Truck },
+  { value: "delivered", label: "Đã giao", icon: Package },
+  { value: "cancelled", label: "Đã hủy", icon: XCircle },
+  { value: "returned", label: "Đã trả hàng", icon: RotateCcw },
+];
 
 export default function OrdersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredOrders = ordersData.filter((order) => {
-    const matchesSearch =
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = selectedStatus === "all" || order.status === selectedStatus;
-    return matchesSearch && matchesStatus;
-  });
+  // Gọi API để lấy dữ liệu đơn hàng
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:5000/order/get/all");
+        console.log("Response status (get all):", response.status);
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.log("Error response (get all):", errorData);
+          throw new Error(`Không thể lấy dữ liệu đơn hàng: ${errorData.message || response.statusText}`);
+        }
+        const data = await response.json();
+        console.log("Dữ liệu từ API:", data);
+        console.log("Danh sách đơn hàng:", data.orders);
+        const ordersArray = Array.isArray(data.orders) ? data.orders : [];
+        setOrders(ordersArray);
+        setLoading(false);
+      } catch (err: any) {
+        console.error("Lỗi khi lấy dữ liệu đơn hàng:", err.message);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
 
-  const totalOrders = ordersData.length;
-  const completedOrders = ordersData.filter((o) => o.status === "completed").length;
-  const processingOrders = ordersData.filter((o) => o.status === "processing").length;
-  const pendingOrders = ordersData.filter((o) => o.status === "pending").length;
-  const totalRevenue = ordersData
-    .filter((o) => o.status === "completed")
-    .reduce((sum, order) => sum + order.total, 0);
+    fetchOrders();
+  }, []);
+
+  // Hàm xử lý cập nhật trạng thái
+  const handleUpdateStatus = async (orderId: string, newStatus: string) => {
+    let timeoutId: NodeJS.Timeout;
+    const order = orders.find((o) => o._id === orderId);
+    if (!order) {
+      toast({
+        title: "Lỗi",
+        description: "Không tìm thấy đơn hàng",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Kiểm tra trạng thái thanh toán trước khi chuyển sang "delivered"
+    if (newStatus === "delivered" && !order.isPaid) {
+      toast({
+        title: "Lỗi",
+        description: "Không thể giao hàng khi đơn hàng chưa được thanh toán",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Hiển thị toast với tùy chọn hủy
+    const toastId = toast({
+      title: "Xác nhận cập nhật trạng thái",
+      description: `Đơn hàng sẽ được cập nhật thành "${statusOptions.find((opt) => opt.value === newStatus)?.label}" sau 5 giây.`,
+      action: (
+        <Button
+          variant="outline"
+          onClick={() => clearTimeout(timeoutId)}
+        >
+          Hủy
+        </Button>
+      ),
+      duration: 5000,
+    });
+
+    // Chờ 5 giây để thực hiện hành động, trừ khi người dùng nhấn Hủy
+    timeoutId = setTimeout(async () => {
+      console.log("Bắt đầu cập nhật trạng thái:", { orderId, newStatus });
+      try {
+        // Nếu trạng thái mới là "cancelled" hoặc "returned", tự động đặt isPaid = false
+        if (newStatus === "cancelled" || newStatus === "returned") {
+          if (order.isPaid) {
+            await updateOrderPaymentStatus(orderId, false);
+          }
+        }
+
+        const updatedOrder = await updateOrderStatus(orderId, newStatus);
+        const newOrderStatus = updatedOrder.status || updatedOrder.order?.status || newStatus;
+        if (!statusOptions.some((option) => option.value === newOrderStatus)) {
+          throw new Error(`Trạng thái không hợp lệ trong phản hồi API: ${newOrderStatus}`);
+        }
+
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId
+              ? {
+                  ...order,
+                  status: newOrderStatus as Order["status"],
+                  isPaid: newStatus === "cancelled" || newStatus === "returned" ? false : order.isPaid,
+                }
+              : order
+          )
+        );
+        console.log("Cập nhật trạng thái thành công:", { orderId, newStatus });
+        toast({
+          title: "Thành công",
+          description: `Cập nhật trạng thái thành công: ${newStatus}`,
+        });
+      } catch (error: any) {
+        console.error("Lỗi trong handleUpdateStatus:", error.message);
+        setError(error.message);
+        toast({
+          title: "Lỗi",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
+    }, 5000);
+  };
+
+  // Hàm xử lý cập nhật trạng thái thanh toán
+  const handleUpdatePaymentStatus = async (orderId: string, isPaid: boolean) => {
+    let timeoutId: NodeJS.Timeout;
+    const order = orders.find((o) => o._id === orderId);
+    if (!order) {
+      toast({
+        title: "Lỗi",
+        description: "Không tìm thấy đơn hàng",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Kiểm tra trạng thái đơn hàng trước khi cập nhật thanh toán
+    if (isPaid && (order.status === "cancelled" || order.status === "returned")) {
+      toast({
+        title: "Lỗi",
+        description: "Không thể đánh dấu đã thanh toán cho đơn hàng đã hủy hoặc trả hàng",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Hiển thị toast với tùy chọn hủy
+    const toastId = toast({
+      title: "Xác nhận cập nhật thanh toán",
+      description: `Đơn hàng sẽ được đánh dấu là "${isPaid ? "Đã thanh toán" : "Chưa thanh toán"}" sau 5 giây.`,
+      action: (
+        <Button
+          variant="outline"
+          onClick={() => clearTimeout(timeoutId)}
+        >
+          Hủy
+        </Button>
+      ),
+      duration: 5000,
+    });
+
+    // Chờ 5 giây để thực hiện hành động, trừ khi người dùng nhấn Hủy
+    timeoutId = setTimeout(async () => {
+      console.log("Bắt đầu cập nhật trạng thái thanh toán:", { orderId, isPaid });
+      try {
+        const updatedOrder = await updateOrderPaymentStatus(orderId, isPaid);
+        const newIsPaid = updatedOrder.isPaid ?? isPaid;
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, isPaid: newIsPaid } : order
+          )
+        );
+        console.log("Cập nhật trạng thái thanh toán thành công:", { orderId, isPaid });
+        toast({
+          title: "Thành công",
+          description: `Cập nhật trạng thái thanh toán thành công: ${isPaid ? "Đã thanh toán" : "Chưa thanh toán"}`,
+        });
+      } catch (error: any) {
+        console.error("Lỗi trong handleUpdatePaymentStatus:", error.message);
+        setError(error.message);
+        toast({
+          title: "Lỗi",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
+    }, 5000);
+  };
+
+  const filteredOrders = Array.isArray(orders)
+    ? orders.filter((order) => {
+        const matchesSearch =
+          (order.orderCode ? order.orderCode.toLowerCase().includes(searchTerm.toLowerCase()) : false) ||
+          (order.shippingAddress?.fullName ? order.shippingAddress.fullName.toLowerCase().includes(searchTerm.toLowerCase()) : false);
+        const matchesStatus = selectedStatus === "all" || order.status === selectedStatus;
+        return matchesSearch && matchesStatus;
+      })
+    : [];
+
+  const totalOrders = orders.length;
+  const deliveredOrders = Array.isArray(orders)
+    ? orders.filter((o) => o.status === "delivered").length
+    : 0;
+  const shippingOrders = Array.isArray(orders)
+    ? orders.filter((o) => o.status === "shipping").length
+    : 0;
+  const pendingOrders = Array.isArray(orders)
+    ? orders.filter((o) => o.status === "pending").length
+    : 0;
+  const totalRevenue = Array.isArray(orders)
+    ? orders
+        .filter((o) => o.status === "delivered")
+        .reduce((sum, order) => sum + order.totalAmount, 0)
+    : 0;
+
+  if (loading) {
+    return (
+      <AdminSidebar>
+        <div className="p-6">Đang tải dữ liệu...</div>
+      </AdminSidebar>
+    );
+  }
+
+  if (error) {
+    return (
+      <AdminSidebar>
+        <div className="p-6 text-red-500">Lỗi: {error}</div>
+      </AdminSidebar>
+    );
+  }
 
   return (
     <AdminSidebar>
@@ -177,27 +437,27 @@ export default function OrdersPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Hoàn thành</CardTitle>
+              <CardTitle className="text-sm font-medium">Đã giao</CardTitle>
               <CheckCircle className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">{completedOrders}</div>
+              <div className="text-2xl font-bold text-green-600">{deliveredOrders}</div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Đang xử lý</CardTitle>
-              <Clock className="h-4 w-4 text-blue-600" />
+              <CardTitle className="text-sm font-medium">Đang giao</CardTitle>
+              <Truck className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{processingOrders}</div>
+              <div className="text-2xl font-bold text-purple-600">{shippingOrders}</div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Chờ xử lý</CardTitle>
+              <CardTitle className="text-sm font-medium">Chờ xác nhận</CardTitle>
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
@@ -222,7 +482,7 @@ export default function OrdersPage() {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
-                  placeholder="Tìm kiếm đơn hàng, khách hàng..."
+                  placeholder="Tìm kiếm mã đơn hàng, khách hàng..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -240,19 +500,22 @@ export default function OrdersPage() {
                     Tất cả
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setSelectedStatus("pending")}>
-                    Chờ xử lý
+                    Chờ xác nhận
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedStatus("processing")}>
-                    Đang xử lý
+                  <DropdownMenuItem onClick={() => setSelectedStatus("confirmed")}>
+                    Đã xác nhận
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedStatus("shipped")}>
-                    Đã gửi
+                  <DropdownMenuItem onClick={() => setSelectedStatus("shipping")}>
+                    Đang giao
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedStatus("completed")}>
-                    Hoàn thành
+                  <DropdownMenuItem onClick={() => setSelectedStatus("delivered")}>
+                    Đã giao
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setSelectedStatus("cancelled")}>
                     Đã hủy
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSelectedStatus("returned")}>
+                    Đã trả hàng
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -275,6 +538,7 @@ export default function OrdersPage() {
                   <TableHead>Mã đơn hàng</TableHead>
                   <TableHead>Khách hàng</TableHead>
                   <TableHead>Sản phẩm</TableHead>
+                  <TableHead>Số lượng</TableHead>
                   <TableHead>Tổng tiền</TableHead>
                   <TableHead>Trạng thái</TableHead>
                   <TableHead>Thanh toán</TableHead>
@@ -284,30 +548,34 @@ export default function OrdersPage() {
               </TableHeader>
               <TableBody>
                 {filteredOrders.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell className="font-medium">{order.id}</TableCell>
+                  <TableRow key={order._id}>
+                    <TableCell className="font-medium">{order.orderCode || "N/A"}</TableCell>
                     <TableCell>
                       <div>
-                        <p className="font-medium">{order.customer}</p>
-                        <p className="text-sm text-gray-500">{order.email}</p>
+                        <p className="font-medium">{order.shippingAddress?.fullName || "N/A"}</p>
+                        <p className="text-sm text-gray-500">{order.shippingAddress?.phone || "N/A"}</p>
+                        <p className="text-sm text-gray-500">{order.shippingAddress?.address || "N/A"}</p>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="text-sm">
-                        {order.products.slice(0, 2).map((product, index) => (
-                          <div key={index}>{product}</div>
+                        {order.items.slice(0, 2).map((item, index) => (
+                          <div key={index}>
+                            {item.productName} (x{item.quantity})
+                          </div>
                         ))}
-                        {order.products.length > 2 && (
+                        {order.items.length > 2 && (
                           <div className="text-gray-500">
-                            +{order.products.length - 2} khác
+                            +{order.items.length - 2} khác
                           </div>
                         )}
                       </div>
                     </TableCell>
-                    <TableCell>{formatCurrency(order.total)}</TableCell>
+                    <TableCell>{getTotalQuantity(order.items)}</TableCell>
+                    <TableCell>{formatCurrency(order.totalAmount)}</TableCell>
                     <TableCell>{getStatusBadge(order.status)}</TableCell>
-                    <TableCell>{getPaymentBadge(order.payment)}</TableCell>
-                    <TableCell>{formatDate(order.date)}</TableCell>
+                    <TableCell>{getPaymentBadge(order.isPaid, order.paymentMethod)}</TableCell>
+                    <TableCell>{formatDate(order.createdAt)}</TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -316,12 +584,36 @@ export default function OrdersPage() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Eye className="mr-2 h-4 w-4" />
-                            Xem chi tiết
+                          {statusOptions.map((option) => {
+                            const isDisabled =
+                              order.status === option.value ||
+                              (option.value === "delivered" && !order.isPaid) ||
+                              ((option.value === "cancelled" || option.value === "returned") && order.isPaid);
+                            return (
+                              <DropdownMenuItem
+                                key={option.value}
+                                onClick={() => handleUpdateStatus(order._id, option.value)}
+                                disabled={isDisabled}
+                              >
+                                <option.icon className="mr-2 h-4 w-4" />
+                                {option.label}
+                              </DropdownMenuItem>
+                            );
+                          })}
+                          <DropdownMenuItem
+                            onClick={() => handleUpdatePaymentStatus(order._id, true)}
+                            disabled={order.isPaid || order.status === "cancelled" || order.status === "returned"}
+                          >
+                            <CheckCircle className="mr-2 h-4 w-4" />
+                            Đã thanh toán
                           </DropdownMenuItem>
-                          <DropdownMenuItem>Cập nhật trạng thái</DropdownMenuItem>
-                          <DropdownMenuItem>In hóa đơn</DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => handleUpdatePaymentStatus(order._id, false)}
+                            disabled={!order.isPaid}
+                          >
+                            <XCircle className="mr-2 h-4 w-4" />
+                            Chưa thanh toán
+                          </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>

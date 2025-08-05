@@ -63,31 +63,32 @@ export default function Header() {
             href="/products?category=gaming"
             className="text-sm font-medium hover:text-primary transition-colors"
           >
-            Gaming
+            Laptop Đồ Họa
           </Link>
           <Link
             href="/products?category=business"
             className="text-sm font-medium hover:text-primary transition-colors"
           >
-            Business
+            Laptop Mỏng Nhẹ
           </Link>
           <Link
             href="/products?category=ultrabook"
             className="text-sm font-medium hover:text-primary transition-colors"
           >
-            Ultrabooks
+            Laptop Gaming
           </Link>
           <Link
             href="/products?category=workstation"
             className="text-sm font-medium hover:text-primary transition-colors"
           >
-            Workstations
+            Laptop Văn Phòng
           </Link>
+        
           <Link
             href="/about"
             className="text-sm font-medium hover:text-primary transition-colors"
           >
-            About Us
+           Về chúng tôi
           </Link>
         </nav>
 
@@ -127,13 +128,13 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link href="/profile" className="cursor-pointer">
                     <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
+                    <span>Hồ sơ</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/orders" className="cursor-pointer">
                     <Package className="mr-2 h-4 w-4" />
-                    <span>Orders</span>
+                    <span>Đơn hàng</span>
                   </Link>
                 </DropdownMenuItem>
                 {isAdmin && (
@@ -152,13 +153,13 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link href="/settings" className="cursor-pointer">
                     <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
+                    <span>Cài đặt</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
+                  <span>Đăng xuất</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -170,18 +171,18 @@ export default function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end">
-                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuLabel>Tài khoản</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/login" className="cursor-pointer">
                     <LogIn className="mr-2 h-4 w-4" />
-                    <span>Sign In</span>
+                    <span>Đăng nhập</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/signup" className="cursor-pointer">
                     <UserPlus className="mr-2 h-4 w-4" />
-                    <span>Create Account</span>
+                    <span>Tạo tài khoản</span>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

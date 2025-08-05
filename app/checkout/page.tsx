@@ -1,28 +1,27 @@
+// app/checkout/page.tsx
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import CheckoutProgress from "@/components/checkout-progress";
 import CartReview from "@/components/checkout/cart-review";
 import ShippingForm from "@/components/checkout/shipping-form";
 import PaymentForm from "@/components/checkout/payment-form";
 import OrderConfirmation from "@/components/checkout/order-confirmation";
+import Footer from "@/components/footer";
 import { useCheckout } from "@/context/checkout-context";
 import { useCart } from "@/context/cart-context";
-import Footer from "@/components/footer";
-
+import { useEffect } from "react";
+import axios from "axios";
 export default function CheckoutPage() {
-  const { state } = useCheckout();
-  const { state: cartState } = useCart();
-  const router = useRouter();
+  const { state, dispatch } = useCheckout();
+  const { items } = useCart();
 
+  // Nếu giỏ hàng trống, đặt về bước 1
   useEffect(() => {
-    // Redirect to home if cart is empty and not on confirmation step
-    if (cartState.items.length === 0 && state.currentStep < 4) {
-      router.push("/");
+    if (items?.length === 0) {
+      dispatch({ type: "SET_STEP", payload: 1 });
     }
-  }, [cartState.items.length, state.currentStep, router]);
+  }, [items, dispatch]);
 
   const renderStep = () => {
     switch (state.currentStep) {
@@ -57,8 +56,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
-      <div className="w-[85%] max-w-none mx-auto px-4 py-8">
+      <div className="w-[85%] mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2">{getStepTitle()}</h1>
@@ -68,9 +66,7 @@ export default function CheckoutPage() {
               </p>
             )}
           </div>
-
           <CheckoutProgress currentStep={state.currentStep} />
-
           <div className="mt-8">{renderStep()}</div>
         </div>
       </div>

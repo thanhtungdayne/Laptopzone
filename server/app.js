@@ -42,6 +42,8 @@ var productVariantRouter = require("./routers/productVariant.routers.js");
 var cartRouter = require("./routers/cart.routers.js");
 var orderRouter = require("./routers/order.routers.js");
 var wishlistRouter = require("./routers/wishlist.routers.js");
+var uploadRoute = require("./routers/upload.route.js");
+var zaloRouter = require("./routers/zalo.routers.js");
 //định nghĩa route
 //http://localhost:3000/
 app.use("/", indexRouter);
@@ -65,6 +67,10 @@ app.use("/cart", cartRouter);
 app.use("/order", orderRouter);
 // http://localhost:3000/wishlist
 app.use("/wishlist", wishlistRouter);
+
+app.use("/upload", uploadRoute);
+
+app.use("/payment/zalo", zaloRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

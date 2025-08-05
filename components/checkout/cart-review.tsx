@@ -1,100 +1,81 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { useCart } from "@/context/cart-context"
-import { formatPrice } from "@/lib/utils"
-import { useCheckout } from "@/context/checkout-context"
+import Image from "next/image";
+import Link from "next/link";
+import { useCart } from "@/context/cart-context";
+import { formatPrice } from "@/lib/utils";
+import { useCheckout } from "@/context/checkout-context";
+
 
 export default function CartReview() {
-  const { state: cartState } = useCart()
-  const { dispatch } = useCheckout()
+  const { items, total } = useCart();
+  const { dispatch } = useCheckout();
 
-  const subtotal = cartState.total
-  const shippingCost = subtotal > 500 ? 0 : 29.99
-  const tax = subtotal * 0.08 // 8% tax
-  const total = subtotal + shippingCost + tax
+  const handleNextStep = () => {
+    console.log("👟 Chuyển qua bước 2");
+    dispatch({ type: "SET_STEP", payload: 2 });
+  };
 
-  const handleContinue = () => {
-    dispatch({ type: "SET_STEP", payload: 2 })
-  }
 
-  if (cartState.items.length === 0) {
+  if (items.length === 0) {
     return (
-      <Card>
-        <CardContent className="p-8 text-center">
-          <p className="text-muted-foreground mb-4">Your cart is empty</p>
-          <Button onClick={() => (window.location.href = "/")}>Continue Shopping</Button>
-        </CardContent>
-      </Card>
-    )
+      <div className="text-center py-10">
+        <h2 className="text-2xl font-bold mb-4">Giỏ hàng trống</h2>
+        <Link href="/" className="text-primary underline">
+          Quay lại mua sắm
+        </Link>
+      </div>
+    );
   }
+  function cleanImageUrl(url: string): string {
+    // Xóa phần như _AC_..._ trước đuôi mở rộng .jpg, .png
+    return url.replace(/_AC[^.]+(?=\.(jpg|jpeg|png|webp|gif))/, "");
+  }
+
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Order Summary</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {cartState.items.map((item) => (
-            <div key={item.laptop.id} className="flex space-x-4">
-              <div className="relative w-16 h-16 flex-shrink-0">
-                <Image
-                  src={item.laptop.image || "/placeholder.svg"}
-                  alt={item.laptop.name}
-                  fill
-                  className="object-cover rounded"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="font-medium text-sm line-clamp-2">{item.laptop.name}</h4>
-                <p className="text-sm text-muted-foreground">Quantity: {item.quantity}</p>
-              </div>
-              <div className="text-right">
-                <p className="font-medium">{formatPrice(item.laptop.price * item.quantity)}</p>
-                <p className="text-sm text-muted-foreground">{formatPrice(item.laptop.price)} each</p>
-              </div>
-            </div>
-          ))}
+      {items.map((item) => (
+        <div key={item.variantId} className="flex items-start justify-between border-b pb-4">
+          {/* Image */}
+          <div className="w-20 h-20 relative">
+            <Image
+              src={cleanImageUrl(item.productImage || "/placeholder.svg")}
+              alt={item.productName}
+              fill
+              className="object-contain rounded"
+            />
 
-          <Separator />
-
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <span>Subtotal</span>
-              <span>{formatPrice(subtotal)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Shipping</span>
-              <span>{shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Tax</span>
-              <span>${tax.toFixed(2)}</span>
-            </div>
-            <Separator />
-            <div className="flex justify-between text-lg font-semibold">
-              <span>Total</span>
-              <span>${total.toFixed(2)}</span>
-            </div>
           </div>
 
-          {shippingCost === 0 && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-              <p className="text-sm text-green-800">🎉 You qualify for free shipping!</p>
+          {/* Info */}
+          <div className="flex-1 px-4">
+            <h3 className="font-medium">{item.productName}</h3>
+            <div className="text-sm text-muted-foreground">
+              {item.attributes.map((a) => `${a.name}: ${a.value}`).join(" • ")}
             </div>
-          )}
-        </CardContent>
-      </Card>
+            <div className="text-sm mt-1">Số lượng: {item.quantity}</div>
+          </div>
 
-      <div className="flex justify-end">
-        <Button onClick={handleContinue} size="lg">
-          Continue to Shipping
-        </Button>
+          {/* Price */}
+          <div className="text-right font-semibold">
+            {formatPrice(item.price * item.quantity)}
+          </div>
+        </div>
+      ))}
+
+      <div className="text-right mt-6 text-xl font-bold">
+        Tổng cộng: {formatPrice(total)}
       </div>
+      <div className="text-right mt-4">
+        <button
+          onClick={handleNextStep}
+          className="bg-primary text-white px-6 py-2 rounded hover:bg-primary/90 transition"
+        >
+          Tiếp tục đến vận chuyển
+        </button>
+      </div>
+
     </div>
-  )
+  );
 }

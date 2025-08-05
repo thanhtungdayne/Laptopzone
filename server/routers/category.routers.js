@@ -3,17 +3,25 @@ var router = express.Router();
 const categoryController = require('../controllers/category.controller.js');
 
 //http://localhost:3000/category
-router.get('/', async (req,res)=>{
-    try{
-        const result = await categoryController.getAllCate()
-        return res.status(200).json({status:true,result})
-    }catch(error){
-        console.log(error);
-        return res.status(500).json({stratus:false,message:'Lỗi lấy dữ liệu'});
-        
-    }
-})
-
+// lấy danh mục status=true
+router.get('/', async (req, res) => {
+  try {
+    const result = await categoryController.getAllCate();
+    return res.status(200).json({ status: true, result });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: false, message: 'Lỗi lấy dữ liệu' });
+  }
+});
+router.get('/getcate', async (req, res) => {
+  try {
+    const result = await categoryController.getCate();
+    return res.status(200).json({ status: true, result });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: false, message: 'Lỗi lấy dữ liệu' });
+  }
+});
 //thêm danh mục
 //http://localhost:3000/category/addcate
 //thêm danh mục
@@ -62,6 +70,17 @@ router.delete('/deletecate/:id', async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, message: 'Lỗi xóa danh mục' });
+  }
+});
+// Đảo ngược trạng thái danh mục
+router.put('/updatestatus/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedCategory = await categoryController.updateStatus(id);
+    return res.status(200).json({ status: true, updatedCategory });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: false, message: 'Lỗi cập nhật trạng thái danh mục' });
   }
 });
 

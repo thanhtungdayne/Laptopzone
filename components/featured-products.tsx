@@ -18,7 +18,7 @@ export default function FeaturedProducts() {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get("http://localhost:3000/product/");
+        const response = await axios.get("http://localhost:5000/product/");
 
         // Check if API returned data
         if (response.data && response.data.result && response.data.result.length > 0) {
@@ -82,9 +82,11 @@ export default function FeaturedProducts() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProducts.map((laptop) => (
-            <ProductCard key={laptop.id} laptop={laptop} />
-          ))}
+         {featuredProducts.map((laptop) => {
+  console.log("LAPTOP ITEM:", laptop);
+  return <ProductCard key={laptop._id || laptop.id} laptop={laptop} />;
+})}
+
         </div>
       )}
     </div>

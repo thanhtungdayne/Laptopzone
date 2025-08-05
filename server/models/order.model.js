@@ -32,9 +32,10 @@ const orderSchema = new Schema({
 
   paymentMethod: {
     type: String,
-    enum: ["cash", "momo"],
+    enum: ["cash", "momo" , "zalopay"],
     default: "cash"
   },
+  orderCode: { type: String, unique: true, required: true },
 
   isPaid: { type: Boolean, default: false },
   paidAt: { type: Date },

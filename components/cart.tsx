@@ -22,7 +22,7 @@ export default function Cart() {
   const { isAuthenticated } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log("Giỏ hàng hiện tại:", items);
+  
   if (!isAuthenticated) {
     return (
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -148,7 +148,7 @@ export default function Cart() {
                           size="icon"
                           className="h-6 w-6 text-destructive hover:text-destructive"
                           onClick={() => {
-                            console.log("🗑️ Xóa variantId:", item.variantId);
+                           
                             removeItem(item.variantId);
                           }}
                         >

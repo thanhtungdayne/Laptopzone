@@ -3,7 +3,7 @@ import type { Laptop } from "@/types/product";
 export const laptops: Laptop[] = [
   {
     id: 1,
-    name: "MacBook Pro 16-inch M3 Pro",
+    name: "MacBook Pro 16-inch M3 Pro ",
     brand: "Apple",
     price: 2499,
     originalPrice: 2699,

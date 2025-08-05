@@ -97,5 +97,14 @@ router.put("/change-password/:id", async (req, res) => {
     return res.status(500).json({ status: false, message: "Lỗi đổi mật khẩu" });
   }
 });
-
+// Lấy tất cả người dùng
+router.get("/", async (req, res) => {
+  try {
+    const users = await userController.getAllUsers();
+    return res.status(200).json({ status: true, users });
+  } catch (error) {
+    console.error("Lỗi lấy tất cả người dùng:", error);
+    return res.status(500).json({ status: false, message: "Lỗi lấy tất cả người dùng" });
+  }
+});
 module.exports = router;

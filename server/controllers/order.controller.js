@@ -1,11 +1,16 @@
 const orderModel = require("../models/order.model");
 const cartModel = require("../models/cart.model");
 const userModel = require("../models/users.model.js");
+const mongoose = require("mongoose");
 
 module.exports = {
   placeOrder,
   cancelOrderByUser,
-    updateOrderStatus
+    updateOrderStatus,
+  getOrdersByUserId,
+  getOrderByIdAndUser,
+  getAllOrders,
+  updateIsPaid,
 };
 
 async function placeOrder(req) {
@@ -30,7 +35,7 @@ async function placeOrder(req) {
 
   // B3: Chuẩn bị dữ liệu đơn hàng
   const orderItems = cart.items.map((item) => ({
-    productVariantId: item.productVariantId,
+   productVariantId: item.variantId,
     productName: item.productName,
     productImage: item.productImage,
     attributes: item.attributes,
@@ -42,22 +47,32 @@ async function placeOrder(req) {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  console.log("🛒 Cart Items:", cart.items)
 
-  // B4: Tạo đơn hàng mới
+  // B4: Tạo mã đơn hàng duy nhất
+  const date = new Date();
+  const dateString = date.toISOString().slice(0, 10).replace(/-/g, ""); // YYYYMMDD
+  const randomString = Math.random().toString(36).substring(2, 8).toUpperCase(); // 6 ký tự ngẫu nhiên
+  const orderCode = `ORDER-${dateString}-${randomString}`;
+
+  // B5: Tạo đơn hàng mới
   const order = new orderModel({
     userId,
+    orderCode, // Thêm mã đơn hàng
     items: orderItems,
-    shippingAddress, // lấy từ người dùng nhập
+    shippingAddress,
     paymentMethod,
     totalAmount,
     status: "pending",
     isPaid: false,
+    createdAt: new Date(),
+    estimatedDelivery: new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000),
   });
 
   const savedOrder = await order.save();
 
-  // B5: Xóa giỏ hàng
-  await cartModel.deleteOne({ userId });
+  // B6: Xóa giỏ hàng
+  // await cartModel.deleteOne({ userId });
 
   return savedOrder;
 }
@@ -114,3 +129,81 @@ async function updateOrderStatus(req) {
 
   return order;
 }
+// lấy danh sách đơn hàng theo userId
+async function getOrdersByUserId(userId) {
+  try {
+    console.log("📥 Lấy đơn hàng cho userId:", userId);
+
+    const orders = await orderModel.find({ userId });
+
+    if (!orders || orders.length === 0) {
+      return {
+        status: false,
+        message: "Không tìm thấy đơn hàng nào cho người dùng này",
+      };
+    }
+
+    console.log("✅ Đơn hàng tìm được:", orders.length);
+
+    return {
+      status: true,
+      message: "Lấy danh sách đơn hàng thành công",
+      result: orders,
+    };
+  } catch (error) {
+    console.error("❌ Lỗi khi lấy đơn hàng:", error.message);
+    return {
+      status: false,
+      message: "Lỗi máy chủ: " + error.message,
+    };
+  }
+}
+
+//lấy đơn hàng cụ thể
+async function getOrderByIdAndUser(orderId, userId) {
+  try {
+    console.log("orderId:", orderId);
+console.log("userId:", userId);
+    const order = await orderModel.findOne({
+      _id: new mongoose.Types.ObjectId(orderId),
+      userId: new mongoose.Types.ObjectId(userId),
+    });
+
+    return order;
+  } catch (error) {
+    console.error("Error in getOrderByIdAndUser:", error);
+    return null;
+  }
+}
+// lấy tất cả đơn hàng
+async function getAllOrders() {
+  try {
+    const orders = await orderModel.find();
+    return orders;
+  } catch (error) {
+    console.error("Error fetching all orders:", error);
+    throw error;
+  }
+}
+// cập nhật trạng thái thanh toán
+async function updateIsPaid(orderId, isPaid) {
+  
+
+  if (typeof isPaid !== "boolean") {
+    throw { status: 400, message: "`isPaid` phải là kiểu boolean." };
+  }
+
+  const updatedOrder = await orderModel.findByIdAndUpdate(
+    orderId,
+    { isPaid },
+    { new: true }
+  );
+
+  if (!updatedOrder) {
+    throw { status: 404, message: "Không tìm thấy đơn hàng." };
+  }
+
+  return updatedOrder;
+};
+
+

@@ -11,7 +11,6 @@ import { SearchProvider } from "@/context/search-context"
 import { Toaster } from "@/components/ui/toaster"
 import { Suspense } from "react"
 
-
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {

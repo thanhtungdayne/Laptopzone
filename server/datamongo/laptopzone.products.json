@@ -1,1858 +1,1887 @@
-[{
-  "_id": {
-    "$oid": "68625b2d597a8ed103030b00"
-  },
-  "name": "Asus Vivobook 15 OLED",
-  "description": "Màn hình OLED 15.6 inch sống động, thiết kế hiện đại, hiệu năng ổn định với nhiều tùy chọn CPU và GPU.",
-  "image": "https://m.media-amazon.com/images/I/41eH8jKBmlL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41bGbeH3R9L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41U06MRJaQL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31ta4hj1gdL._AC_US40_.jpg"
-  ],
-  "price": 16990000,
-  "originalprice": 18990000,
-  "stock": 15,
-  "new": true,
-  "hot": false,
-  "view": 15432,
-  "inStock": true,
-  "rating": 4.5,
-  "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H"
-  ],
-  "ram": "16GB DDR4",
-  "storage": "512GB PCIe SSD",
-  "display": "15.6\" FHD OLED (1920 x 1080), 60Hz",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA GeForce MX550"
-  ],
-  "color": [
-    "Indie Black",
-    "Cool Silver"
-  ],
-  "features": [
-    "Màn hình OLED",
-    "Wi-Fi 6",
-    "Backlit Keyboard",
-    "Fingerprint Sensor",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862566f93b2189bb5a28ffd"
+[
+  {
+    "_id": {
+      "$oid": "68625b2d597a8ed103030b00"
     },
-    "categoryName": "Laptop Văn Phòng"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255aa93b2189bb5a28ff1"
+    "name": "Asus Vivobook 15 OLED",
+    "description": "Màn hình OLED 15.6 inch sống động, thiết kế hiện đại, hiệu năng ổn định với nhiều tùy chọn CPU và GPU.",
+    "image": "https://m.media-amazon.com/images/I/41eH8jKBmlL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41bGbeH3R9L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41U06MRJaQL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31ta4hj1gdL._AC_US40_.jpg"
+    ],
+    "price": 16990000,
+    "originalprice": 18990000,
+    "stock": 15,
+    "new": false,
+    "hot": false,
+    "view": 0,
+    "inStock": true,
+    "rating": 4.5,
+    "processor": [
+      "Intel Core i5-13500H",
+      "Intel Core i7-13700H"
+    ],
+    "ram": "16GB DDR4",
+    "storage": "512GB PCIe SSD",
+    "display": "15.6\" FHD OLED (1920 x 1080), 60Hz",
+    "graphics": [
+      "Intel Iris Xe Graphics",
+      "NVIDIA GeForce MX550"
+    ],
+    "color": [
+      "Indie Black",
+      "Cool Silver"
+    ],
+    "features": [
+      "Màn hình OLED",
+      "Wi-Fi 6",
+      "Backlit Keyboard",
+      "Fingerprint Sensor",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862566f93b2189bb5a28ffd"
+      },
+      "categoryName": "Laptop Văn Phòng"
     },
-    "brandName": "Asus"
+    "brand": {
+      "brandId": {
+        "$oid": "686255aa93b2189bb5a28ff1"
+      },
+      "brandName": "Asus"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68625f1c597a8ed103030b14"
+    },
+    "name": "MacBook Pro M2 13 inch",
+    "description": "MacBook hiệu năng mạnh với chip M2, phù hợp cho công việc sáng tạo, pin vượt trội.",
+    "image": "https://m.media-amazon.com/images/I/41CvNGqdI3L._AC_SR38,50_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/3129QslaZIL._AC_SR38,50_.jpg",
+      "https://m.media-amazon.com/images/I/41CKgybiPOL._AC_SR38,50_.jpg",
+      "https://m.media-amazon.com/images/I/61CkAqTeNJL._AC_SL1500_.jpg"
+    ],
+    "price": 34990000,
+    "originalprice": 37990000,
+    "stock": 5,
+    "new": true,
+    "hot": false,
+    "view": 6717,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Apple M2"
+    ],
+    "ram": "8GB Unified Memory",
+    "storage": "512GB SSD",
+    "display": "13.3\" Retina Display",
+    "graphics": [
+      "Apple 10-core GPU"
+    ],
+    "color": [
+      "Space Gray",
+      "Silver"
+    ],
+    "features": [
+      "Touch Bar",
+      "Touch ID",
+      "macOS Ventura",
+      "Thunderbolt 3"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255b393b2189bb5a28ff3"
+      },
+      "brandName": "Apple"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626a70597a8ed103030b5f"
+    },
+    "name": "HP Victus",
+    "description": "Laptop gaming hiệu suất cao với RTX 4060 và màn hình 165Hz siêu mượt.",
+    "image": "https://m.media-amazon.com/images/I/51WsaK-BlbL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61RJi0QYzdL._AC_SL1126_.jpg",
+      "https://m.media-amazon.com/images/I/51TKLYjLdfL._AC_SL1293_.jpg",
+      "https://m.media-amazon.com/images/I/41Vm-JaWDyL._AC_US40_.jpg"
+    ],
+    "price": 32990000,
+    "originalprice": 35990000,
+    "stock": 6,
+    "new": true,
+    "hot": true,
+    "view": 9545,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Intel Core i7-13700HX"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "1TB SSD",
+    "display": "16.1\" QHD 165Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 4060"
+    ],
+    "color": [
+      "Shadow Black"
+    ],
+    "features": [
+      "OMEN Tempest Cooling",
+      "RGB Keyboard",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686268ba597a8ed103030b4b"
+      },
+      "brandName": "HP"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626af9597a8ed103030b63"
+    },
+    "name": "HP Spectre x360 14",
+    "description": "Laptop cao cấp xoay gập 360 độ, màn OLED cảm ứng tuyệt đẹp.",
+    "image": "https://m.media-amazon.com/images/I/41N5pD4b99L._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41HFlsCdoJL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41MyFAlcmUL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41vso8kvXTL._AC_US40_.jpg"
+    ],
+    "price": 39990000,
+    "originalprice": 42990000,
+    "stock": 4,
+    "new": true,
+    "hot": true,
+    "view": 5068,
+    "inStock": true,
+    "rating": 4.8,
+    "processor": [
+      "Intel Core i7-1355U"
+    ],
+    "ram": "16GB LPDDR4x",
+    "storage": "1TB SSD",
+    "display": "13.5\" 3K2K OLED Touchscreen",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Nocturne Blue"
+    ],
+    "features": [
+      "360° Hinge",
+      "OLED Display",
+      "Fingerprint Sensor",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686268ba597a8ed103030b4b"
+      },
+      "brandName": "HP"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626c80597a8ed103030b6b"
+    },
+    "name": "Lenovo IdeaPad 3",
+    "description": "Laptop giá rẻ, cấu hình ổn định, phù hợp cho sinh viên và học sinh.",
+    "image": "https://m.media-amazon.com/images/I/41TB1ZCsyNL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41sgvZZ1nLL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/416aG7RsdpL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/21CsPjOuBmL._AC_US40_.jpg"
+    ],
+    "price": 9990000,
+    "originalprice": 10990000,
+    "stock": 20,
+    "new": true,
+    "hot": false,
+    "view": 7921,
+    "inStock": true,
+    "rating": 4.2,
+    "processor": [
+      "Intel Core i3-1215U",
+      "Intel Core i5-1235U"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "256GB SSD",
+    "display": "15.6\" FHD TN",
+    "graphics": [
+      "Intel UHD Graphics"
+    ],
+    "color": [
+      "Platinum Grey"
+    ],
+    "features": [
+      "Numeric Keypad",
+      "Lightweight Design",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568f93b2189bb5a29003"
+      },
+      "categoryName": "Laptop Sinh Viên"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "6862559d93b2189bb5a28fef"
+      },
+      "brandName": "Lenovo"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68625a0b597a8ed103030afc"
+    },
+    "name": "Asus TUF Gaming F15",
+    "description": "Laptop gaming mạnh mẽ với nhiều tùy chọn cấu hình RTX 4060, i7 Gen 12 và tản nhiệt tốt.",
+    "image": "https://m.media-amazon.com/images/I/41u-LLvis1L._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/31kjP8PpyGL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31ndhsx3qPL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41M0WMlYH5L._AC_US40_.jpg"
+    ],
+    "price": 25990000,
+    "originalprice": 27990000,
+    "stock": 10,
+    "new": true,
+    "hot": true,
+    "view": 15459,
+    "inStock": true,
+    "rating": 4.6,
+    "processor": [
+      "Intel Core i7-12700H",
+      "Intel Core i5-12500H"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "1TB PCIe SSD",
+    "display": "15.6\" FHD 144Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 4060"
+    ],
+    "color": [
+      "Jaeger Gray"
+    ],
+    "features": [
+      "RTX 4060",
+      "Tản nhiệt 2 quạt",
+      "Wi-Fi 6",
+      "RGB Keyboard",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255aa93b2189bb5a28ff1"
+      },
+      "brandName": "Asus"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68625cd5597a8ed103030b08"
+    },
+    "name": "Asus TUF Dash F15",
+    "description": "Laptop gaming thiết kế mỏng nhẹ, hiệu năng cao với RTX 4060 và i7 Gen 13.",
+    "image": "https://m.media-amazon.com/images/I/41D1oumsX-L._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41Ayh9NOkfS._AC_ttUS40_.jpg",
+      "https://m.media-amazon.com/images/I/51KxfAaEryS._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41Lk-NWxhIS._AC_US40_.jpg"
+    ],
+    "price": 27990000,
+    "originalprice": 29990000,
+    "stock": 8,
+    "new": true,
+    "hot": true,
+    "view": 1148,
+    "inStock": true,
+    "rating": 4.6,
+    "processor": [
+      "Intel Core i7-13620H"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD 144Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 4060"
+    ],
+    "color": [
+      "Off Black"
+    ],
+    "features": [
+      "Thiết kế mỏng nhẹ",
+      "RTX 4060",
+      "Thunderbolt 4",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255aa93b2189bb5a28ff1"
+      },
+      "brandName": "Asus"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "686260e0597a8ed103030b18"
+    },
+    "name": "MacBook Pro M3 14 inch",
+    "description": "Laptop mạnh mẽ dành cho nhà sáng tạo nội dung, lập trình viên với chip M3 mới.",
+    "image": "https://m.media-amazon.com/images/I/314kVw1vC6L._AC_SR38,50_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/417dke6tURL._AC_SR38,50_.jpg",
+      "https://m.media-amazon.com/images/I/31Xxpp9--IL._AC_SR38,50_.jpg",
+      "https://m.media-amazon.com/images/I/51YUobFQ1eL._AC_SR38,50_.jpg"
+    ],
+    "price": 48990000,
+    "originalprice": 51990000,
+    "stock": 3,
+    "new": true,
+    "hot": true,
+    "view": 9502,
+    "inStock": true,
+    "rating": 4.9,
+    "processor": [
+      "Apple M3 Pro"
+    ],
+    "ram": "18GB Unified Memory",
+    "storage": "512GB SSD",
+    "display": "14.2\" Liquid Retina XDR",
+    "graphics": [
+      "Apple 14-core GPU"
+    ],
+    "color": [
+      "Space Black"
+    ],
+    "features": [
+      "Liquid Retina XDR",
+      "ProMotion 120Hz",
+      "Thunderbolt 4",
+      "macOS Sonoma"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862567993b2189bb5a28fff"
+      },
+      "categoryName": "Laptop Đồ Họa - Kỹ Thuật"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255b393b2189bb5a28ff3"
+      },
+      "brandName": "Apple"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "686263e4597a8ed103030b28"
+    },
+    "name": "Acer Aspire 7",
+    "description": "Laptop học tập và làm việc mạnh mẽ với card GTX 1650, giá hợp lý.",
+    "image": "https://m.media-amazon.com/images/I/41Mu8nJlLbL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/418qZxleXKL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41g5xfxlQ4L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/21ToQmbBtkL._AC_US40_.jpg"
+    ],
+    "price": 17990000,
+    "originalprice": 18990000,
+    "stock": 11,
+    "new": true,
+    "hot": false,
+    "view": 1848,
+    "inStock": true,
+    "rating": 4.3,
+    "processor": [
+      "AMD Ryzen 5 5500U"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD IPS",
+    "graphics": [
+      "NVIDIA GeForce GTX 1650",
+      "AMD Radeon Graphics"
+    ],
+    "color": [
+      "Charcoal Black"
+    ],
+    "features": [
+      "Backlit Keyboard",
+      "Wi-Fi 6",
+      "Precision Touchpad",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568f93b2189bb5a29003"
+      },
+      "categoryName": "Laptop Sinh Viên"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255be93b2189bb5a28ff5"
+      },
+      "brandName": "Acer"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862658f597a8ed103030b34"
+    },
+    "name": "Acer ConceptD 5",
+    "description": "Laptop đồ họa cao cấp với màn hình chuẩn màu và hiệu năng mạnh mẽ.",
+    "image": "https://m.media-amazon.com/images/I/41-k6lJC5UL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51XqZH0xtvL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/51y287MexkL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/51ZkeMKwdNL._AC_US40_.jpg"
+    ],
+    "price": 38990000,
+    "originalprice": 41990000,
+    "stock": 4,
+    "new": false,
+    "hot": false,
+    "view": 4803,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Intel Core i7-12700H",
+      "Intel Core i9-12900H"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "1TB SSD",
+    "display": "16\" WQUXGA 400-nit Pantone Validated",
+    "graphics": [
+      "NVIDIA RTX A1000"
+    ],
+    "color": [
+      "White"
+    ],
+    "features": [
+      "Pantone Validated",
+      "Thunderbolt 4",
+      "Wi-Fi 6E",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862567993b2189bb5a28fff"
+      },
+      "categoryName": "Laptop Đồ Họa - Kỹ Thuật"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255be93b2189bb5a28ff5"
+      },
+      "brandName": "Acer"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68625d6a597a8ed103030b0c"
+    },
+    "name": "Asus ExpertBook B5",
+    "description": "Laptop doanh nghiệp cao cấp, bảo mật, pin lâu, trọng lượng nhẹ chỉ khoảng 1kg.",
+    "image": "https://m.media-amazon.com/images/I/31XqjrRZYEL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/413SsdVsx6L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/513+Gs1lqYL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/81SRQtqKI9L._AC_SL1500_.jpg"
+    ],
+    "price": 23990000,
+    "originalprice": 25990000,
+    "stock": 10,
+    "new": false,
+    "hot": false,
+    "view": 5877,
+    "inStock": true,
+    "rating": 4.4,
+    "processor": [
+      "Intel Core i5-1240P",
+      "Intel Core i7-1260P"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "512GB PCIe SSD",
+    "display": "14\" FHD Anti-glare",
+    "graphics": [
+      "Intel Iris Xe Graphics"
+    ],
+    "color": [
+      "Star Black"
+    ],
+    "features": [
+      "Siêu nhẹ 1kg",
+      "Cổng kết nối đầy đủ",
+      "Fingerprint Sensor",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255aa93b2189bb5a28ff1"
+      },
+      "brandName": "Asus"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68625e89597a8ed103030b10"
+    },
+    "name": "MacBook Air M2 2023",
+    "description": "Laptop mỏng nhẹ với chip Apple M2, hiệu năng ổn định, thời lượng pin ấn tượng.",
+    "image": "https://m.media-amazon.com/images/I/41IXMu2YfiL._AC_SR38,50_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/31-AnZgBKqL._AC_SR38,50_.jpg",
+      "https://m.media-amazon.com/images/I/51n-oN9Yp2L._AC_SR38,50_.jpg",
+      "https://m.media-amazon.com/images/I/41O5ev7hFgL._AC_SR38,50_.jpg"
+    ],
+    "price": 28990000,
+    "originalprice": 30990000,
+    "stock": 10,
+    "new": true,
+    "hot": true,
+    "view": 8126,
+    "inStock": true,
+    "rating": 4.8,
+    "processor": [
+      "Apple M2"
+    ],
+    "ram": "8GB Unified Memory",
+    "storage": "256GB SSD",
+    "display": "13.6\" Liquid Retina (2560 x 1664)",
+    "graphics": [
+      "Apple 8-core GPU"
+    ],
+    "color": [
+      "Midnight",
+      "Starlight"
+    ],
+    "features": [
+      "Touch ID",
+      "Magic Keyboard",
+      "Fanless Design",
+      "macOS Sonoma"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568593b2189bb5a29001"
+      },
+      "categoryName": "Laptop Mỏng Nhẹ"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255b393b2189bb5a28ff3"
+      },
+      "brandName": "Apple"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626199597a8ed103030b1c"
+    },
+    "name": "MacBook Air M1 2020",
+    "description": "Phiên bản giá tốt, cực kỳ phù hợp với học tập, làm việc văn phòng nhẹ.",
+    "image": "https://m.media-amazon.com/images/I/41RfRr43eQL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/416VSjhq+wL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41tavYX7rUL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41aNZ-vDfjL._AC_US40_.jpg"
+    ],
+    "price": 19990000,
+    "originalprice": 21990000,
+    "stock": 16,
+    "new": false,
+    "hot": false,
+    "view": 1236,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Apple M1"
+    ],
+    "ram": "8GB Unified Memory",
+    "storage": "256GB SSD",
+    "display": "13.3\" Retina Display",
+    "graphics": [
+      "Apple 7-core GPU"
+    ],
+    "color": [
+      "Gold",
+      "Silver"
+    ],
+    "features": [
+      "Fanless",
+      "Touch ID",
+      "Magic Keyboard",
+      "macOS Monterey"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568f93b2189bb5a29003"
+      },
+      "categoryName": "Laptop Sinh Viên"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255b393b2189bb5a28ff3"
+      },
+      "brandName": "Apple"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "686264a6597a8ed103030b30"
+    },
+    "name": "Acer Predator Helios 16",
+    "description": "Laptop gaming cao cấp với RTX 4070 và tản nhiệt vượt trội.",
+    "image": "https://m.media-amazon.com/images/I/41RUMrE5OhL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41GAxw6R-oL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/4154Q43twCL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/11UiQTAJutL._AC_US40_.jpg"
+    ],
+    "price": 41990000,
+    "originalprice": 44990000,
+    "stock": 5,
+    "new": true,
+    "hot": true,
+    "view": 11445,
+    "inStock": true,
+    "rating": 4.8,
+    "processor": [
+      "Intel Core i7-13700HX"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "1TB SSD",
+    "display": "16\" WQXGA 240Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 4070",
+      "NVIDIA GeForce RTX 4060"
+    ],
+    "color": [
+      "Abyssal Black"
+    ],
+    "features": [
+      "Per-Key RGB",
+      "Killer Wi-Fi 6",
+      "3D Cooling",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255be93b2189bb5a28ff5"
+      },
+      "brandName": "Acer"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862670d597a8ed103030b40"
+    },
+    "name": "MSI Modern 14 C13",
+    "description": "Laptop mỏng nhẹ, thiết kế hiện đại phù hợp công việc văn phòng, học tập.",
+    "image": "https://m.media-amazon.com/images/I/41W7cZlS+lL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Wvge0mtYL._AC_UY327_FMwebp_QL65_.jpg",
+      "https://m.media-amazon.com/images/I/31SL8x2gxnL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/21FyPWtqPuL._AC_US40_.jpg"
+    ],
+    "price": 15990000,
+    "originalprice": 17990000,
+    "stock": 14,
+    "new": true,
+    "hot": false,
+    "view": 7035,
+    "inStock": true,
+    "rating": 4.3,
+    "processor": [
+      "Intel Core i5-1335U"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "512GB SSD",
+    "display": "14\" FHD IPS",
+    "graphics": [
+      "Intel Iris Xe Graphics"
+    ],
+    "color": [
+      "Classic Black",
+      "Urban Silver"
+    ],
+    "features": [
+      "Thin & Light Design",
+      "Backlit Keyboard",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862566f93b2189bb5a28ffd"
+      },
+      "categoryName": "Laptop Văn Phòng"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255c693b2189bb5a28ff7"
+      },
+      "brandName": "MSI"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862696b597a8ed103030b4f"
+    },
+    "name": "HP Pavilion 15",
+    "description": "Laptop văn phòng thiết kế thanh lịch, hiệu năng tốt với CPU Intel Gen 12.",
+    "image": "https://m.media-amazon.com/images/I/41ccHtZ6QpL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41LfvC7F5fL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/216i96G2gnL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31m3pDPz6nL._AC_US40_.jpg"
+    ],
+    "price": 15990000,
+    "originalprice": 17990000,
+    "stock": 16,
+    "new": true,
+    "hot": false,
+    "view": 7631,
+    "inStock": true,
+    "rating": 4.4,
+    "processor": [
+      "Intel Core i5-1235U",
+      "Intel Core i7-1255U"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD IPS",
+    "graphics": [
+      "Intel Iris Xe Graphics"
+    ],
+    "color": [
+      "Silver",
+      "Fog Blue"
+    ],
+    "features": [
+      "Backlit Keyboard",
+      "Wi-Fi 6",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862566f93b2189bb5a28ffd"
+      },
+      "categoryName": "Laptop Văn Phòng"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686268ba597a8ed103030b4b"
+      },
+      "brandName": "HP"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68629f23597a8ed103030b77"
+    },
+    "name": "Lenovo ThinkPad X1 Carbon Gen 11",
+    "description": "Laptop doanh nghiệp cao cấp, siêu nhẹ và bền bỉ, pin cực trâu.",
+    "image": "https://m.media-amazon.com/images/I/4188gLOiUzL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41CfVbYel6L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41pen-3n62L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/612z+gcqmrL._AC_SL1500_.jpg"
+    ],
+    "price": 42990000,
+    "originalprice": 45990000,
+    "stock": 4,
+    "new": true,
+    "hot": true,
+    "view": 2351,
+    "inStock": true,
+    "rating": 4.8,
+    "processor": [
+      "Intel Core i7-1355U"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "1TB SSD",
+    "display": "14\" 2.8K OLED, 400-nits",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Black with Red TrackPoint"
+    ],
+    "features": [
+      "Carbon Fiber Build",
+      "Fingerprint Sensor",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "6862559d93b2189bb5a28fef"
+      },
+      "brandName": "Lenovo"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862a00a597a8ed103030b7f"
+    },
+    "name": "Dell Inspiron 15 3530",
+    "description": "Laptop học tập – văn phòng phổ thông, màn 15.6 inch Full HD.",
+    "image": "https://m.media-amazon.com/images/I/41w+dfSFn9L._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41cPvmS9bpL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/312+KPKTWOL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/21x5XSeP9fL._AC_US40_.jpg"
+    ],
+    "price": 13990000,
+    "originalprice": 15990000,
+    "stock": 10,
+    "new": true,
+    "view": 4527,
+    "hot": false,
+    "inStock": true,
+    "rating": 4.2,
+    "processor": [
+      "Intel Core i5-1335U"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD 120Hz",
+    "graphics": [
+      "Intel UHD Graphics"
+    ],
+    "color": [
+      "Carbon Black",
+      "Platinum Silver"
+    ],
+    "features": [
+      "Wi-Fi 6",
+      "Numeric Keypad",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862566f93b2189bb5a28ffd"
+      },
+      "categoryName": "Laptop Văn Phòng"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255d193b2189bb5a28ff9"
+      },
+      "brandName": "Dell"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68625c07597a8ed103030b04"
+    },
+    "name": "Asus Zenbook 14X OLED",
+    "description": "Laptop cao cấp mỏng nhẹ, màn hình cảm ứng OLED 2.8K siêu đẹp, cấu hình mạnh mẽ cho doanh nhân.",
+    "image": "https://m.media-amazon.com/images/I/41MXVUjfEcL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41esGwHpT3L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31brQ0ozlUL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41rjLoA83vL._AC_US40_.jpg"
+    ],
+    "price": 26990000,
+    "originalprice": 28990000,
+    "stock": 6,
+    "new": true,
+    "hot": false,
+    "view": 9866,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Intel Core i7-13700H"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "1TB SSD",
+    "display": "14.5\" 2.8K OLED Touch 120Hz",
+    "graphics": [
+      "Intel Iris Xe Graphics"
+    ],
+    "color": [
+      "Inkwell Gray"
+    ],
+    "features": [
+      "Màn hình OLED cảm ứng",
+      "Wi-Fi 6E",
+      "Thunderbolt 4",
+      "Fingerprint Sensor",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568593b2189bb5a29001"
+      },
+      "categoryName": "Laptop Mỏng Nhẹ"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255aa93b2189bb5a28ff1"
+      },
+      "brandName": "Asus"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "686262bd597a8ed103030b20"
+    },
+    "name": "MacBook Pro M3 Max 16 inch",
+    "description": "MacBook mạnh mẽ nhất hiện nay, dành cho chuyên gia đồ họa và dựng phim chuyên nghiệp.",
+    "image": "https://m.media-amazon.com/images/I/31aI8nA+ihL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41k25OMDIbL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41SWW6RQutL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41MiGnotaFL._AC_US40_.jpg"
+    ],
+    "price": 79990000,
+    "originalprice": 85990000,
+    "stock": 2,
+    "new": true,
+    "hot": true,
+    "view": 3201,
+    "inStock": true,
+    "rating": 4.95,
+    "processor": [
+      "Apple M3 Max"
+    ],
+    "ram": "36GB Unified Memory",
+    "storage": "1TB SSD",
+    "display": "16.2\" Liquid Retina XDR",
+    "graphics": [
+      "Apple 40-core GPU"
+    ],
+    "color": [
+      "Space Black"
+    ],
+    "features": [
+      "Mini-LED Display",
+      "ProMotion 120Hz",
+      "3 Thunderbolt 4 Ports",
+      "macOS Sonoma"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255b393b2189bb5a28ff3"
+      },
+      "brandName": "Apple"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626360597a8ed103030b24"
+    },
+    "name": "Acer Nitro 5 Tiger",
+    "description": "Laptop gaming tầm trung với card RTX 3050 và CPU Intel Gen 12 mạnh mẽ.",
+    "image": "https://m.media-amazon.com/images/I/41Jz+S0mulL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51GDDiipBjL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/510GEHPW8wL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/51Sbgsd25iL._AC_US40_.jpg"
+    ],
+    "price": 22990000,
+    "originalprice": 24990000,
+    "stock": 10,
+    "new": true,
+    "hot": true,
+    "view": 8909,
+    "inStock": true,
+    "rating": 4.6,
+    "processor": [
+      "Intel Core i5-12500H",
+      "Intel Core i7-12700H"
+    ],
+    "ram": "16GB DDR4",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD IPS 144Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 3050"
+    ],
+    "color": [
+      "Obsidian Black",
+      "Shale Blue"
+    ],
+    "features": [
+      "Wi-Fi 6",
+      "RGB Keyboard",
+      "CoolBoost Technology",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255be93b2189bb5a28ff5"
+      },
+      "brandName": "Acer"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862642f597a8ed103030b2c"
+    },
+    "name": "Acer Swift 3 OLED",
+    "description": "Laptop mỏng nhẹ, màn hình OLED đẹp rực rỡ, phù hợp mang đi làm.",
+    "image": "https://m.media-amazon.com/images/I/51iZycEjVhL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51XOJGDYk3L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41bpZJO4wXL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/51qIUJLXg-L._AC_US40_.jpg"
+    ],
+    "price": 19990000,
+    "originalprice": 21990000,
+    "stock": 16,
+    "new": true,
+    "hot": false,
+    "view": 9864,
+    "inStock": true,
+    "rating": 4.4,
+    "processor": [
+      "Intel Core i5-1240P",
+      "Intel Core i7-1260P"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "512GB SSD",
+    "display": "14\" 2.8K OLED, 90Hz",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Pure Silver",
+      "Steel Gray"
+    ],
+    "features": [
+      "Wi-Fi 6E",
+      "Fingerprint Reader",
+      "Slim Design",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568593b2189bb5a29001"
+      },
+      "categoryName": "Laptop Mỏng Nhẹ"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255be93b2189bb5a28ff5"
+      },
+      "brandName": "Acer"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626639597a8ed103030b38"
+    },
+    "name": "MSI GF63 Thin 11SC",
+    "description": "Laptop gaming phổ thông, thiết kế mỏng nhẹ với card GTX 1650.",
+    "image": "https://m.media-amazon.com/images/I/41dMpj85gfL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/31q1UWvDUoL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31L5i5ej5zL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/21OUqNPW67L._AC_US40_.jpg"
+    ],
+    "price": 16990000,
+    "originalprice": 18990000,
+    "stock": 12,
+    "new": true,
+    "hot": false,
+    "view": 8453,
+    "inStock": true,
+    "rating": 4.2,
+    "processor": [
+      "Intel Core i5-11400H",
+      "Intel Core i7-11800H"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD IPS 60Hz",
+    "graphics": [
+      "NVIDIA GeForce GTX 1650"
+    ],
+    "color": [
+      "Black",
+      "Gray"
+    ],
+    "features": [
+      "Thin Bezel Design",
+      "Cooler Boost 5",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255c693b2189bb5a28ff7"
+      },
+      "brandName": "MSI"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "686266b1597a8ed103030b3c"
+    },
+    "name": "MSI Katana 15 B13",
+    "description": "Gaming mạnh mẽ với RTX 4060, CPU Intel Gen 13 và hệ thống tản nhiệt tối ưu.",
+    "image": "https://m.media-amazon.com/images/I/41VyYyo5zxL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41Hoc-R6jWL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41nKQI5YkXL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41t1NHRxmuL._AC_US40_.jpg"
+    ],
+    "price": 27990000,
+    "originalprice": 29990000,
+    "stock": 8,
+    "new": true,
+    "hot": true,
+    "view": 9203,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Intel Core i7-13620H",
+      "Intel Core i5-13420H"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "1TB SSD",
+    "display": "15.6\" FHD 144Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 4060"
+    ],
+    "color": [
+      "Core Black"
+    ],
+    "features": [
+      "Cooler Boost 5",
+      "RGB Keyboard",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255c693b2189bb5a28ff7"
+      },
+      "brandName": "MSI"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626784597a8ed103030b44"
+    },
+    "name": "MSI Creator Z16",
+    "description": "Máy trạm di động cho nhà sáng tạo nội dung với màn hình chuẩn màu 2K.",
+    "image": "https://m.media-amazon.com/images/I/4173JlCuofL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41dxAqIv-pL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41ARcka+OpL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41lsHvgDYyL._AC_US40_.jpg"
+    ],
+    "price": 45990000,
+    "originalprice": 48990000,
+    "stock": 3,
+    "new": true,
+    "hot": true,
+    "view": 6230,
+    "inStock": true,
+    "rating": 4.8,
+    "processor": [
+      "Intel Core i7-12700H",
+      "Intel Core i9-12900H"
+    ],
+    "ram": "32GB DDR5",
+    "storage": "1TB SSD",
+    "display": "16\" QHD+ Touch 120Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 3060"
+    ],
+    "color": [
+      "Lunar Gray"
+    ],
+    "features": [
+      "Touchscreen Display",
+      "True Color Technology",
+      "Thunderbolt 4",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862567993b2189bb5a28fff"
+      },
+      "categoryName": "Laptop Đồ Họa - Kỹ Thuật"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255c693b2189bb5a28ff7"
+      },
+      "brandName": "MSI"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626805597a8ed103030b48"
+    },
+    "name": "MSI Prestige 13 Evo",
+    "description": "Laptop cao cấp, siêu nhẹ, pin trâu, dành cho doanh nhân hiện đại.",
+    "image": "https://m.media-amazon.com/images/I/41g2AjYs8eL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/517V0LT626L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/51RDFOGgfPL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41ZOzdc3JpL._AC_US40_.jpg"
+    ],
+    "price": 32990000,
+    "originalprice": 35990000,
+    "stock": 5,
+    "new": false,
+    "hot": false,
+    "view": 4875,
+    "inStock": true,
+    "rating": 4.5,
+    "processor": [
+      "Intel Core i7-1360P"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "1TB SSD",
+    "display": "13.3\" FHD+ IPS",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Stellar Blue",
+      "Urban Silver"
+    ],
+    "features": [
+      "Fingerprint Reader",
+      "Military-Grade Durability",
+      "Thunderbolt 4",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255c693b2189bb5a28ff7"
+      },
+      "brandName": "MSI"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626a07597a8ed103030b5b"
+    },
+    "name": "HP Envy x360",
+    "description": "Laptop 2-in-1 cảm ứng, thiết kế xoay gập tiện lợi, hiệu năng cao.",
+    "image": "https://m.media-amazon.com/images/I/51cdmZRO49L._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51E9o0E7WYL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41gtwWISmUL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41jNZUPsPwL._AC_US40_.jpg"
+    ],
+    "price": 23990000,
+    "originalprice": 25990000,
+    "stock": 7,
+    "new": true,
+    "hot": false,
+    "view": 6840,
+    "inStock": true,
+    "rating": 4.6,
+    "processor": [
+      "Intel Core i7-1255U"
+    ],
+    "ram": "16GB DDR4",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD Touchscreen",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Nightfall Black",
+      "Natural Silver"
+    ],
+    "features": [
+      "2-in-1 Design",
+      "Touchscreen",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568593b2189bb5a29001"
+      },
+      "categoryName": "Laptop Mỏng Nhẹ"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686268ba597a8ed103030b4b"
+      },
+      "brandName": "HP"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626bb9597a8ed103030b67"
+    },
+    "name": "HP 245 G9",
+    "description": "Laptop giá rẻ với hiệu năng ổn định cho học sinh, sinh viên.",
+    "image": "https://m.media-amazon.com/images/I/41SqvJK8nIL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41qUtCor44L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41nrVwc85BL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41hFzYnYqfL._AC_US40_.jpg"
+    ],
+    "price": 9990000,
+    "originalprice": 10990000,
+    "stock": 18,
+    "new": false,
+    "hot": false,
+    "view": 8123,
+    "inStock": true,
+    "rating": 4.1,
+    "processor": [
+      "AMD Ryzen 3 5300U"
+    ],
+    "ram": "8GB DDR4",
+    "storage": "256GB SSD",
+    "display": "14\" HD Anti-Glare",
+    "graphics": [
+      "AMD Radeon Graphics"
+    ],
+    "color": [
+      "Asteroid Silver"
+    ],
+    "features": [
+      "Lightweight Design",
+      "USB-C Support",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568f93b2189bb5a29003"
+      },
+      "categoryName": "Laptop Sinh Viên"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686268ba597a8ed103030b4b"
+      },
+      "brandName": "HP"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626d61597a8ed103030b6f"
+    },
+    "name": "Lenovo Yoga Slim 7",
+    "description": "Laptop mỏng nhẹ, thời lượng pin cao, màn hình đẹp, phù hợp doanh nhân.",
+    "image": "https://m.media-amazon.com/images/I/41IXdfPtqCL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41vt44GDGqL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/411d4CfRNSL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/411CfIp2Z8L._AC_US40_.jpg"
+    ],
+    "price": 21990000,
+    "originalprice": 23990000,
+    "stock": 9,
+    "new": true,
+    "hot": false,
+    "view": 5400,
+    "inStock": true,
+    "rating": 4.5,
+    "processor": [
+      "AMD Ryzen 7 5800U"
+    ],
+    "ram": "16GB LPDDR4x",
+    "storage": "512GB SSD",
+    "display": "14\" 2.2K IPS",
+    "graphics": [
+      "AMD Radeon Graphics"
+    ],
+    "color": [
+      "Slate Grey",
+      "Orchid"
+    ],
+    "features": [
+      "Fingerprint Reader",
+      "Dolby Vision",
+      "Wi-Fi 6",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568593b2189bb5a29001"
+      },
+      "categoryName": "Laptop Mỏng Nhẹ"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "6862559d93b2189bb5a28fef"
+      },
+      "brandName": "Lenovo"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68626db7597a8ed103030b73"
+    },
+    "name": "Lenovo Legion 5 Pro",
+    "description": "Laptop gaming cao cấp với RTX 4060 và màn hình QHD 165Hz cho trải nghiệm đỉnh cao.",
+    "image": "https://m.media-amazon.com/images/I/51JVElycEbL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41W8yPwuzVL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41k9cVl4bgL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/51uvhO2dlcL._AC_US40_.jpg"
+    ],
+    "price": 32990000,
+    "originalprice": 35990000,
+    "stock": 7,
+    "new": true,
+    "hot": true,
+    "view": 11802,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "AMD Ryzen 7 6800H"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "1TB SSD",
+    "display": "16\" QHD 165Hz IPS",
+    "graphics": [
+      "NVIDIA GeForce RTX 4060"
+    ],
+    "color": [
+      "Storm Grey"
+    ],
+    "features": [
+      "Legion Coldfront 4.0",
+      "RGB Keyboard",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "6862559d93b2189bb5a28fef"
+      },
+      "brandName": "Lenovo"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "68629f79597a8ed103030b7b"
+    },
+    "name": "Lenovo Legion Slim 5",
+    "description": "Laptop gaming mỏng nhẹ với hiệu năng mạnh từ RTX 4050 và Ryzen 7.",
+    "image": "https://m.media-amazon.com/images/I/316gIynsjNL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41uHHI3wr8L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31k3RjktNtL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/61krhqUNYzL._AC_SL1080_.jpg"
+    ],
+    "price": 28990000,
+    "originalprice": 30990000,
+    "stock": 6,
+    "new": true,
+    "hot": true,
+    "view": 4525,
+    "inStock": true,
+    "rating": 4.6,
+    "processor": [
+      "AMD Ryzen 7 7840HS"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "512GB SSD",
+    "display": "16\" WQXGA 165Hz IPS",
+    "graphics": [
+      "NVIDIA GeForce RTX 4050"
+    ],
+    "color": [
+      "Storm Grey",
+      "Onyx Grey"
+    ],
+    "features": [
+      "Slim Build",
+      "AI Engine Boost",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "6862559d93b2189bb5a28fef"
+      },
+      "brandName": "Lenovo"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862a05f597a8ed103030b83"
+    },
+    "name": "Dell XPS 13 Plus 9320",
+    "description": "Laptop cao cấp với thiết kế mỏng nhẹ, màn OLED, cảm ứng hiện đại.",
+    "image": "https://m.media-amazon.com/images/I/41l2o0tTTxL._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/21axuXC7AcL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41H7SyELPyL._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/61lAvkFPdRL._AC_SL1206_.jpg"
+    ],
+    "price": 45990000,
+    "originalprice": 48990000,
+    "stock": 7,
+    "new": true,
+    "view": 5215,
+    "hot": true,
+    "inStock": true,
+    "rating": 4.7,
+    "processor": [
+      "Intel Core i7-1360P"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "1TB SSD",
+    "display": "13.4\" 3.5K OLED Touch",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Platinum Silver"
+    ],
+    "features": [
+      "Fingerprint Sensor",
+      "InfinityEdge Display",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862569893b2189bb5a29005"
+      },
+      "categoryName": "Laptop Cao Cấp"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255d193b2189bb5a28ff9"
+      },
+      "brandName": "Dell"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862a0a5597a8ed103030b87"
+    },
+    "name": "Dell G15 5530",
+    "description": "Laptop gaming tầm trung với RTX 3050, màn hình 165Hz.",
+    "image": "https://m.media-amazon.com/images/I/71qEFcKYW2L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71FvUm2upSL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71Irm7QjHqL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/51mtme1u6hL._AC_SL1500_.jpg"
+    ],
+    "price": 25990000,
+    "originalprice": 27990000,
+    "stock": 8,
+    "new": true,
+    "view": 7862,
+    "hot": true,
+    "inStock": true,
+    "rating": 4.5,
+    "processor": [
+      "Intel Core i7-13650HX"
+    ],
+    "ram": "16GB DDR5",
+    "storage": "512GB SSD",
+    "display": "15.6\" FHD 165Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 3050"
+    ],
+    "color": [
+      "Phantom Grey",
+      "Dark Shadow Grey"
+    ],
+    "features": [
+      "Alienware Command Center",
+      "Game Shift Key",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255d193b2189bb5a28ff9"
+      },
+      "brandName": "Dell"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862a0fd597a8ed103030b8b"
+    },
+    "name": "Dell Latitude 5450",
+    "description": "Laptop doanh nghiệp, bền bỉ, nhẹ, hiệu suất cao, phù hợp đi công tác.",
+    "image": "https://m.media-amazon.com/images/I/919OArmvu2L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71Pupik0nAL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71chkP-hesL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71BS1Ya2XGL._AC_SL1500_.jpg"
+    ],
+    "price": 30990000,
+    "originalprice": 33990000,
+    "stock": 9,
+    "new": true,
+    "view": 4211,
+    "hot": false,
+    "inStock": true,
+    "rating": 4.6,
+    "processor": [
+      "Intel Core i7-1355U"
+    ],
+    "ram": "16GB LPDDR5",
+    "storage": "512GB SSD",
+    "display": "14\" WUXGA Anti-Glare",
+    "graphics": [
+      "Intel Iris Xe"
+    ],
+    "color": [
+      "Titan Gray"
+    ],
+    "features": [
+      "Thunderbolt 4",
+      "Fingerprint Reader",
+      "Windows 11 Pro"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862568593b2189bb5a29001"
+      },
+      "categoryName": "Laptop Mỏng Nhẹ"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255d193b2189bb5a28ff9"
+      },
+      "brandName": "Dell"
+    },
+    "status": true
+  },
+  {
+    "_id": {
+      "$oid": "6862a154597a8ed103030b8f"
+    },
+    "name": "Dell Alienware x16 R2",
+    "description": "Laptop gaming cao cấp nhất, CPU i9, GPU RTX 4080, đèn RGB độc đáo.",
+    "image": "https://m.media-amazon.com/images/I/41bguAHg92L._AC_US40_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/31U2QemmR2L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/41fuXP5Fl0L._AC_US40_.jpg",
+      "https://m.media-amazon.com/images/I/31t6PXGj8QL._AC_US40_.jpg"
+    ],
+    "price": 81990000,
+    "originalprice": 86990000,
+    "stock": 4,
+    "new": true,
+    "view": 14516,
+    "hot": true,
+    "inStock": true,
+    "rating": 4.9,
+    "processor": [
+      "Intel Core i9-13900HK"
+    ],
+    "ram": "32GB DDR5",
+    "storage": "2TB SSD",
+    "display": "16\" QHD+ 240Hz",
+    "graphics": [
+      "NVIDIA GeForce RTX 4080",
+      "Intel UHD Graphics"
+    ],
+    "color": [
+      "Lunar Silver"
+    ],
+    "features": [
+      "AlienFX Lighting",
+      "Dolby Vision",
+      "Windows 11 Home"
+    ],
+    "category": {
+      "categoryId": {
+        "$oid": "6862565f93b2189bb5a28ffb"
+      },
+      "categoryName": "Laptop Gaming"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255d193b2189bb5a28ff9"
+      },
+      "brandName": "Dell"
+    },
+    "status": true
+  },
+  {
+   "_id": {
+      "$oid": "68823d3cf4e8380c0d643969"
+    },
+    "name": "test",
+    "description": "123",
+    "image": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQm59LqIrMk0J0UmgpbSUGuYewz0k1CCgw1sptlr3RWC5QigbeLZ0d7wDu3yWYpXeJOlQ_UHJ4X-kQPhbbWiE2AZQj1-Tn4SL1HGG_m_pa9kw",
+    "images": [
+      "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQm59LqIrMk0J0UmgpbSUGuYewz0k1CCgw1sptlr3RWC5QigbeLZ0d7wDu3yWYpXeJOlQ_UHJ4X-kQPhbbWiE2AZQj1-Tn4SL1HGG_m_pa9kw"
+    ],
+    "price": 134,
+    "stock": 12,
+    "new": false,
+    "view": 0,
+    "hot": false,
+    "inStock": true,
+    "rating": 0,
+    "processor": [
+      "Intel Core i5-13500H",
+      "Intel Core i7-13700H"
+    ],
+    "ram": "16gb",
+    "storage": "512gb",
+    "display": "120hz",
+    "graphics": [
+      "Intel Iris Xe Graphics",
+      "NVIDIA RTX 3050"
+    ],
+    "color": [
+      "Indie Black",
+      "ok bro"
+    ],
+    "originalprice": "123",
+    "features": [],
+    "category": {
+      "categoryId": {
+        "$oid": "6862566f93b2189bb5a28ffd"
+      },
+      "categoryName": "Laptop Văn Phòng"
+    },
+    "brand": {
+      "brandId": {
+        "$oid": "686255aa93b2189bb5a28ff1"
+      },
+      "brandName": "Asus"
+    },
+    "status": true
   }
-},
-{
-  "_id": {
-    "$oid": "68625f1c597a8ed103030b14"
-  },
-  "name": "MacBook Pro M2 13 inch",
-  "description": "MacBook hiệu năng mạnh với chip M2, phù hợp cho công việc sáng tạo, pin vượt trội.",
-  "image": "https://m.media-amazon.com/images/I/41CvNGqdI3L._AC_SR38,50_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/3129QslaZIL._AC_SR38,50_.jpg",
-    "https://m.media-amazon.com/images/I/41CKgybiPOL._AC_SR38,50_.jpg",
-    "https://m.media-amazon.com/images/I/61CkAqTeNJL._AC_SL1500_.jpg"
-  ],
-  "price": 34990000,
-  "originalprice": 37990000,
-  "stock": 5,
-  "new": true,
-  "hot": false,
-  "view": 6710,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Apple M2"
-  ],
-  "ram": "8GB Unified Memory",
-  "storage": "512GB SSD",
-  "display": "13.3\" Retina Display",
-  "graphics": [
-    "Apple 10-core GPU"
-  ],
-  "color": [
-    "Space Gray",
-    "Silver"
-  ],
-  "features": [
-    "Touch Bar",
-    "Touch ID",
-    "macOS Ventura",
-    "Thunderbolt 3"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255b393b2189bb5a28ff3"
-    },
-    "brandName": "Apple"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626a70597a8ed103030b5f"
-  },
-  "name": "HP Victus",
-  "description": "Laptop gaming hiệu suất cao với RTX 4060 và màn hình 165Hz siêu mượt.",
-  "image": "https://m.media-amazon.com/images/I/51WsaK-BlbL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/61RJi0QYzdL._AC_SL1126_.jpg",
-    "https://m.media-amazon.com/images/I/51TKLYjLdfL._AC_SL1293_.jpg",
-    "https://m.media-amazon.com/images/I/41Vm-JaWDyL._AC_US40_.jpg"
-  ],
-  "price": 32990000,
-  "originalprice": 35990000,
-  "stock": 6,
-  "new": true,
-  "hot": true,
-  "view": 9532,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Intel Core i7-13700HX"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
-  "display": "16.1\" QHD 165Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
-  "color": [
-    "Shadow Black"
-  ],
-  "features": [
-    "OMEN Tempest Cooling",
-    "RGB Keyboard",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686268ba597a8ed103030b4b"
-    },
-    "brandName": "HP"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626af9597a8ed103030b63"
-  },
-  "name": "HP Spectre x360 14",
-  "description": "Laptop cao cấp xoay gập 360 độ, màn OLED cảm ứng tuyệt đẹp.",
-  "image": "https://m.media-amazon.com/images/I/41N5pD4b99L._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41HFlsCdoJL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41MyFAlcmUL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41vso8kvXTL._AC_US40_.jpg"
-  ],
-  "price": 39990000,
-  "originalprice": 42990000,
-  "stock": 4,
-  "new": true,
-  "hot": true,
-  "view": 5040,
-  "inStock": true,
-  "rating": 4.8,
-  "processor": [
-    "Intel Core i7-1355U"
-  ],
-  "ram": "16GB LPDDR4x",
-  "storage": "1TB SSD",
-  "display": "13.5\" 3K2K OLED Touchscreen",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Nocturne Blue"
-  ],
-  "features": [
-    "360° Hinge",
-    "OLED Display",
-    "Fingerprint Sensor",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686268ba597a8ed103030b4b"
-    },
-    "brandName": "HP"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626c80597a8ed103030b6b"
-  },
-  "name": "Lenovo IdeaPad 3",
-  "description": "Laptop giá rẻ, cấu hình ổn định, phù hợp cho sinh viên và học sinh.",
-  "image": "https://m.media-amazon.com/images/I/41TB1ZCsyNL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41sgvZZ1nLL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/416aG7RsdpL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/21CsPjOuBmL._AC_US40_.jpg"
-  ],
-  "price": 9990000,
-  "originalprice": 10990000,
-  "stock": 20,
-  "new": true,
-  "hot": false,
-  "view": 7920,
-  "inStock": true,
-  "rating": 4.2,
-  "processor": [
-    "Intel Core i3-1215U",
-    "Intel Core i5-1235U"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "256GB SSD",
-  "display": "15.6\" FHD TN",
-  "graphics": [
-    "Intel UHD Graphics"
-  ],
-  "color": [
-    "Platinum Grey"
-  ],
-  "features": [
-    "Numeric Keypad",
-    "Lightweight Design",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568f93b2189bb5a29003"
-    },
-    "categoryName": "Laptop Sinh Viên"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "6862559d93b2189bb5a28fef"
-    },
-    "brandName": "Lenovo"
-  }
-},
-{
-  "_id": {
-    "$oid": "68625a0b597a8ed103030afc"
-  },
-  "name": "Asus TUF Gaming F15",
-  "description": "Laptop gaming mạnh mẽ với nhiều tùy chọn cấu hình RTX 4060, i7 Gen 12 và tản nhiệt tốt.",
-  "image": "https://m.media-amazon.com/images/I/41u-LLvis1L._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/31kjP8PpyGL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31ndhsx3qPL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41M0WMlYH5L._AC_US40_.jpg"
-  ],
-  "price": 25990000,
-  "originalprice": 27990000,
-  "stock": 10,
-  "new": true,
-  "hot": true,
-  "view": 15432,
-  "inStock": true,
-  "rating": 4.6,
-  "processor": [
-    "Intel Core i7-12700H",
-    "Intel Core i5-12500H"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "1TB PCIe SSD",
-  "display": "15.6\" FHD 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
-  "color": [
-    "Jaeger Gray"
-  ],
-  "features": [
-    "RTX 4060",
-    "Tản nhiệt 2 quạt",
-    "Wi-Fi 6",
-    "RGB Keyboard",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255aa93b2189bb5a28ff1"
-    },
-    "brandName": "Asus"
-  }
-},
-{
-  "_id": {
-    "$oid": "68625cd5597a8ed103030b08"
-  },
-  "name": "Asus TUF Dash F15",
-  "description": "Laptop gaming thiết kế mỏng nhẹ, hiệu năng cao với RTX 4060 và i7 Gen 13.",
-  "image": "https://m.media-amazon.com/images/I/41D1oumsX-L._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41Ayh9NOkfS._AC_ttUS40_.jpg",
-    "https://m.media-amazon.com/images/I/51KxfAaEryS._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41Lk-NWxhIS._AC_US40_.jpg"
-  ],
-  "price": 27990000,
-  "originalprice": 29990000,
-  "stock": 8,
-  "new": true,
-  "hot": true,
-  "view": 1145,
-  "inStock": true,
-  "rating": 4.6,
-  "processor": [
-    "Intel Core i7-13620H"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
-  "color": [
-    "Off Black"
-  ],
-  "features": [
-    "Thiết kế mỏng nhẹ",
-    "RTX 4060",
-    "Thunderbolt 4",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255aa93b2189bb5a28ff1"
-    },
-    "brandName": "Asus"
-  }
-},
-{
-  "_id": {
-    "$oid": "686260e0597a8ed103030b18"
-  },
-  "name": "MacBook Pro M3 14 inch",
-  "description": "Laptop mạnh mẽ dành cho nhà sáng tạo nội dung, lập trình viên với chip M3 mới.",
-  "image": "https://m.media-amazon.com/images/I/314kVw1vC6L._AC_SR38,50_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/417dke6tURL._AC_SR38,50_.jpg",
-    "https://m.media-amazon.com/images/I/31Xxpp9--IL._AC_SR38,50_.jpg",
-    "https://m.media-amazon.com/images/I/51YUobFQ1eL._AC_SR38,50_.jpg"
-  ],
-  "price": 48990000,
-  "originalprice": 51990000,
-  "stock": 3,
-  "new": true,
-  "hot": true,
-  "view": 9500,
-  "inStock": true,
-  "rating": 4.9,
-  "processor": [
-    "Apple M3 Pro"
-  ],
-  "ram": "18GB Unified Memory",
-  "storage": "512GB SSD",
-  "display": "14.2\" Liquid Retina XDR",
-  "graphics": [
-    "Apple 14-core GPU"
-  ],
-  "color": [
-    "Space Black"
-  ],
-  "features": [
-    "Liquid Retina XDR",
-    "ProMotion 120Hz",
-    "Thunderbolt 4",
-    "macOS Sonoma"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862567993b2189bb5a28fff"
-    },
-    "categoryName": "Laptop Đồ Họa - Kỹ Thuật"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255b393b2189bb5a28ff3"
-    },
-    "brandName": "Apple"
-  }
-},
-{
-  "_id": {
-    "$oid": "686263e4597a8ed103030b28"
-  },
-  "name": "Acer Aspire 7",
-  "description": "Laptop học tập và làm việc mạnh mẽ với card GTX 1650, giá hợp lý.",
-  "image": "https://m.media-amazon.com/images/I/41Mu8nJlLbL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/418qZxleXKL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41g5xfxlQ4L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/21ToQmbBtkL._AC_US40_.jpg"
-  ],
-  "price": 17990000,
-  "originalprice": 18990000,
-  "stock": 11,
-  "new": true,
-  "hot": false,
-  "view": 1847,
-  "inStock": true,
-  "rating": 4.3,
-  "processor": [
-    "AMD Ryzen 5 5500U"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD IPS",
-  "graphics": [
-    "NVIDIA GeForce GTX 1650",
-    "AMD Radeon Graphics"
-  ],
-  "color": [
-    "Charcoal Black"
-  ],
-  "features": [
-    "Backlit Keyboard",
-    "Wi-Fi 6",
-    "Precision Touchpad",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568f93b2189bb5a29003"
-    },
-    "categoryName": "Laptop Sinh Viên"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255be93b2189bb5a28ff5"
-    },
-    "brandName": "Acer"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862658f597a8ed103030b34"
-  },
-  "name": "Acer ConceptD 5",
-  "description": "Laptop đồ họa cao cấp với màn hình chuẩn màu và hiệu năng mạnh mẽ.",
-  "image": "https://m.media-amazon.com/images/I/41-k6lJC5UL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/51XqZH0xtvL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/51y287MexkL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/51ZkeMKwdNL._AC_US40_.jpg"
-  ],
-  "price": 38990000,
-  "originalprice": 41990000,
-  "stock": 4,
-  "new": false,
-  "hot": false,
-  "view": 4780,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Intel Core i7-12700H",
-    "Intel Core i9-12900H"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
-  "display": "16\" WQUXGA 400-nit Pantone Validated",
-  "graphics": [
-    "NVIDIA RTX A1000"
-  ],
-  "color": [
-    "White"
-  ],
-  "features": [
-    "Pantone Validated",
-    "Thunderbolt 4",
-    "Wi-Fi 6E",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862567993b2189bb5a28fff"
-    },
-    "categoryName": "Laptop Đồ Họa - Kỹ Thuật"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255be93b2189bb5a28ff5"
-    },
-    "brandName": "Acer"
-  }
-},
-{
-  "_id": {
-    "$oid": "68625d6a597a8ed103030b0c"
-  },
-  "name": "Asus ExpertBook B5",
-  "description": "Laptop doanh nghiệp cao cấp, bảo mật, pin lâu, trọng lượng nhẹ chỉ khoảng 1kg.",
-  "image": "https://m.media-amazon.com/images/I/31XqjrRZYEL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/413SsdVsx6L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/513+Gs1lqYL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/81SRQtqKI9L._AC_SL1500_.jpg"
-  ],
-  "price": 23990000,
-  "originalprice": 25990000,
-  "stock": 10,
-  "new": false,
-  "hot": false,
-  "view": 5876,
-  "inStock": true,
-  "rating": 4.4,
-  "processor": [
-    "Intel Core i5-1240P",
-    "Intel Core i7-1260P"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "512GB PCIe SSD",
-  "display": "14\" FHD Anti-glare",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
-  "color": [
-    "Star Black"
-  ],
-  "features": [
-    "Siêu nhẹ 1kg",
-    "Cổng kết nối đầy đủ",
-    "Fingerprint Sensor",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255aa93b2189bb5a28ff1"
-    },
-    "brandName": "Asus"
-  }
-},
-{
-  "_id": {
-    "$oid": "68625e89597a8ed103030b10"
-  },
-  "name": "MacBook Air M2 2023",
-  "description": "Laptop mỏng nhẹ với chip Apple M2, hiệu năng ổn định, thời lượng pin ấn tượng.",
-  "image": "https://m.media-amazon.com/images/I/41IXMu2YfiL._AC_SR38,50_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/31-AnZgBKqL._AC_SR38,50_.jpg",
-    "https://m.media-amazon.com/images/I/51n-oN9Yp2L._AC_SR38,50_.jpg",
-    "https://m.media-amazon.com/images/I/41O5ev7hFgL._AC_SR38,50_.jpg"
-  ],
-  "price": 28990000,
-  "originalprice": 30990000,
-  "stock": 10,
-  "new": true,
-  "hot": true,
-  "view": 8123,
-  "inStock": true,
-  "rating": 4.8,
-  "processor": [
-    "Apple M2"
-  ],
-  "ram": "8GB Unified Memory",
-  "storage": "256GB SSD",
-  "display": "13.6\" Liquid Retina (2560 x 1664)",
-  "graphics": [
-    "Apple 8-core GPU"
-  ],
-  "color": [
-    "Midnight",
-    "Starlight"
-  ],
-  "features": [
-    "Touch ID",
-    "Magic Keyboard",
-    "Fanless Design",
-    "macOS Sonoma"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568593b2189bb5a29001"
-    },
-    "categoryName": "Laptop Mỏng Nhẹ"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255b393b2189bb5a28ff3"
-    },
-    "brandName": "Apple"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626199597a8ed103030b1c"
-  },
-  "name": "MacBook Air M1 2020",
-  "description": "Phiên bản giá tốt, cực kỳ phù hợp với học tập, làm việc văn phòng nhẹ.",
-  "image": "https://m.media-amazon.com/images/I/41RfRr43eQL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/416VSjhq+wL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41tavYX7rUL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41aNZ-vDfjL._AC_US40_.jpg"
-  ],
-  "price": 19990000,
-  "originalprice": 21990000,
-  "stock": 16,
-  "new": false,
-  "hot": false,
-  "view": 1234,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Apple M1"
-  ],
-  "ram": "8GB Unified Memory",
-  "storage": "256GB SSD",
-  "display": "13.3\" Retina Display",
-  "graphics": [
-    "Apple 7-core GPU"
-  ],
-  "color": [
-    "Gold",
-    "Silver"
-  ],
-  "features": [
-    "Fanless",
-    "Touch ID",
-    "Magic Keyboard",
-    "macOS Monterey"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568f93b2189bb5a29003"
-    },
-    "categoryName": "Laptop Sinh Viên"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255b393b2189bb5a28ff3"
-    },
-    "brandName": "Apple"
-  }
-},
-{
-  "_id": {
-    "$oid": "686264a6597a8ed103030b30"
-  },
-  "name": "Acer Predator Helios 16",
-  "description": "Laptop gaming cao cấp với RTX 4070 và tản nhiệt vượt trội.",
-  "image": "https://m.media-amazon.com/images/I/41RUMrE5OhL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41GAxw6R-oL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/4154Q43twCL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/11UiQTAJutL._AC_US40_.jpg"
-  ],
-  "price": 41990000,
-  "originalprice": 44990000,
-  "stock": 5,
-  "new": true,
-  "hot": true,
-  "view": 11443,
-  "inStock": true,
-  "rating": 4.8,
-  "processor": [
-    "Intel Core i7-13700HX"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
-  "display": "16\" WQXGA 240Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4070",
-    "NVIDIA GeForce RTX 4060"
-  ],
-  "color": [
-    "Abyssal Black"
-  ],
-  "features": [
-    "Per-Key RGB",
-    "Killer Wi-Fi 6",
-    "3D Cooling",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255be93b2189bb5a28ff5"
-    },
-    "brandName": "Acer"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862670d597a8ed103030b40"
-  },
-  "name": "MSI Modern 14 C13",
-  "description": "Laptop mỏng nhẹ, thiết kế hiện đại phù hợp công việc văn phòng, học tập.",
-  "image": "https://m.media-amazon.com/images/I/41W7cZlS+lL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/61Wvge0mtYL._AC_UY327_FMwebp_QL65_.jpg",
-    "https://m.media-amazon.com/images/I/31SL8x2gxnL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/21FyPWtqPuL._AC_US40_.jpg"
-  ],
-  "price": 15990000,
-  "originalprice": 17990000,
-  "stock": 14,
-  "new": true,
-  "hot": false,
-  "view": 7034,
-  "inStock": true,
-  "rating": 4.3,
-  "processor": [
-    "Intel Core i5-1335U"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
-  "display": "14\" FHD IPS",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
-  "color": [
-    "Classic Black",
-    "Urban Silver"
-  ],
-  "features": [
-    "Thin & Light Design",
-    "Backlit Keyboard",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862566f93b2189bb5a28ffd"
-    },
-    "categoryName": "Laptop Văn Phòng"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255c693b2189bb5a28ff7"
-    },
-    "brandName": "MSI"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862696b597a8ed103030b4f"
-  },
-  "name": "HP Pavilion 15",
-  "description": "Laptop văn phòng thiết kế thanh lịch, hiệu năng tốt với CPU Intel Gen 12.",
-  "image": "https://m.media-amazon.com/images/I/41ccHtZ6QpL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41LfvC7F5fL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/216i96G2gnL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31m3pDPz6nL._AC_US40_.jpg"
-  ],
-  "price": 15990000,
-  "originalprice": 17990000,
-  "stock": 16,
-  "new": true,
-  "hot": false,
-  "view": 7630,
-  "inStock": true,
-  "rating": 4.4,
-  "processor": [
-    "Intel Core i5-1235U",
-    "Intel Core i7-1255U"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD IPS",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
-  "color": [
-    "Silver",
-    "Fog Blue"
-  ],
-  "features": [
-    "Backlit Keyboard",
-    "Wi-Fi 6",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862566f93b2189bb5a28ffd"
-    },
-    "categoryName": "Laptop Văn Phòng"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686268ba597a8ed103030b4b"
-    },
-    "brandName": "HP"
-  }
-},
-{
-  "_id": {
-    "$oid": "68629f23597a8ed103030b77"
-  },
-  "name": "Lenovo ThinkPad X1 Carbon Gen 11",
-  "description": "Laptop doanh nghiệp cao cấp, siêu nhẹ và bền bỉ, pin cực trâu.",
-  "image": "https://m.media-amazon.com/images/I/4188gLOiUzL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41CfVbYel6L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41pen-3n62L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/612z+gcqmrL._AC_SL1500_.jpg"
-  ],
-  "price": 42990000,
-  "originalprice": 45990000,
-  "stock": 4,
-  "new": true,
-  "hot": true,
-  "view": 2345,
-  "inStock": true,
-  "rating": 4.8,
-  "processor": [
-    "Intel Core i7-1355U"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
-  "display": "14\" 2.8K OLED, 400-nits",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Black with Red TrackPoint"
-  ],
-  "features": [
-    "Carbon Fiber Build",
-    "Fingerprint Sensor",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "6862559d93b2189bb5a28fef"
-    },
-    "brandName": "Lenovo"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862a00a597a8ed103030b7f"
-  },
-  "name": "Dell Inspiron 15 3530",
-  "description": "Laptop học tập – văn phòng phổ thông, màn 15.6 inch Full HD.",
-  "image": "https://m.media-amazon.com/images/I/41w+dfSFn9L._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41cPvmS9bpL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/312+KPKTWOL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/21x5XSeP9fL._AC_US40_.jpg"
-  ],
-  "price": 13990000,
-  "originalprice": 15990000,
-  "stock": 10,
-  "new": true,
-  "view": 4525,
-  "hot": false,
-  "inStock": true,
-  "rating": 4.2,
-  "processor": [
-    "Intel Core i5-1335U"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD 120Hz",
-  "graphics": [
-    "Intel UHD Graphics"
-  ],
-  "color": [
-    "Carbon Black",
-    "Platinum Silver"
-  ],
-  "features": [
-    "Wi-Fi 6",
-    "Numeric Keypad",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862566f93b2189bb5a28ffd"
-    },
-    "categoryName": "Laptop Văn Phòng"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255d193b2189bb5a28ff9"
-    },
-    "brandName": "Dell"
-  }
-},
-{
-  "_id": {
-    "$oid": "68625c07597a8ed103030b04"
-  },
-  "name": "Asus Zenbook 14X OLED",
-  "description": "Laptop cao cấp mỏng nhẹ, màn hình cảm ứng OLED 2.8K siêu đẹp, cấu hình mạnh mẽ cho doanh nhân.",
-  "image": "https://m.media-amazon.com/images/I/41MXVUjfEcL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41esGwHpT3L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31brQ0ozlUL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41rjLoA83vL._AC_US40_.jpg"
-  ],
-  "price": 26990000,
-  "originalprice": 28990000,
-  "stock": 6,
-  "new": true,
-  "hot": false,
-  "view": 9864,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Intel Core i7-13700H"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
-  "display": "14.5\" 2.8K OLED Touch 120Hz",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
-  "color": [
-    "Inkwell Gray"
-  ],
-  "features": [
-    "Màn hình OLED cảm ứng",
-    "Wi-Fi 6E",
-    "Thunderbolt 4",
-    "Fingerprint Sensor",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568593b2189bb5a29001"
-    },
-    "categoryName": "Laptop Mỏng Nhẹ"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255aa93b2189bb5a28ff1"
-    },
-    "brandName": "Asus"
-  }
-},
-{
-  "_id": {
-    "$oid": "686262bd597a8ed103030b20"
-  },
-  "name": "MacBook Pro M3 Max 16 inch",
-  "description": "MacBook mạnh mẽ nhất hiện nay, dành cho chuyên gia đồ họa và dựng phim chuyên nghiệp.",
-  "image": "https://m.media-amazon.com/images/I/31aI8nA+ihL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41k25OMDIbL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41SWW6RQutL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41MiGnotaFL._AC_US40_.jpg"
-  ],
-  "price": 79990000,
-  "originalprice": 85990000,
-  "stock": 2,
-  "new": true,
-  "hot": true,
-  "view": 3200,
-  "inStock": true,
-  "rating": 4.95,
-  "processor": [
-    "Apple M3 Max"
-  ],
-  "ram": "36GB Unified Memory",
-  "storage": "1TB SSD",
-  "display": "16.2\" Liquid Retina XDR",
-  "graphics": [
-    "Apple 40-core GPU"
-  ],
-  "color": [
-    "Space Black"
-  ],
-  "features": [
-    "Mini-LED Display",
-    "ProMotion 120Hz",
-    "3 Thunderbolt 4 Ports",
-    "macOS Sonoma"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255b393b2189bb5a28ff3"
-    },
-    "brandName": "Apple"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626360597a8ed103030b24"
-  },
-  "name": "Acer Nitro 5 Tiger",
-  "description": "Laptop gaming tầm trung với card RTX 3050 và CPU Intel Gen 12 mạnh mẽ.",
-  "image": "https://m.media-amazon.com/images/I/41Jz+S0mulL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/51GDDiipBjL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/510GEHPW8wL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/51Sbgsd25iL._AC_US40_.jpg"
-  ],
-  "price": 22990000,
-  "originalprice": 24990000,
-  "stock": 10,
-  "new": true,
-  "hot": true,
-  "view": 8900,
-  "inStock": true,
-  "rating": 4.6,
-  "processor": [
-    "Intel Core i5-12500H",
-    "Intel Core i7-12700H"
-  ],
-  "ram": "16GB DDR4",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD IPS 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 3050"
-  ],
-  "color": [
-    "Obsidian Black",
-    "Shale Blue"
-  ],
-  "features": [
-    "Wi-Fi 6",
-    "RGB Keyboard",
-    "CoolBoost Technology",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255be93b2189bb5a28ff5"
-    },
-    "brandName": "Acer"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862642f597a8ed103030b2c"
-  },
-  "name": "Acer Swift 3 OLED",
-  "description": "Laptop mỏng nhẹ, màn hình OLED đẹp rực rỡ, phù hợp mang đi làm.",
-  "image": "https://m.media-amazon.com/images/I/51iZycEjVhL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/51XOJGDYk3L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41bpZJO4wXL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/51qIUJLXg-L._AC_US40_.jpg"
-  ],
-  "price": 19990000,
-  "originalprice": 21990000,
-  "stock": 16,
-  "new": true,
-  "hot": false,
-  "view": 9862,
-  "inStock": true,
-  "rating": 4.4,
-  "processor": [
-    "Intel Core i5-1240P",
-    "Intel Core i7-1260P"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "512GB SSD",
-  "display": "14\" 2.8K OLED, 90Hz",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Pure Silver",
-    "Steel Gray"
-  ],
-  "features": [
-    "Wi-Fi 6E",
-    "Fingerprint Reader",
-    "Slim Design",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568593b2189bb5a29001"
-    },
-    "categoryName": "Laptop Mỏng Nhẹ"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255be93b2189bb5a28ff5"
-    },
-    "brandName": "Acer"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626639597a8ed103030b38"
-  },
-  "name": "MSI GF63 Thin 11SC",
-  "description": "Laptop gaming phổ thông, thiết kế mỏng nhẹ với card GTX 1650.",
-  "image": "https://m.media-amazon.com/images/I/41dMpj85gfL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/31q1UWvDUoL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31L5i5ej5zL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/21OUqNPW67L._AC_US40_.jpg"
-  ],
-  "price": 16990000,
-  "originalprice": 18990000,
-  "stock": 12,
-  "new": true,
-  "hot": false,
-  "view": 8452,
-  "inStock": true,
-  "rating": 4.2,
-  "processor": [
-    "Intel Core i5-11400H",
-    "Intel Core i7-11800H"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD IPS 60Hz",
-  "graphics": [
-    "NVIDIA GeForce GTX 1650"
-  ],
-  "color": [
-    "Black",
-    "Gray"
-  ],
-  "features": [
-    "Thin Bezel Design",
-    "Cooler Boost 5",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255c693b2189bb5a28ff7"
-    },
-    "brandName": "MSI"
-  }
-},
-{
-  "_id": {
-    "$oid": "686266b1597a8ed103030b3c"
-  },
-  "name": "MSI Katana 15 B13",
-  "description": "Gaming mạnh mẽ với RTX 4060, CPU Intel Gen 13 và hệ thống tản nhiệt tối ưu.",
-  "image": "https://m.media-amazon.com/images/I/41VyYyo5zxL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41Hoc-R6jWL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41nKQI5YkXL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41t1NHRxmuL._AC_US40_.jpg"
-  ],
-  "price": 27990000,
-  "originalprice": 29990000,
-  "stock": 8,
-  "new": true,
-  "hot": true,
-  "view": 9200,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Intel Core i7-13620H",
-    "Intel Core i5-13420H"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
-  "display": "15.6\" FHD 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
-  "color": [
-    "Core Black"
-  ],
-  "features": [
-    "Cooler Boost 5",
-    "RGB Keyboard",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255c693b2189bb5a28ff7"
-    },
-    "brandName": "MSI"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626784597a8ed103030b44"
-  },
-  "name": "MSI Creator Z16",
-  "description": "Máy trạm di động cho nhà sáng tạo nội dung với màn hình chuẩn màu 2K.",
-  "image": "https://m.media-amazon.com/images/I/4173JlCuofL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41dxAqIv-pL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41ARcka+OpL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41lsHvgDYyL._AC_US40_.jpg"
-  ],
-  "price": 45990000,
-  "originalprice": 48990000,
-  "stock": 3,
-  "new": true,
-  "hot": true,
-  "view": 6230,
-  "inStock": true,
-  "rating": 4.8,
-  "processor": [
-    "Intel Core i7-12700H",
-    "Intel Core i9-12900H"
-  ],
-  "ram": "32GB DDR5",
-  "storage": "1TB SSD",
-  "display": "16\" QHD+ Touch 120Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 3060"
-  ],
-  "color": [
-    "Lunar Gray"
-  ],
-  "features": [
-    "Touchscreen Display",
-    "True Color Technology",
-    "Thunderbolt 4",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862567993b2189bb5a28fff"
-    },
-    "categoryName": "Laptop Đồ Họa - Kỹ Thuật"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255c693b2189bb5a28ff7"
-    },
-    "brandName": "MSI"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626805597a8ed103030b48"
-  },
-  "name": "MSI Prestige 13 Evo",
-  "description": "Laptop cao cấp, siêu nhẹ, pin trâu, dành cho doanh nhân hiện đại.",
-  "image": "https://m.media-amazon.com/images/I/41g2AjYs8eL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/517V0LT626L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/51RDFOGgfPL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41ZOzdc3JpL._AC_US40_.jpg"
-  ],
-  "price": 32990000,
-  "originalprice": 35990000,
-  "stock": 5,
-  "new": false,
-  "hot": false,
-  "view": 4873,
-  "inStock": true,
-  "rating": 4.5,
-  "processor": [
-    "Intel Core i7-1360P"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
-  "display": "13.3\" FHD+ IPS",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Stellar Blue",
-    "Urban Silver"
-  ],
-  "features": [
-    "Fingerprint Reader",
-    "Military-Grade Durability",
-    "Thunderbolt 4",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255c693b2189bb5a28ff7"
-    },
-    "brandName": "MSI"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626a07597a8ed103030b5b"
-  },
-  "name": "HP Envy x360",
-  "description": "Laptop 2-in-1 cảm ứng, thiết kế xoay gập tiện lợi, hiệu năng cao.",
-  "image": "https://m.media-amazon.com/images/I/51cdmZRO49L._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/51E9o0E7WYL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41gtwWISmUL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41jNZUPsPwL._AC_US40_.jpg"
-  ],
-  "price": 23990000,
-  "originalprice": 25990000,
-  "stock": 7,
-  "new": true,
-  "hot": false,
-  "view": 6840,
-  "inStock": true,
-  "rating": 4.6,
-  "processor": [
-    "Intel Core i7-1255U"
-  ],
-  "ram": "16GB DDR4",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD Touchscreen",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Nightfall Black",
-    "Natural Silver"
-  ],
-  "features": [
-    "2-in-1 Design",
-    "Touchscreen",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568593b2189bb5a29001"
-    },
-    "categoryName": "Laptop Mỏng Nhẹ"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686268ba597a8ed103030b4b"
-    },
-    "brandName": "HP"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626bb9597a8ed103030b67"
-  },
-  "name": "HP 245 G9",
-  "description": "Laptop giá rẻ với hiệu năng ổn định cho học sinh, sinh viên.",
-  "image": "https://m.media-amazon.com/images/I/41SqvJK8nIL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41qUtCor44L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41nrVwc85BL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41hFzYnYqfL._AC_US40_.jpg"
-  ],
-  "price": 9990000,
-  "originalprice": 10990000,
-  "stock": 18,
-  "new": false,
-  "hot": false,
-  "view": 8122,
-  "inStock": true,
-  "rating": 4.1,
-  "processor": [
-    "AMD Ryzen 3 5300U"
-  ],
-  "ram": "8GB DDR4",
-  "storage": "256GB SSD",
-  "display": "14\" HD Anti-Glare",
-  "graphics": [
-    "AMD Radeon Graphics"
-  ],
-  "color": [
-    "Asteroid Silver"
-  ],
-  "features": [
-    "Lightweight Design",
-    "USB-C Support",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568f93b2189bb5a29003"
-    },
-    "categoryName": "Laptop Sinh Viên"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686268ba597a8ed103030b4b"
-    },
-    "brandName": "HP"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626d61597a8ed103030b6f"
-  },
-  "name": "Lenovo Yoga Slim 7",
-  "description": "Laptop mỏng nhẹ, thời lượng pin cao, màn hình đẹp, phù hợp doanh nhân.",
-  "image": "https://m.media-amazon.com/images/I/41IXdfPtqCL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41vt44GDGqL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/411d4CfRNSL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/411CfIp2Z8L._AC_US40_.jpg"
-  ],
-  "price": 21990000,
-  "originalprice": 23990000,
-  "stock": 9,
-  "new": true,
-  "hot": false,
-  "view": 5400,
-  "inStock": true,
-  "rating": 4.5,
-  "processor": [
-    "AMD Ryzen 7 5800U"
-  ],
-  "ram": "16GB LPDDR4x",
-  "storage": "512GB SSD",
-  "display": "14\" 2.2K IPS",
-  "graphics": [
-    "AMD Radeon Graphics"
-  ],
-  "color": [
-    "Slate Grey",
-    "Orchid"
-  ],
-  "features": [
-    "Fingerprint Reader",
-    "Dolby Vision",
-    "Wi-Fi 6",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568593b2189bb5a29001"
-    },
-    "categoryName": "Laptop Mỏng Nhẹ"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "6862559d93b2189bb5a28fef"
-    },
-    "brandName": "Lenovo"
-  }
-},
-{
-  "_id": {
-    "$oid": "68626db7597a8ed103030b73"
-  },
-  "name": "Lenovo Legion 5 Pro",
-  "description": "Laptop gaming cao cấp với RTX 4060 và màn hình QHD 165Hz cho trải nghiệm đỉnh cao.",
-  "image": "https://m.media-amazon.com/images/I/51JVElycEbL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41W8yPwuzVL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41k9cVl4bgL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/51uvhO2dlcL._AC_US40_.jpg"
-  ],
-  "price": 32990000,
-  "originalprice": 35990000,
-  "stock": 7,
-  "new": true,
-  "hot": true,
-  "view": 11798,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "AMD Ryzen 7 6800H"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
-  "display": "16\" QHD 165Hz IPS",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
-  "color": [
-    "Storm Grey"
-  ],
-  "features": [
-    "Legion Coldfront 4.0",
-    "RGB Keyboard",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "6862559d93b2189bb5a28fef"
-    },
-    "brandName": "Lenovo"
-  }
-},
-{
-  "_id": {
-    "$oid": "68629f79597a8ed103030b7b"
-  },
-  "name": "Lenovo Legion Slim 5",
-  "description": "Laptop gaming mỏng nhẹ với hiệu năng mạnh từ RTX 4050 và Ryzen 7.",
-  "image": "https://m.media-amazon.com/images/I/316gIynsjNL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41uHHI3wr8L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31k3RjktNtL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/61krhqUNYzL._AC_SL1080_.jpg"
-  ],
-  "price": 28990000,
-  "originalprice": 30990000,
-  "stock": 6,
-  "new": true,
-  "hot": true,
-  "view": 4525,
-  "inStock": true,
-  "rating": 4.6,
-  "processor": [
-    "AMD Ryzen 7 7840HS"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "512GB SSD",
-  "display": "16\" WQXGA 165Hz IPS",
-  "graphics": [
-    "NVIDIA GeForce RTX 4050"
-  ],
-  "color": [
-    "Storm Grey",
-    "Onyx Grey"
-  ],
-  "features": [
-    "Slim Build",
-    "AI Engine Boost",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "6862559d93b2189bb5a28fef"
-    },
-    "brandName": "Lenovo"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862a05f597a8ed103030b83"
-  },
-  "name": "Dell XPS 13 Plus 9320",
-  "description": "Laptop cao cấp với thiết kế mỏng nhẹ, màn OLED, cảm ứng hiện đại.",
-  "image": "https://m.media-amazon.com/images/I/41l2o0tTTxL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/21axuXC7AcL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41H7SyELPyL._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/61lAvkFPdRL._AC_SL1206_.jpg"
-  ],
-  "price": 45990000,
-  "originalprice": 48990000,
-  "stock": 7,
-  "new": true,
-  "view": 5215,
-  "hot": true,
-  "inStock": true,
-  "rating": 4.7,
-  "processor": [
-    "Intel Core i7-1360P"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
-  "display": "13.4\" 3.5K OLED Touch",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Platinum Silver"
-  ],
-  "features": [
-    "Fingerprint Sensor",
-    "InfinityEdge Display",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862569893b2189bb5a29005"
-    },
-    "categoryName": "Laptop Cao Cấp"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255d193b2189bb5a28ff9"
-    },
-    "brandName": "Dell"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862a0a5597a8ed103030b87"
-  },
-  "name": "Dell G15 5530",
-  "description": "Laptop gaming tầm trung với RTX 3050, màn hình 165Hz.",
-  "image": "https://m.media-amazon.com/images/I/71qEFcKYW2L._AC_SL1500_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/71FvUm2upSL._AC_SL1500_.jpg",
-    "https://m.media-amazon.com/images/I/71Irm7QjHqL._AC_SL1500_.jpg",
-    "https://m.media-amazon.com/images/I/51mtme1u6hL._AC_SL1500_.jpg"
-  ],
-  "price": 25990000,
-  "originalprice": 27990000,
-  "stock": 8,
-  "new": true,
-  "view": 7862,
-  "hot": true,
-  "inStock": true,
-  "rating": 4.5,
-  "processor": [
-    "Intel Core i7-13650HX"
-  ],
-  "ram": "16GB DDR5",
-  "storage": "512GB SSD",
-  "display": "15.6\" FHD 165Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 3050"
-  ],
-  "color": [
-    "Phantom Grey",
-    "Dark Shadow Grey"
-  ],
-  "features": [
-    "Alienware Command Center",
-    "Game Shift Key",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255d193b2189bb5a28ff9"
-    },
-    "brandName": "Dell"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862a0fd597a8ed103030b8b"
-  },
-  "name": "Dell Latitude 5450",
-  "description": "Laptop doanh nghiệp, bền bỉ, nhẹ, hiệu suất cao, phù hợp đi công tác.",
-  "image": "https://m.media-amazon.com/images/I/919OArmvu2L._AC_SL1500_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/71Pupik0nAL._AC_SL1500_.jpg",
-    "https://m.media-amazon.com/images/I/71chkP-hesL._AC_SL1500_.jpg",
-    "https://m.media-amazon.com/images/I/71BS1Ya2XGL._AC_SL1500_.jpg"
-  ],
-  "price": 30990000,
-  "originalprice": 33990000,
-  "stock": 9,
-  "new": true,
-  "view": 4211,
-  "hot": false,
-  "inStock": true,
-  "rating": 4.6,
-  "processor": [
-    "Intel Core i7-1355U"
-  ],
-  "ram": "16GB LPDDR5",
-  "storage": "512GB SSD",
-  "display": "14\" WUXGA Anti-Glare",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
-  "color": [
-    "Titan Gray"
-  ],
-  "features": [
-    "Thunderbolt 4",
-    "Fingerprint Reader",
-    "Windows 11 Pro"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862568593b2189bb5a29001"
-    },
-    "categoryName": "Laptop Mỏng Nhẹ"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255d193b2189bb5a28ff9"
-    },
-    "brandName": "Dell"
-  }
-},
-{
-  "_id": {
-    "$oid": "6862a154597a8ed103030b8f"
-  },
-  "name": "Dell Alienware x16 R2",
-  "description": "Laptop gaming cao cấp nhất, CPU i9, GPU RTX 4080, đèn RGB độc đáo.",
-  "image": "https://m.media-amazon.com/images/I/41bguAHg92L._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/31U2QemmR2L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41fuXP5Fl0L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31t6PXGj8QL._AC_US40_.jpg"
-  ],
-  "price": 81990000,
-  "originalprice": 86990000,
-  "stock": 4,
-  "new": true,
-  "view": 14515,
-  "hot": true,
-  "inStock": true,
-  "rating": 4.9,
-  "processor": [
-    "Intel Core i9-13900HK"
-  ],
-  "ram": "32GB DDR5",
-  "storage": "2TB SSD",
-  "display": "16\" QHD+ 240Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4080",
-    "Intel UHD Graphics"
-  ],
-  "color": [
-    "Lunar Silver"
-  ],
-  "features": [
-    "AlienFX Lighting",
-    "Dolby Vision",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862565f93b2189bb5a28ffb"
-    },
-    "categoryName": "Laptop Gaming"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255d193b2189bb5a28ff9"
-    },
-    "brandName": "Dell"
-  }
-},
-{
-  "_id": {
-    "$oid": "686564f26ac1d654c6eee73c"
-  },
-  "name": "test lap",
-  "description": "Màn hình OLED 15.6 inch sống động, thiết kế hiện đại, hiệu năng ổn định với nhiều tùy chọn CPU và GPU.",
-  "image": "https://m.media-amazon.com/images/I/41eH8jKBmlL._AC_US40_.jpg",
-  "images": [
-    "https://m.media-amazon.com/images/I/41bGbeH3R9L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/41bGbeH3R9L._AC_US40_.jpg",
-    "https://m.media-amazon.com/images/I/31ta4hj1gdL._AC_US40_.jpg"
-  ],
-  "price": 16990000,
-  "stock": 15,
-  "new": true,
-  "view": 15432,
-  "hot": false,
-  "inStock": true,
-  "rating": 4.5,
-  "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H"
-  ],
-  "ram": "16GB DDR4",
-  "storage": "512GB PCIe SSD",
-  "display": "15.6\" FHD OLED (1920 x 1080), 60Hz",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA GeForce MX550"
-  ],
-  "color": [
-    "Indie Black",
-    "Cool Silver"
-  ],
-  "originalprice": "18990000",
-  "features": [
-    "Màn hình OLED",
-    "Wi-Fi 6",
-    "Backlit Keyboard",
-    "Fingerprint Sensor",
-    "Windows 11 Home"
-  ],
-  "category": {
-    "categoryId": {
-      "$oid": "6862566f93b2189bb5a28ffd"
-    },
-    "categoryName": "Laptop Văn Phòng"
-  },
-  "brand": {
-    "brandId": {
-      "$oid": "686255aa93b2189bb5a28ff1"
-    },
-    "brandName": "Asus"
-  },
-  "__v": 0
-}]
+]

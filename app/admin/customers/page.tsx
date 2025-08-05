@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -25,112 +26,81 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, MoreHorizontal, Eye, Users, UserCheck, Star } from "lucide-react";
+import { Search, MoreHorizontal, Eye, Users, UserCheck } from "lucide-react";
 import AdminSidebar from "@/components/admin/admin-sidebar";
 
-// Mock customers data
-const customersData = [
-  {
-    id: 1,
-    name: "Nguyễn Văn A",
-    email: "nguyenvana@email.com",
-    phone: "0901234567",
-    totalOrders: 5,
-    totalSpent: 125000000,
-    lastOrder: "2024-07-01",
-    status: "active",
-    joinDate: "2024-01-15",
-  },
-  {
-    id: 2,
-    name: "Trần Thị B",
-    email: "tranthib@email.com",
-    phone: "0902345678",
-    totalOrders: 3,
-    totalSpent: 87000000,
-    lastOrder: "2024-06-28",
-    status: "active",
-    joinDate: "2024-02-20",
-  },
-  {
-    id: 3,
-    name: "Lê Văn C",
-    email: "levanc@email.com",
-    phone: "0903456789",
-    totalOrders: 1,
-    totalSpent: 28500000,
-    lastOrder: "2024-07-02",
-    status: "new",
-    joinDate: "2024-07-02",
-  },
-  {
-    id: 4,
-    name: "Phạm Thị D",
-    email: "phamthid@email.com",
-    phone: "0904567890",
-    totalOrders: 8,
-    totalSpent: 245000000,
-    lastOrder: "2024-06-25",
-    status: "vip",
-    joinDate: "2023-11-10",
-  },
-  {
-    id: 5,
-    name: "Hoàng Văn E",
-    email: "hoangvane@email.com",
-    phone: "0905678901",
-    totalOrders: 2,
-    totalSpent: 75000000,
-    lastOrder: "2024-06-29",
-    status: "active",
-    joinDate: "2024-03-05",
-  },
-];
-
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(value);
-};
+interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  address?: string;
+  status: boolean;
+  role: number;
+  joinDate: string;
+}
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString("vi-VN");
 };
 
-const getStatusBadge = (status: string) => {
-  switch (status) {
-    case "vip":
-      return <Badge className="bg-purple-100 text-purple-800">VIP</Badge>;
-    case "active":
-      return <Badge className="bg-green-100 text-green-800">Hoạt động</Badge>;
-    case "new":
-      return <Badge className="bg-blue-100 text-blue-800">Mới</Badge>;
-    case "inactive":
-      return <Badge variant="secondary">Không hoạt động</Badge>;
-    default:
-      return <Badge variant="secondary">Không xác định</Badge>;
-  }
+const getStatusBadge = (status: boolean) => {
+  return status ? (
+    <Badge className="bg-green-100 text-green-800">Hoạt động</Badge>
+  ) : (
+    <Badge className="bg-red-100 text-red-800">Bị chặn</Badge>
+  );
 };
 
 export default function CustomersPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredCustomers = customersData.filter((customer) => {
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:5000/users");
+        if (!response.ok) {
+          throw new Error("Failed to fetch customers");
+        }
+        const data = await response.json();
+        if (!data.status || !Array.isArray(data.users)) {
+          throw new Error("Invalid response format");
+        }
+        const formattedData = data.users.map((customer: any) => ({
+          id: customer._id,
+          name: customer.name,
+          email: customer.email,
+          phone: customer.phone && customer.phone !== "" ? customer.phone : "Chưa cung cấp",
+          address: customer.address && customer.address !== "" ? customer.address : "Chưa cung cấp",
+          status: customer.status,
+          role: customer.role,
+          joinDate: customer.createdAt,
+        }));
+        setCustomers(formattedData);
+      } catch (err) {
+        setError("Không thể tải dữ liệu khách hàng");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
+
+  const filteredCustomers = customers.filter((customer) => {
     return (
       customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.phone.includes(searchTerm)
+      (customer.phone && customer.phone !== "Chưa cung cấp" && customer.phone.includes(searchTerm))
     );
   });
 
-  const totalCustomers = customersData.length;
-  const activeCustomers = customersData.filter((c) => c.status === "active").length;
-  const vipCustomers = customersData.filter((c) => c.status === "vip").length;
-  const newCustomers = customersData.filter((c) => c.status === "new").length;
-  const avgOrderValue =
-    customersData.reduce((sum, c) => sum + c.totalSpent, 0) /
-    customersData.reduce((sum, c) => sum + c.totalOrders, 0);
+  const totalCustomers = customers.length;
+  const activeCustomers = customers.filter((c) => c.status).length;
 
   return (
     <AdminSidebar>
@@ -145,7 +115,7 @@ export default function CustomersPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Tổng khách hàng</CardTitle>
@@ -163,34 +133,6 @@ export default function CustomersPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-600">{activeCustomers}</div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">VIP</CardTitle>
-              <Star className="h-4 w-4 text-purple-600" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-purple-600">{vipCustomers}</div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Khách mới</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{newCustomers}</div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Giá trị TB/đơn</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-lg font-bold">{formatCurrency(avgOrderValue)}</div>
             </CardContent>
           </Card>
         </div>
@@ -215,66 +157,67 @@ export default function CustomersPage() {
           <CardHeader>
             <CardTitle>Danh sách khách hàng</CardTitle>
             <CardDescription>
-              Thông tin chi tiết và lịch sử mua hàng của khách hàng
+              Thông tin chi tiết của khách hàng
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Khách hàng</TableHead>
-                  <TableHead>Liên hệ</TableHead>
-                  <TableHead>Tổng đơn</TableHead>
-                  <TableHead>Tổng chi tiêu</TableHead>
-                  <TableHead>Đơn gần nhất</TableHead>
-                  <TableHead>Trạng thái</TableHead>
-                  <TableHead>Ngày tham gia</TableHead>
-                  <TableHead className="text-right">Thao tác</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredCustomers.map((customer) => (
-                  <TableRow key={customer.id}>
-                    <TableCell className="font-medium">
-                      <div>
-                        <p className="font-medium">{customer.name}</p>
-                        <p className="text-sm text-gray-500">ID: {customer.id}</p>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="text-sm">
-                        <p>{customer.email}</p>
-                        <p className="text-gray-500">{customer.phone}</p>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <span className="font-medium">{customer.totalOrders}</span>
-                    </TableCell>
-                    <TableCell>{formatCurrency(customer.totalSpent)}</TableCell>
-                    <TableCell>{formatDate(customer.lastOrder)}</TableCell>
-                    <TableCell>{getStatusBadge(customer.status)}</TableCell>
-                    <TableCell>{formatDate(customer.joinDate)}</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Eye className="mr-2 h-4 w-4" />
-                            Xem chi tiết
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>Lịch sử đơn hàng</DropdownMenuItem>
-                          <DropdownMenuItem>Gửi email</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
+            {loading ? (
+              <div className="text-center">Đang tải...</div>
+            ) : error ? (
+              <div className="text-center text-red-500">{error}</div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Khách hàng</TableHead>
+                    <TableHead>Liên hệ</TableHead>
+                    <TableHead>Địa chỉ</TableHead>
+                    <TableHead>Vai trò</TableHead>
+                    <TableHead>Trạng thái</TableHead>
+                    <TableHead>Ngày tham gia</TableHead>
+                    <TableHead className="text-right">Thao tác</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {filteredCustomers.map((customer) => (
+                    <TableRow key={customer.id}>
+                      <TableCell className="font-medium">
+                        <div>
+                          <p className="font-medium">{customer.name}</p>
+                          <p className="text-sm text-gray-500">ID: {customer.id}</p>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="text-sm">
+                          <p>{customer.email}</p>
+                          <p className="text-gray-500">{customer.phone}</p>
+                        </div>
+                      </TableCell>
+                      <TableCell>{customer.address}</TableCell>
+                      <TableCell>{customer.role === 0 ? "Khách hàng" : "Quản trị"}</TableCell>
+                      <TableCell>{getStatusBadge(customer.status)}</TableCell>
+                      <TableCell>{formatDate(customer.joinDate)}</TableCell>
+                      <TableCell className="text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                              <Eye className="mr-2 h-4 w-4" />
+                              Xem chi tiết
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>Gửi email</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
           </CardContent>
         </Card>
       </div>

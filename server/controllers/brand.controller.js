@@ -5,11 +5,23 @@ module.exports = {
     addBrand,
     updateBrand,
     deleteBrand,
+    getBrands,
+    toggleStatus
 };
-// Get all brands
+// Get all brands status=true
 async function getAllBrands() {
     try {
-        const result = await brandModel.find().limit(5);
+        const result = await brandModel.find({status: true});
+        return result;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error fetching brands');
+    }
+}
+//lấy tất cả thương hiệu
+async function getBrands() {
+    try {
+        const result = await brandModel.find();
         return result;
     } catch (error) {
         console.log(error);
@@ -59,5 +71,18 @@ async function deleteBrand(id) {
     } catch (error) {
         console.log(error);
         throw new Error('Error deleting brand');
+    }
+}
+//thay đổi trạng thái brand
+async function toggleStatus(id) {
+    try {
+        const brand = await brandModel.findById(id);
+        if (!brand) throw new Error("Brand not found");
+        brand.status = !brand.status; // Đảo ngược trạng thái
+        await brand.save();
+        return brand;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error toggling brand status");
     }
 }

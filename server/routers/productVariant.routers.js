@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const productVariantController = require("../controllers/productVariant.controller.js");
-
+const { updateMultipleVariants } = require("../controllers/productVariant.controller.js");
 // Lấy tất cả biến thể sản phẩm
 // http://localhost:3000/product-variant/
 router.get("/", async (req, res) => {
@@ -26,7 +26,7 @@ router.get("/by-product/:productId", async (req, res) => {
   }
 });
 // Thêm biến thể sản phẩm
-// http://localhost:3000/product-variant/add
+// http://localhost:5000/product-variant/add
 router.post("/add", async (req, res) => {
   try {
     const newVariant = await productVariantController.addVariant(req, res);
@@ -37,7 +37,7 @@ router.post("/add", async (req, res) => {
   }
 });
 // Cập nhật biến thể sản phẩm
-// http://localhost:3000/product-variant/update/:id
+// http://localhost:5000/product-variant/update/:id
 router.put("/update/:variantId", async (req, res) => {
   try {
     const updatedVariant = await productVariantController.updateVariantById(req);
@@ -67,4 +67,14 @@ router.delete('/delete/:variantId', async (req, res) => {
     return res.status(500).json({ status: false, message: 'Lỗi server khi xóa biến thể' });
   }
 });
+//câp nhật nhiều biến thể
+router.put('/update-multiple', async (req, res) => {
+  try {
+    const updatedVariants = await updateMultipleVariants(req);
+    return res.status(200).json({ status: true, result: updatedVariants });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+});
+
  module.exports = router;

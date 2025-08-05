@@ -42,7 +42,7 @@ async function getProductVariant(productId: string) {
 
     const data = await res.json();
 
-    // ✅ Flatten các biến thể bên trong .variants
+    
     const raw = data.result || [];
     const flattened = raw.flatMap((entry: any) => entry.variants || []);
 

@@ -18,7 +18,7 @@ export default function AddToCartButton({ userId, variantId, quantity = 1 }) {
       if (res.data.status) {
         toast({
           title: "🛒 Đã thêm vào giỏ hàng",
-          description: "Sản phẩm đã được thêm thành công",
+          description: "Sản phẩm đã được thêm thành công hehe",
           variant: "default",
         });
       } else {

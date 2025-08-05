@@ -16,6 +16,8 @@ import {
   Search,
   ChevronDown,
   FileText,
+  Folder,
+  Tag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -42,6 +44,16 @@ const sidebarItems = [
     title: "Sản phẩm",
     href: "/admin/products",
     icon: Package,
+  },
+  {
+    title: "Danh mục",
+    href: "/admin/category",
+    icon: Folder,
+  },
+  {
+    title: "Thương hiệu",
+    href: "/admin/brand",
+    icon: Tag,
   },
   {
     title: "Đơn hàng",

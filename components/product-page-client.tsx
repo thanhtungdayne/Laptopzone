@@ -31,8 +31,9 @@ import { useCart } from "@/context/cart-context";
 import { formatPrice } from "@/lib/utils";
 import type { Laptop } from "@/types/product";
 import { useAuth } from "@/context/auth-context";
+import { useToast } from "./ui/use-toast";
 
-
+ 
 interface ProductPageClientProps {
   laptop: Laptop;
   relatedProducts: Laptop[];
@@ -118,6 +119,10 @@ export default function ProductPageClient({
     return values;
   }
 
+  const { fetchCart } = useCart();
+  const {toast} = useToast();
+  const { addItem } = useCart();
+
   useEffect(() => {
     console.log("Biến thể đang chọn:", selectedVariant);
   }, [selectedVariant]);
@@ -125,36 +130,46 @@ export default function ProductPageClient({
   console.log("productVariant:", laptop.productVariant);
   console.log("laptop:", laptop);
 
-  const handleAddToCart = async () => {
-    if (!selectedVariant) {
-      alert("Vui lòng chọn đầy đủ CPU, GPU và Màu sắc trước khi thêm vào giỏ hàng.");
-      return;
-    }
+const handleAddToCart = async () => {
+  if (!selectedVariant) {
+    toast({
+      title: " Vui lòng chọn đầy đủ biến thể",
+      description: "Bạn cần chọn CPU, GPU và Màu sắc trước khi thêm vào giỏ hàng.",
+    });
+    return;
+  }
 
-    try {
-      const res = await fetch("http://localhost:5000/cart/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user?._id, // hoặc dùng context user
-          variantId: selectedVariant._id,
-          quantity,
-        }),
-      });
-      console.log("User from context:", user);
-      const data = await res.json();
-      if (data.status) {
-        alert("✅ Đã thêm vào giỏ hàng");
-      } else {
-        alert("❌ " + data.message);
-      }
-    } catch (error) {
-      console.error("❌ Lỗi khi thêm vào giỏ hàng:", error);
-      alert("Lỗi khi gửi yêu cầu đến server");
-    }
-  };
+  try {
+    const cartItem: CartItem = {
+      variantId: selectedVariant._id,
+      quantity,
+      price: selectedVariant.price,
+      productName: laptop.name,
+      productImage: laptop.images[0] || "",
+      attributes: selectedVariant.attributes.map((attr: any) => ({
+        name: attr.attributeName,
+        value: attr.value,
+      })),
+    };
+
+    // Thêm vào giỏ hàng
+    await addItem(cartItem);
+
+    toast({
+      title: "Đã thêm vào giỏ hàng",
+      description: "Sản phẩm đã được thêm thành công!",
+    });
+  } catch (error) {
+    console.error("Lỗi khi thêm vào giỏ hàng:", error);
+    toast({
+      title: "Lỗi kết nối server",
+      description: "Không thể gửi yêu cầu tới server.",
+      
+    });
+  }
+};
+
+
 
 
   const breadcrumbItems = [
@@ -427,7 +442,7 @@ export default function ProductPageClient({
             </div> */}
 
               <div className="flex items-center space-x-4">
-                <label htmlFor="quantity" className="text-sm font-medium">
+                {/* <label htmlFor="quantity" className="text-sm font-medium">
                   Số lượng:
                 </label>
                 <select
@@ -442,7 +457,7 @@ export default function ProductPageClient({
                       {i + 1}
                     </option>
                   ))}
-                </select>
+                </select> */}
                 {laptop.stock && laptop.stock < 10 && (
                   <span className="text-sm text-muted-foreground">
                     (Còn {laptop.stock} sản phẩm)

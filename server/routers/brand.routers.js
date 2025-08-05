@@ -14,6 +14,16 @@ router.get('/', async (req, res) => {
         return res.status(500).json({ status: false, message: 'Error fetching data' });
     }
 });
+// get brand
+router.get('/getbrand', async (req, res) => {
+    try {
+        const result = await brandController.getBrands();
+        return res.status(200).json({ status: true, result });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: 'Error fetching data' });
+    }
+});
 // Get brand details by ID
 router.get('/:id', async (req, res) => {
     try {
@@ -59,5 +69,15 @@ router.delete('/deletebrand/:id', async (req, res) => {
         return res.status(500).json({ status: false, message: 'Error deleting data' });
     }
 });
-
+// Toggle brand status
+router.put('/toggle-status/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await brandController.toggleStatus(id);
+        return res.status(200).json({ status: true, result });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false, message: 'Error toggling status' });
+    }
+});
 module.exports = router;

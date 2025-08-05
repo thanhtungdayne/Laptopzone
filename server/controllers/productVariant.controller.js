@@ -1,13 +1,14 @@
 const productModel = require("../models/product.model.js");
 const attributeModel = require("../models/attribute.model.js");
 const productVariantModel = require("../models/productVartiant.model.js");
-
+const mongoose = require("mongoose");
 module.exports = {
   getAllVariants,
   getVariantByProductId,
   addVariant,
   updateVariantById,
-  deleteVariantById
+  deleteVariantById,
+  updateMultipleVariants
 };
 
 async function getAllVariants(req, res) {
@@ -36,7 +37,7 @@ async function getVariantByProductId(productId) {
     throw new Error("Lỗi khi lấy biến thể theo productId");
   }
 }
-
+// thêm biến thể sản phẩm
 async function addVariant(req) {
   try {
     console.log("Body nhận được:", JSON.stringify(req.body, null, 2));
@@ -108,7 +109,7 @@ async function addVariant(req) {
 }
 
 
-
+// Cập nhật biến thể sản phẩm theo ID
 async function updateVariantById(req) {
   try {
     const { variantId } = req.params;
@@ -187,3 +188,104 @@ async function deleteVariantById(variantId) {
   }
 }
 
+//update nhiều biến thể
+async function updateMultipleVariants(req) {
+  try {
+    const { productId, variants } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      throw new Error(`Invalid productId: ${productId}`);
+    }
+
+    if (!Array.isArray(variants) || variants.length === 0) {
+      throw new Error('Variants must be a non-empty array');
+    }
+
+    // Tìm productVariant theo productId
+    const productVariant = await productVariantModel.findOne({ productId });
+    if (!productVariant) {
+      throw new Error(`No productVariant found for productId: ${productId}`);
+    }
+
+    // Kiểm tra tính duy nhất của sku trong variants
+    const skuSet = new Set(variants.map((v) => v.sku));
+    if (skuSet.size !== variants.length) {
+      throw new Error('Duplicate SKU found in variants');
+    }
+
+    // Kiểm tra sku không trùng với các biến thể hiện có (ngoài những biến thể đang được cập nhật)
+    const existingSkus = productVariant.variants
+      .filter((v) => !variants.some((update) => update.variantId === v._id.toString()))
+      .map((v) => v.sku);
+    const newSkus = variants.map((v) => v.sku);
+    const duplicateSkus = newSkus.filter((sku) => existingSkus.includes(sku));
+    if (duplicateSkus.length > 0) {
+      throw new Error(`SKU already exists: ${duplicateSkus.join(', ')}`);
+    }
+
+    // Cập nhật các biến thể
+    for (const update of variants) {
+      const { variantId, attributes, price, originalprice, sku, stock } = update;
+
+      if (!mongoose.Types.ObjectId.isValid(variantId)) {
+        throw new Error(`Invalid variantId: ${variantId}`);
+      }
+
+      const variant = productVariant.variants.id(variantId);
+      if (!variant) {
+        throw new Error(`Variant not found: ${variantId}`);
+      }
+
+      // Xử lý attributes
+      if (attributes && Array.isArray(attributes)) {
+        const processedAttributes = [];
+        for (const attr of attributes) {
+          if (!mongoose.Types.ObjectId.isValid(attr.attributeId)) {
+            throw new Error(`Invalid attributeId: ${attr.attributeId}`);
+          }
+
+          const attribute = await attributeModel.findById(attr.attributeId);
+          if (!attribute) {
+            throw new Error(`Attribute not found: ${attr.attributeId}`);
+          }
+
+          const value = attr.value?.trim();
+          if (!value) {
+            throw new Error(`Missing value for attribute ${attribute.name || attr.attributeName}`);
+          }
+
+          if (!Array.isArray(attribute.values)) {
+            attribute.values = [];
+          }
+
+          if (!attribute.values.includes(value)) {
+            attribute.values.push(value);
+            await attribute.save();
+          }
+
+          processedAttributes.push({
+            attributeId: attr.attributeId,
+            attributeName: attr.attributeName,
+            value,
+          });
+        }
+        variant.attributes = processedAttributes;
+      }
+
+      // Cập nhật các trường khác
+      if (price !== undefined) variant.price = price;
+      if (originalprice !== undefined) variant.originalprice = originalprice;
+      if (sku !== undefined) variant.sku = sku;
+      if (stock !== undefined) variant.stock = stock;
+    }
+
+    // Lưu document
+    await productVariant.save();
+    return productVariant.variants.filter((v) =>
+      variants.some((update) => update.variantId === v._id.toString())
+    );
+  } catch (error) {
+    console.error('Error updating multiple variants:', error.message);
+    throw error;
+  }
+}
