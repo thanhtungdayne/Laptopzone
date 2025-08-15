@@ -72,7 +72,7 @@ async function placeOrder(req) {
   const savedOrder = await order.save();
 
   // B6: Xóa giỏ hàng
-  // await cartModel.deleteOne({ userId });
+  await cartModel.deleteOne({ userId });
 
   return savedOrder;
 }

@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // TẢI BIẾN MÔI TRƯỜNG TỪ mongo.env
 require("dotenv").config({ path: "mongo.env" });
 
+
 const mongoose = require("mongoose");
 
 // KẾT NỐI ĐẾN MONGODB ATLAS
@@ -44,6 +45,7 @@ var orderRouter = require("./routers/order.routers.js");
 var wishlistRouter = require("./routers/wishlist.routers.js");
 var uploadRoute = require("./routers/upload.route.js");
 var zaloRouter = require("./routers/zalo.routers.js");
+var locationRouter = require("./routers/location.routers.js");
 //định nghĩa route
 //http://localhost:3000/
 app.use("/", indexRouter);
@@ -71,6 +73,8 @@ app.use("/wishlist", wishlistRouter);
 app.use("/upload", uploadRoute);
 
 app.use("/payment/zalo", zaloRouter);
+
+app.use("/location", locationRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

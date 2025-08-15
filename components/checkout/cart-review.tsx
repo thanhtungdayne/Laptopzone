@@ -70,7 +70,7 @@ export default function CartReview() {
       <div className="text-right mt-4">
         <button
           onClick={handleNextStep}
-          className="bg-primary text-white px-6 py-2 rounded hover:bg-primary/90 transition"
+          className="w-full bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white px-6 py-2 rounded hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition"
         >
           Tiếp tục đến vận chuyển
         </button>

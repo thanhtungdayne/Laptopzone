@@ -1,3 +1,4 @@
+
 "use client";
 
 import type React from "react";
@@ -40,7 +41,7 @@ export default function LoginPage() {
     if (result.success) {
       setSuccess("Đăng nhập thành công!");
       setTimeout(() => {
-        router.push("/");
+        router.push("/profile");
       }, 1000);
     } else {
       setError(result.message || "Đăng nhập thất bại");
@@ -54,7 +55,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-md mx-auto">
           <Card>
@@ -63,7 +63,6 @@ export default function LoginPage() {
               <p className="text-muted-foreground">Đăng nhập để tiếp tục mua sắm</p>
             </CardHeader>
             <CardContent className="space-y-6">
-              {/* Social login buttons */}
               <div className="space-y-3">
                 <Button type="button" variant="outline" className="w-full" onClick={() => handleSocialLogin("Google")}>
                   <Chrome className="mr-2 h-4 w-4" />
@@ -79,7 +78,6 @@ export default function LoginPage() {
                   Đăng nhập với Facebook
                 </Button>
               </div>
-
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <Separator className="w-full" />
@@ -88,20 +86,17 @@ export default function LoginPage() {
                   <span className="bg-background px-2 text-muted-foreground">Hoặc đăng nhập bằng email</span>
                 </div>
               </div>
-
               <form onSubmit={handleSubmit} className="space-y-4">
                 {error && (
                   <Alert variant="destructive">
                     <AlertDescription>{error}</AlertDescription>
                   </Alert>
                 )}
-
                 {success && (
                   <Alert>
                     <AlertDescription className="text-green-600">{success}</AlertDescription>
                   </Alert>
                 )}
-
                 <div>
                   <Label htmlFor="email">Email</Label>
                   <div className="relative">
@@ -117,7 +112,6 @@ export default function LoginPage() {
                     />
                   </div>
                 </div>
-
                 <div>
                   <Label htmlFor="password">Mật khẩu</Label>
                   <div className="relative">
@@ -142,12 +136,10 @@ export default function LoginPage() {
                     </Button>
                   </div>
                 </div>
-
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
                 </Button>
               </form>
-
               <div className="text-center">
                 <p className="text-sm text-muted-foreground">
                   Chưa có tài khoản?{" "}
@@ -160,7 +152,6 @@ export default function LoginPage() {
           </Card>
         </div>
       </div>
-
       <Footer />
     </div>
   );

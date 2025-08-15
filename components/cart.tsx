@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCart, Plus, Minus, Trash2, ExternalLink, User } from "lucide-react";
+import { ShoppingCart, Plus, Minus, Trash2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -15,14 +15,17 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/cart-context";
 import { useAuth } from "@/context/auth-context";
-import { formatPrice } from "@/lib/utils";
 
-export default function Cart() {
-  const { items, total, clearCart, removeItem, updateQuantity } = useCart();
-  const { isAuthenticated } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+// Format giá sang VND
+const formatPriceVND = (price: number) =>
+  price.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 
-  
+export default function GioHang() {
+  const { items, total, clearCart, removeItem, updateQuantity } = useCart(); // Lấy dữ liệu giỏ hàng từ context
+  const { isAuthenticated } = useAuth(); // Kiểm tra trạng thái đăng nhập
+  const [isOpen, setIsOpen] = useState(false); // Trạng thái mở/đóng sheet giỏ hàng
+
+  // Nếu chưa đăng nhập
   if (!isAuthenticated) {
     return (
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -82,7 +85,12 @@ export default function Cart() {
               <p className="text-muted-foreground mb-6">
                 Giỏ hàng của bạn đang trống
               </p>
-              <Button onClick={() => setIsOpen(false)}>Tiếp tục mua sắm</Button>
+              <Button
+                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:opacity-90"
+                onClick={() => setIsOpen(false)}
+              >
+                Tiếp tục mua sắm
+              </Button>
             </div>
           </div>
         ) : (
@@ -108,7 +116,7 @@ export default function Cart() {
                         {item.productName}
                       </h4>
                       <p className="text-sm text-muted-foreground">
-                        {formatPrice(item.price)}
+                        {formatPriceVND(item.price)}
                       </p>
                       <div className="text-xs mt-1 space-y-1">
                         {item.attributes.map((attr, i) => (
@@ -118,7 +126,7 @@ export default function Cart() {
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 mt-2">
                         <Button
                           variant="outline"
                           size="icon"
@@ -148,14 +156,12 @@ export default function Cart() {
                           size="icon"
                           className="h-6 w-6 text-destructive hover:text-destructive"
                           onClick={() => {
-                           
                             removeItem(item.variantId);
                           }}
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>
                       </div>
-
                     </div>
                   </div>
                 ))}
@@ -177,27 +183,36 @@ export default function Cart() {
               <div className="p-4 space-y-4">
                 <div className="flex items-center justify-between text-lg font-semibold">
                   <span>Tổng cộng:</span>
-                  <span>{formatPrice(total)}</span>
+                  <span>{formatPriceVND(total)}</span>
                 </div>
 
                 <div className="space-y-3">
-                  <Button asChild className="w-full" size="lg">
+                  {/* Nút Xem giỏ hàng với gradient */}
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:opacity-90"
+                  >
                     <Link href="/cart" onClick={() => setIsOpen(false)}>
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Xem giỏ hàng
                     </Link>
                   </Button>
+
                   <Button asChild variant="outline" className="w-full">
                     <Link href="/checkout" onClick={() => setIsOpen(false)}>
                       Thanh toán nhanh
                     </Link>
                   </Button>
+
+                  {/* Nút Tiếp tục mua sắm với màu giống nút Xem giỏ hàng */}
                   <Button
-                    variant="ghost"
+                    asChild
                     className="w-full"
-                    onClick={() => setIsOpen(false)}
                   >
-                    Tiếp tục mua sắm
+                    <Link href="/products" onClick={() => setIsOpen(false)}>
+                      Tiếp tục mua sắm
+                    </Link>
                   </Button>
                 </div>
               </div>

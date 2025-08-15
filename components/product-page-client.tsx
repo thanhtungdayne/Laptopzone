@@ -1,6 +1,6 @@
 "use client";
-import { useMemo } from "react";
-import { useState, useEffect } from "react";
+
+import { useMemo, useState, useEffect } from "react";
 import {
   Star,
   ShoppingCart,
@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
@@ -33,32 +33,35 @@ import type { Laptop } from "@/types/product";
 import { useAuth } from "@/context/auth-context";
 import { useToast } from "./ui/use-toast";
 
- 
+// Định nghĩa giao diện cho props của thành phần ProductPageClient
 interface ProductPageClientProps {
   laptop: Laptop;
   relatedProducts: Laptop[];
 }
+
+// Hook kiểm tra trạng thái đã mount (để tránh lỗi hydration)
 export function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
-    setHasMounted(true);
+    setHasMounted(true); // Đặt trạng thái đã mount khi component được render
   }, []);
   return hasMounted;
 }
 
+// Thành phần chính: Hiển thị trang chi tiết sản phẩm
 export default function ProductPageClient({
   laptop,
   relatedProducts,
 }: ProductPageClientProps) {
-  const { user } = useAuth(); // ✅ Đặt vào trong đây
-  const [quantity, setQuantity] = useState(1);
-  const [isSpecsDialogOpen, setIsSpecsDialogOpen] = useState(false);
+  const { user } = useAuth(); // Lấy thông tin người dùng từ context xác thực
+  const [quantity, setQuantity] = useState(1); // Số lượng sản phẩm mặc định là 1
+  const [isSpecsDialogOpen, setIsSpecsDialogOpen] = useState(false); // Trạng thái mở dialog thông số chi tiết
   const [selectedAttributes, setSelectedAttributes] = useState<{
     [key: string]: string;
-  }>({});
-  const [selectedVariant, setSelectedVariant] = useState<any>(null);
+  }>({}); // Thuộc tính biến thể được chọn (CPU, GPU, Màu sắc)
+  const [selectedVariant, setSelectedVariant] = useState<any>(null); // Biến thể sản phẩm được chọn
 
-  // Gán mặc định variant có giá = laptop.price
+  // Tự động chọn biến thể mặc định dựa trên giá của laptop
   useEffect(() => {
     if (!laptop?.productVariant) return;
 
@@ -71,12 +74,12 @@ export default function ProductPageClient({
       defaultVariant.attributes.forEach((attr: any) => {
         defaultAttributes[attr.attributeName] = attr.value;
       });
-      setSelectedAttributes(defaultAttributes);
-      setSelectedVariant(defaultVariant);
+      setSelectedAttributes(defaultAttributes); // Cập nhật thuộc tính mặc định
+      setSelectedVariant(defaultVariant); // Cập nhật biến thể mặc định
     }
   }, [laptop]);
 
-  // Cập nhật lại selectedVariant khi người dùng chọn option
+  // Cập nhật biến thể khi người dùng thay đổi thuộc tính
   useEffect(() => {
     if (!laptop?.productVariant) return;
 
@@ -86,26 +89,27 @@ export default function ProductPageClient({
       )
     );
 
-    setSelectedVariant(matchedVariant || null);
+    setSelectedVariant(matchedVariant || null); // Cập nhật biến thể phù hợp
   }, [selectedAttributes, laptop]);
 
+  // Hàm lấy danh sách giá trị có thể chọn cho một thuộc tính (CPU, GPU, Color)
   function getAvailableOptions(attribute: string): string[] {
     if (!laptop?.productVariant) return [];
 
-    // Lọc các biến thể phù hợp với attributes đang chọn (trừ cái đang xét)
+    // Lọc các biến thể phù hợp với thuộc tính đang chọn
     const filteredVariants = laptop.productVariant.filter((variant: any) =>
       variant.attributes.every((attr: any) => {
         const key = attr.attributeName;
         const val = attr.value;
         return (
-          key === attribute || // bỏ qua attribute đang xét
+          key === attribute ||
           !selectedAttributes[key] ||
           selectedAttributes[key] === val
         );
       })
     );
 
-    // Lấy ra danh sách giá trị có thể chọn cho attribute này
+    // Lấy danh sách giá trị duy nhất cho thuộc tính
     const values = [
       ...new Set(
         filteredVariants.flatMap((v: any) =>
@@ -119,77 +123,79 @@ export default function ProductPageClient({
     return values;
   }
 
-  const { fetchCart } = useCart();
-  const {toast} = useToast();
-  const { addItem } = useCart();
+  const { fetchCart, addItem } = useCart(); // Lấy hàm từ context giỏ hàng
+  const { toast } = useToast(); // Hook để hiển thị thông báo
 
+  // Ghi log biến thể đang chọn để debug
   useEffect(() => {
     console.log("Biến thể đang chọn:", selectedVariant);
   }, [selectedVariant]);
-  // const { addItem } = useCart();
-  console.log("productVariant:", laptop.productVariant);
-  console.log("laptop:", laptop);
 
-const handleAddToCart = async () => {
-  if (!selectedVariant) {
-    toast({
-      title: " Vui lòng chọn đầy đủ biến thể",
-      description: "Bạn cần chọn CPU, GPU và Màu sắc trước khi thêm vào giỏ hàng.",
-    });
-    return;
-  }
+  // Hàm xử lý thêm sản phẩm vào giỏ hàng
+  const handleAddToCart = async () => {
+    if (!selectedVariant) {
+      toast({
+        title: "Vui lòng chọn đầy đủ biến thể",
+        description: "Bạn cần chọn CPU, GPU và Màu sắc trước khi thêm vào giỏ hàng.",
+      });
+      return;
+    }
 
-  try {
-    const cartItem: CartItem = {
-      variantId: selectedVariant._id,
-      quantity,
-      price: selectedVariant.price,
-      productName: laptop.name,
-      productImage: laptop.images[0] || "",
-      attributes: selectedVariant.attributes.map((attr: any) => ({
-        name: attr.attributeName,
-        value: attr.value,
-      })),
-    };
+    try {
+      const cartItem = {
+        variantId: selectedVariant._id,
+        quantity,
+        price: selectedVariant.price,
+        productName: laptop.name,
+        productImage: laptop.images[0] || "",
+        attributes: selectedVariant.attributes.map((attr: any) => ({
+          name: attr.attributeName,
+          value: attr.value,
+        })),
+      };
 
-    // Thêm vào giỏ hàng
-    await addItem(cartItem);
+      // Thêm sản phẩm vào giỏ hàng
+      await addItem(cartItem);
 
-    toast({
-      title: "Đã thêm vào giỏ hàng",
-      description: "Sản phẩm đã được thêm thành công!",
-    });
-  } catch (error) {
-    console.error("Lỗi khi thêm vào giỏ hàng:", error);
-    toast({
-      title: "Lỗi kết nối server",
-      description: "Không thể gửi yêu cầu tới server.",
-      
-    });
-  }
-};
+      toast({
+        title: "Đã thêm vào giỏ hàng",
+        description: "Sản phẩm đã được thêm thành công!",
+      });
+    } catch (error) {
+      console.error("Lỗi khi thêm vào giỏ hàng:", error);
+      toast({
+        title: "Lỗi kết nối server",
+        description: "Không thể gửi yêu cầu tới server.",
+      });
+    }
+  };
 
-
-
-
+  // Tạo breadcrumb cho điều hướng
   const breadcrumbItems = [
     { label: "Laptop", href: "/" },
     { label: laptop.category.categoryName },
     { label: laptop.name },
   ];
+
+  // Tối ưu hóa danh sách ảnh với chất lượng cao
   const fixedImages = useMemo(() => {
     return laptop.images.map(fixImageQuality);
   }, [laptop.images]);
 
+  // Hàm sửa chất lượng ảnh
   function fixImageQuality(url: string): string {
     return url.replace(/_AC_[^_]+_/, "_AC_SL1000_");
   }
+
+  // Hàm định dạng giá tiền sang VND
   function formatPrice(amount: number): string {
     return amount.toLocaleString("vi-VN", {
       style: "currency",
       currency: "VND",
     });
   }
+
+  // Hàm lấy danh sách giá trị cho một thuộc tính
   function getAttributeValues(attribute: string): string[] {
     return [
       ...new Set(
@@ -197,14 +203,16 @@ const handleAddToCart = async () => {
           ?.flatMap((v: any) =>
             Array.isArray(v.attributes)
               ? v.attributes.filter(
-                (attr: any) => attr.attributeName === attribute
-              )
+                  (attr: any) => attr.attributeName === attribute
+                )
               : []
           )
           .map((attr: any) => attr.value)
       ),
     ];
   }
+
+  // Hàm render các tùy chọn thuộc tính
   function renderOption(attribute: string, value: string) {
     const isSelected = selectedAttributes[attribute] === value;
     return (
@@ -217,10 +225,11 @@ const handleAddToCart = async () => {
             [attribute]: value,
           }))
         }
-        className={`px-3 py-1 rounded border text-sm transition ${isSelected
-          ? "bg-blue-600 text-white border-blue-600"
-          : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-          }`}
+        className={`px-3 py-1 rounded border text-sm transition ${
+          isSelected
+            ? "bg-blue-600 text-white border-blue-600"
+            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+        }`}
       >
         {value}
       </button>
@@ -230,19 +239,20 @@ const handleAddToCart = async () => {
   return (
     <div>
       <div className="w-[85%] max-w-none mx-auto px-4 py-8">
+        {/* Breadcrumb điều hướng */}
         <Breadcrumb items={breadcrumbItems} />
 
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
-          {/* Image Gallery - Bigger container */}
+          {/* Phần hiển thị ảnh và mô tả */}
           <div className="flex w-full flex-col space-y-4">
             <ImageGallery images={fixedImages} />
             <div className="text-sm text-gray-700 whitespace-pre-line">
-              <h2 className="text-xl font-bold">Mô tả </h2>
+              <h2 className="text-xl font-bold">Mô tả</h2>
               {laptop.description}
             </div>
           </div>
 
-          {/* Product Info */}
+          {/* Thông tin sản phẩm */}
           <div className="space-y-6">
             <div>
               <div className="flex items-center space-x-2 mb-2">
@@ -269,7 +279,7 @@ const handleAddToCart = async () => {
               <h1 className="text-3xl font-bold mb-4">{laptop.name}</h1>
             </div>
 
-            {/* Key Specs - Shortened */}
+            {/* Thông số chính */}
             <Card className="border-2 border-transparent bg-gradient-to-br from-blue-50 to-purple-50">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-3">
@@ -303,8 +313,7 @@ const handleAddToCart = async () => {
                   </Dialog>
                 </div>
 
-                {/*thông số chính*/}
-
+                {/* Hiển thị thông số chính */}
                 <div className="grid grid-cols-1 gap-3 text-sm">
                   {/* CPU */}
                   <div className="flex items-center justify-between">
@@ -329,10 +338,11 @@ const handleAddToCart = async () => {
                               CPU: value,
                             }))
                           }
-                          className={`px-2 py-1 rounded border text-xs ${selectedAttributes["CPU"] === value
-                            ? "bg-[#5E63F2] text-white border-[#5E63F2]"
-                            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                            }`}
+                          className={`px-2 py-1 rounded border text-xs ${
+                            selectedAttributes["CPU"] === value
+                              ? "bg-[#5E63F2] text-white border-[#5E63F2]"
+                              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                          }`}
                         >
                           {value}
                         </button>
@@ -363,10 +373,11 @@ const handleAddToCart = async () => {
                               GPU: value,
                             }))
                           }
-                          className={`px-2 py-1 rounded border text-xs ${selectedAttributes["GPU"] === value
-                            ? "bg-[#5E63F2] text-white border-[#5E63F2]"
-                            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                            }`}
+                          className={`px-2 py-1 rounded border text-xs ${
+                            selectedAttributes["GPU"] === value
+                              ? "bg-[#5E63F2] text-white border-[#5E63F2]"
+                              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                          }`}
                         >
                           {value}
                         </button>
@@ -413,10 +424,11 @@ const handleAddToCart = async () => {
                               Color: value,
                             }))
                           }
-                          className={`px-2 py-1 rounded border text-xs ${selectedAttributes["Color"] === value
-                            ? "bg-[#5E63F2] text-white border-[#5E63F2]"
-                            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                            }`}
+                          className={`px-2 py-1 rounded border text-xs ${
+                            selectedAttributes["Color"] === value
+                              ? "bg-[#5E63F2] text-white border-[#5E63F2]"
+                              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                          }`}
                         >
                           {value}
                         </button>
@@ -427,44 +439,8 @@ const handleAddToCart = async () => {
               </CardContent>
             </Card>
 
-            {/* Purchase Options */}
+            {/* Tùy chọn mua hàng */}
             <div className="space-y-4">
-              {/* Variant Selection */}
-              {/* <div className="flex flex-wrap items-start gap-8">
-              {["CPU", "GPU", "Color"].map((attribute) => (
-                <div key={attribute} className="flex flex-col items-start gap-2">
-                  <span className="font-medium">{attribute}</span>
-                  <div className="flex flex-wrap gap-2">
-                    {getAttributeValues(attribute).map((value) => renderOption(attribute, value))}
-                  </div>
-                </div>
-              ))}
-            </div> */}
-
-              <div className="flex items-center space-x-4">
-                {/* <label htmlFor="quantity" className="text-sm font-medium">
-                  Số lượng:
-                </label>
-                <select
-                  id="quantity"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
-                  className="border rounded px-3 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  disabled={!laptop.inStock}
-                >
-                  {[...Array(Math.min(10, laptop.stock || 1))].map((_, i) => (
-                    <option key={i + 1} value={i + 1}>
-                      {i + 1}
-                    </option>
-                  ))}
-                </select> */}
-                {laptop.stock && laptop.stock < 10 && (
-                  <span className="text-sm text-muted-foreground">
-                    (Còn {laptop.stock} sản phẩm)
-                  </span>
-                )}
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-br from-blue-500 to-purple-600 bg-clip-text text-transparent"></span>
               {selectedVariant ? (
                 <>
                   <span className="text-2xl font-bold bg-gradient-to-br from-blue-500 to-purple-600 bg-clip-text text-transparent">
@@ -523,13 +499,13 @@ const handleAddToCart = async () => {
               </div>
             </div>
 
-            {/* Shipping & Returns */}
+            {/* Thông tin vận chuyển và đổi trả */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="flex items-center space-x-2 text-sm p-3 rounded-lg bg-gradient-to-br from-green-50 to-green-100 border border-green-200">
                 <Truck className="h-5 w-5 text-green-600" />
                 <div>
                   <div className="font-medium">Miễn phí vận chuyển</div>
-                  <div className="text-muted-foreground">Đơn hàng trên $500</div>
+                  <div className="text-muted-foreground">Đơn hàng trên 12,500,000 ₫</div>
                 </div>
               </div>
               <div className="flex items-center space-x-2 text-sm p-3 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200">
@@ -554,7 +530,7 @@ const handleAddToCart = async () => {
           </div>
         </div>
 
-        {/* Product Details Tabs */}
+        {/* Tab chi tiết sản phẩm */}
         <Tabs defaultValue="specifications" className="mb-12">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="specifications">Thông số kỹ thuật</TabsTrigger>
@@ -583,7 +559,7 @@ const handleAddToCart = async () => {
                   </Dialog>
                 </div>
 
-                {/* thông số kỹ thuật */}
+                {/* Hiển thị thông số kỹ thuật */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div className="space-y-3">
                     <div className="flex justify-between py-2 border-b">
@@ -652,9 +628,9 @@ const handleAddToCart = async () => {
                     </h3>
                     <div className="space-y-2 text-sm">
                       <p>
-                        • Miễn phí vận chuyển tiêu chuẩn cho đơn hàng trên $500
+                        • Miễn phí vận chuyển 
                       </p>
-                      <p>• Vận chuyển nhanh với phí $29.99</p>
+                      <p>• Vận chuyển nhanh </p>
                       <p>• Giao hàng tiêu chuẩn: 3-5 ngày làm việc</p>
                       <p>• Giao hàng nhanh: 1-2 ngày làm việc</p>
                     </div>
@@ -688,18 +664,11 @@ const handleAddToCart = async () => {
           </TabsContent>
         </Tabs>
 
-        {/* Related Products */}
-
-        {/* <RelatedProducts currentProduct={laptop} allProducts={relatedProducts} />  */}
-
+        {/* Sản phẩm liên quan */}
+        <div className="w-[85%] max-w-none mx-auto px-4 pb-32">
+          <RelatedProducts currentProduct={laptop} allProducts={relatedProducts} />
+        </div>
       </div>
-      <div className="w-[85%] max-w-none mx-auto px-4 pb-32">
-        <RelatedProducts currentProduct={laptop} allProducts={relatedProducts} />
-      </div>
-
     </div>
-
-
   );
-
 }

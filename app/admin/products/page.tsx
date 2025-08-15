@@ -169,9 +169,9 @@ export default function ProductsPage() {
     display: "",
     image: "",
     images: [] as string[],
-    processor: ["Intel Core i5-13500H", "Intel Core i7-13700H"],
-    graphics: ["Intel Iris Xe Graphics", "NVIDIA RTX 3050"],
-    color: ["Indie Black", "Silver"],
+    processor: [],
+    graphics: [],
+    color: [],
     variants: [] as {
       _id: string;
       attributes: { attributeId: string; attributeName: string; value: string }[];
@@ -196,7 +196,7 @@ export default function ProductsPage() {
       if (!productId) {
         return [];
       }
-      const res = await axios.get(`http://localhost:5000/product-variant/by-product/${productId}`, {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product-variant/by-product/${productId}`, {
         validateStatus: (status) => status < 500,
       });
 
@@ -223,9 +223,9 @@ export default function ProductsPage() {
       setLoading(true);
       setError(null);
       const [productsRes, brandsRes, categoriesRes] = await Promise.all([
-        axios.get("http://localhost:5000/product/getpro"),
-        axios.get("http://localhost:5000/brand"),
-        axios.get("http://localhost:5000/category"),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product/getpro`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/brand`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/category`),
       ]);
 
       const productsWithVariants = await Promise.all(
@@ -341,9 +341,9 @@ export default function ProductsPage() {
         ram: targetProduct.ram || "",
         storage: targetProduct.storage || "",
         display: targetProduct.display || "",
-        processor: targetProduct.processor || ["Intel Core i5-13500H", "Intel Core i7-13700H"],
-        graphics: targetProduct.graphics || ["Intel Iris Xe Graphics", "NVIDIA RTX 3050"],
-        color: targetProduct.color || ["Indie Black", "Silver"],
+        processor: targetProduct.processor ,
+        graphics: targetProduct.graphics ,
+        color: targetProduct.color ,
         variants: variants.map((v: Variant) => {
           const cpuAttr = v.attributes.find((a) => a.attributeName === "CPU") || {
             _id: `temp-cpu-${v._id}`,
@@ -406,7 +406,7 @@ export default function ProductsPage() {
       const variantId = editForm.variants[index]._id;
       if (!variantId.startsWith("temp-")) {
         try {
-          const response = await axios.delete(`http://localhost:5000/product-variant/${variantId}`);
+          const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/product-variant/${variantId}`);
           if (response.status !== 200) {
             throw new Error(`Xóa biến thể thất bại, mã trạng thái: ${response.status}`);
           }
@@ -476,7 +476,7 @@ export default function ProductsPage() {
       status: true,
     };
     try {
-      const productResponse = await axios.post("http://localhost:5000/product/addpro", payload);
+      const productResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/product/addpro`, payload);
       const newProduct = productResponse.data.result;
       let variants = [];
       if (addForm.variants.length > 0) {
@@ -503,7 +503,7 @@ export default function ProductsPage() {
             stock: variant.stock,
           }));
         if (validVariants.length > 0) {
-          const variantResponse = await axios.post("http://localhost:5000/product-variant/add", {
+          const variantResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/product-variant/add`, {
             productId: newProduct._id,
             variants: validVariants,
           });
@@ -569,7 +569,7 @@ export default function ProductsPage() {
     }
     try {
       const productResponse = await axios.put(
-        `http://localhost:5000/product/updatepro/${selectedProduct._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/updatepro/${selectedProduct._id}`,
         {
           name: editForm.name,
           description: editForm.description,
@@ -643,7 +643,7 @@ export default function ProductsPage() {
       let updatedVariants = [];
       if (variantsToUpdate.length > 0) {
         const updateResponse = await axios.put(
-          `http://localhost:5000/product-variant/update-multiple`,
+          `${process.env.NEXT_PUBLIC_API_URL}/product-variant/update-multiple`,
           {
             productId: selectedProduct._id,
             variants: variantsToUpdate,
@@ -653,7 +653,7 @@ export default function ProductsPage() {
       }
       if (variantsToAdd.length > 0) {
         const addResponse = await axios.post(
-          `http://localhost:5000/product-variant/add`,
+          `${process.env.NEXT_PUBLIC_API_URL}/product-variant/add`,
           {
             productId: selectedProduct._id,
             variants: variantsToAdd,
@@ -705,7 +705,7 @@ export default function ProductsPage() {
       return;
     }
     try {
-      const response = await axios.patch(`http://localhost:5000/product/toggle-status/${product._id}`);
+      const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/product/toggle-status/${product._id}`);
       const updatedProduct = response.data.result;
       setProducts(
         products.map((p) =>

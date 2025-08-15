@@ -1,4 +1,3 @@
-// context/checkout-context.tsx
 "use client";
 
 import type React from "react";
@@ -32,7 +31,7 @@ export interface Order {
     address: string;
     phone: string;
   };
-  paymentMethod: "cash" | "momo";
+  paymentMethod: "cash" | "momo" | "zalopay";
   totalAmount: number;
   isPaid: boolean;
   status: string;
@@ -57,15 +56,15 @@ type CheckoutAction =
   | { type: "SET_ORDER"; payload: Order }
   | { type: "RESET_CHECKOUT" };
 
-// ✅ Interface cho Context
+// Interface cho Context
 interface CheckoutContextType {
   state: CheckoutState;
   dispatch: React.Dispatch<CheckoutAction>;
-  placeOrder: (userId: string, items: any[]) => Promise<Order | null>;
+  placeOrder: (userId: string, items: any[], isPaid?: boolean) => Promise<Order | null>;
   setOrderFromFetch: (order: Order) => void;
 }
 
-// ✅ Tạo context với kiểu đầy đủ
+// Tạo context với kiểu đầy đủ
 const CheckoutContext = createContext<CheckoutContextType | null>(null);
 
 function checkoutReducer(state: CheckoutState, action: CheckoutAction): CheckoutState {
@@ -106,13 +105,13 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
     error: null,
   });
 
-  // ✅ Hàm để đặt lại order từ dữ liệu fetch
+  // Hàm để đặt lại order từ dữ liệu fetch
   const setOrderFromFetch = (order: Order) => {
     dispatch({ type: "SET_ORDER", payload: order });
   };
 
-  // ✅ Hàm xử lý đặt hàng
-  const placeOrder = async (userId: string, items: any[]) => {
+  // Hàm xử lý đặt hàng
+  const placeOrder = async (userId: string, items: any[], isPaid: boolean = false) => {
     try {
       dispatch({ type: "SET_PROCESSING", payload: true });
 
@@ -121,6 +120,11 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
         return null;
       }
 
+      // Set isPaid to true if payment method is zalopay, otherwise use provided isPaid value
+      const isOrderPaid = state.payment.paymentMethod === "zalopay" ? true : isPaid;
+      console.log("isPaid received:", isPaid);
+console.log("paymentMethod:", state.payment.paymentMethod);
+console.log("isOrderPaid:", isOrderPaid);
       const payload = {
         userId,
         items,
@@ -130,17 +134,18 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
           phone: state.shipping.phone,
         },
         paymentMethod: state.payment.paymentMethod || "cash",
+        isPaid: isOrderPaid,
       };
 
       console.log("Sending payload to API:", payload);
-      const response = await axios.post("http://localhost:5000/order/place", payload);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/order/place`, payload); 
       console.log("API response:", response.data);
 
       const orderData: Order = {
         ...response.data.order,
         id: response.data.order._id || response.data.order.id,
         totalAmount: response.data.order.totalAmount || 0,
-        isPaid: response.data.order.isPaid || false,
+        isPaid: response.data.order.isPaid || isOrderPaid,
         createdAt: response.data.order.createdAt || new Date().toISOString(),
         status: response.data.order.status || "pending",
         items: response.data.order.items || [],

@@ -3,6 +3,7 @@ var router = express.Router();
 const userModel = require("../models/users.model.js");
 
 const userController = require("../controllers/user.controller.js");
+const { updateUserInfo } = require("../controllers/user.controller");
 const bcrypt = require("bcryptjs");
 // Đăng ký người dùng
 router.post("/register", async (req, res) => {
@@ -26,20 +27,14 @@ router.post("/register", async (req, res) => {
   }
 });
 // Đăng nhập người dùng
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await userController.login({ email, password });
-    return res.status(200).json({
-      status: true,
-      message: "Đăng nhập thành công",
-      user,
-    });
-  } catch (error) {
-    console.error("Lỗi đăng nhập:", error);
-    return res.status(401).json({ status: false, message: "Lỗi đăng nhập" });
-  }
-});
+// router.post('/login', async (req, res) => {
+//   try {
+//     const result = await login(req.body);
+//     res.json({ user: result.user, token: result.token, message: 'Đăng nhập thành công' });
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 // Lấy thông tin người dùng theo ID
 router.get("/:id", async (req, res) => {
   try {
@@ -107,4 +102,43 @@ router.get("/", async (req, res) => {
     return res.status(500).json({ status: false, message: "Lỗi lấy tất cả người dùng" });
   }
 });
+// Cập nhật thông tin người dùng
+ // Middleware kiểm tra JWT token
+   const verifyToken = (req, res, next) => {
+     const token = req.headers.authorization?.split(' ')[1];
+     if (!token) {
+       return res.status(401).json({ message: 'Vui lòng đăng nhập' });
+     }
+     try {
+       const decoded = jwt.verify(token, JWT_SECRET);
+       req.user = decoded;
+       next();
+     } catch (error) {
+       return res.status(401).json({ message: 'Token không hợp lệ' });
+     }
+   };
+
+   // Route login (KHÔNG dùng verifyToken)
+   router.post('/login', async (req, res) => {
+     try {
+       const result = await login(req.body);
+       res.json({ user: result.user, token: result.token, message: 'Đăng nhập thành công' });
+     } catch (error) {
+       res.status(400).json({ message: error.message });
+     }
+   });
+
+   router.post('/update/:id', verifyToken, async (req, res) => {
+     try {
+       const userId = req.params.id;
+       if (req.user.id !== userId) {
+         return res.status(403).json({ message: 'Không có quyền' });
+       }
+       const result = await updateUserInfo(req, userId, req.body);
+       res.json({ user: result.user, token: result.token, message: 'Cập nhật thành công' });
+     } catch (error) {
+       res.status(400).json({ message: error.message });
+     }
+   });
+
 module.exports = router;

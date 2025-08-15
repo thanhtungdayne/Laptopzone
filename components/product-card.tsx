@@ -92,7 +92,7 @@ export default function ProductCard({ laptop }: ProductCardProps) {
   size="sm"
   onClick={(e) => {
     e.preventDefault();
-    handleAddToCart(); // ✅ gọi API thay vì dispatch local
+    handleAddToCart();
   }}
   disabled={!laptop.inStock}
   className="shrink-0 bg-[#5440DB] hover:bg-[#4430c2] text-white"

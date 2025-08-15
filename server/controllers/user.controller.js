@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const userModel = require("../models/users.model.js"); // Import model User
-module.exports = { addUser, login, getUserById, changePassword, getAllUsers };
+module.exports = { addUser, login, getUserById, changePassword, getAllUsers, updateUserInfo };
 
 // Đăng ký user
 async function addUser(data) {
@@ -45,21 +45,74 @@ async function login(data) {
       throw new Error("Tài khoản đã bị khóa hoặc chưa được kích hoạt");
     }
 
-    
-    // So sánh mật khẩu đã mã hóa
+    // So sánh mật khẩu
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       throw new Error("Sai mật khẩu");
     }
 
-    // Nếu đăng nhập thành công, trả về thông tin người dùng
+    // Tạo JWT token
+    const token = jwt.sign(
+      {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // Trả về thông tin user (ẩn password) và token
     const userObj = user.toObject();
     delete userObj.password;
-    return userObj;
-
+    return { user: userObj, token };
   } catch (error) {
     console.log("Lỗi đăng nhập:", error);
     throw new Error(error.message || "Lỗi đăng nhập");
+  }
+}
+
+async function updateUserInfo(req, userId, body) {
+  try {
+    const { email, ...allowedFields } = body;
+
+    const updateData = {};
+    if (allowedFields.name) updateData.name = allowedFields.name;
+    if (allowedFields.phone) updateData.phone = allowedFields.phone;
+    if (allowedFields.address) updateData.address = allowedFields.address;
+    if (allowedFields.dob) updateData.dob = allowedFields.dob;
+    if (allowedFields.avatar) updateData.avatar = allowedFields.avatar;
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { $set: updateData },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      throw new Error("Người dùng không tồn tại");
+    }
+
+    // Tạo token mới với thông tin user cập nhật
+    const token = jwt.sign(
+      {
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        role: updatedUser.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // Trả về thông tin user (ẩn password) và token mới
+    const userObj = updatedUser.toObject();
+    delete userObj.password;
+    return { user: userObj, token };
+  } catch (error) {
+    console.error("Lỗi cập nhật thông tin người dùng:", error);
+    throw new Error("Lỗi cập nhật thông tin người dùng");
   }
 }
 
@@ -111,4 +164,46 @@ async function getAllUsers() {
     throw new Error("Lỗi lấy tất cả người dùng");
   }
 }
-// thay đổi trạng thái người dùng
+// thay đổi thông tin người dùng
+async function updateUserInfo(req, userId, body) {
+  try {
+    const { email, ...allowedFields } = body;
+
+    const updateData = {};
+    if (allowedFields.name) updateData.name = allowedFields.name;
+    if (allowedFields.phone) updateData.phone = allowedFields.phone;
+    if (allowedFields.address) updateData.address = allowedFields.address;
+    if (allowedFields.dob) updateData.dob = allowedFields.dob;
+    if (allowedFields.avatar) updateData.avatar = allowedFields.avatar;
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { $set: updateData },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      throw new Error("Người dùng không tồn tại");
+    }
+
+    // Tạo token mới với thông tin user cập nhật
+    const token = jwt.sign(
+      {
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        role: updatedUser.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // Trả về thông tin user (ẩn password) và token mới
+    const userObj = updatedUser.toObject();
+    delete userObj.password;
+    return { user: userObj, token };
+  } catch (error) {
+    console.error("Lỗi cập nhật thông tin người dùng:", error);
+    throw new Error("Lỗi cập nhật thông tin người dùng");
+  }
+}

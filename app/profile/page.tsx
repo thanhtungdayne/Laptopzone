@@ -9,82 +9,168 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { formatPrice } from "@/lib/utils";
 import { useAuth } from "@/context/auth-context";
 
-// Extended user data interface for profile
-interface ExtendedUserData {
+// Interface based on userSchema
+interface UserData {
   id: string;
   name: string;
   email: string;
   phone?: string;
-  avatar?: string;
   address?: string;
-  city?: string;
-  state?: string;
-  zipCode?: string;
-  country?: string;
-  bio?: string;
-  joinDate?: string;
-  totalOrders: number;
-  totalSpent: number;
-  dateOfBirth?: string;
-  gender?: string;
+  street?: string;
+  dob?: string;
   role: "admin" | "user";
+  status: boolean;
+  avatar?: string;
+}
+
+// Interface for location data from API
+interface Location {
+  id: string;
+  name: string;
 }
 
 export default function ProfilePage() {
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditingPersonal, setIsEditingPersonal] = useState(false);
+  const [isEditingAddress, setIsEditingAddress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [editedUser, setEditedUser] = useState<UserData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [provinces, setProvinces] = useState<Location[]>([]);
+  const [districts, setDistricts] = useState<Location[]>([]);
+  const [wards, setWards] = useState<Location[]>([]);
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("");
+  const [selectedWard, setSelectedWard] = useState<string>("");
 
-  // Extended user data with defaults
-  const [userData, setUserData] = useState<ExtendedUserData | null>(null);
-  const [editedUser, setEditedUser] = useState<ExtendedUserData | null>(null);
+  // Fetch provinces on component mount
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/location/provinces");
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Không thể tải danh sách tỉnh/thành phố");
+        }
+        const data = await response.json();
+        setProvinces(data);
+      } catch (error) {
+        console.error("Error fetching provinces:", error);
+        setError(error instanceof Error ? error.message : "Không thể tải danh sách tỉnh/thành phố");
+      }
+    };
+    fetchProvinces();
+  }, []);
 
-  // Check authentication and redirect if not logged in
+  // Fetch districts when province changes
+  useEffect(() => {
+    if (selectedProvince) {
+      const fetchDistricts = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/location/districts/${selectedProvince}`);
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Không thể tải danh sách quận/huyện");
+          }
+          const data = await response.json();
+          setDistricts(data);
+          setWards([]);
+          setSelectedDistrict("");
+          setSelectedWard("");
+        } catch (error) {
+          console.error(`Error fetching districts for province ${selectedProvince}:`, error);
+          setError(error instanceof Error ? error.message : "Không thể tải danh sách quận/huyện");
+        }
+      };
+      fetchDistricts();
+    } else {
+      setDistricts([]);
+      setWards([]);
+      setSelectedDistrict("");
+      setSelectedWard("");
+    }
+  }, [selectedProvince]);
+
+  // Fetch wards when district changes
+  useEffect(() => {
+    if (selectedDistrict) {
+      const fetchWards = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/location/wards/${selectedDistrict}`);
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Không thể tải danh sách phường/xã");
+          }
+          const data = await response.json();
+          setWards(data);
+          setSelectedWard("");
+        } catch (error) {
+          console.error(`Error fetching wards for district ${selectedDistrict}:`, error);
+          setError(error instanceof Error ? error.message : "Không thể tải danh sách phường/xã");
+        }
+      };
+      fetchWards();
+    } else {
+      setWards([]);
+      setSelectedWard("");
+    }
+  }, [selectedDistrict]);
+
+  // Check authentication and initialize user data
   useEffect(() => {
     if (!isAuthenticated) {
       router.push("/login");
       return;
     }
 
-    // Initialize user data with defaults for missing fields
     if (user) {
-      const extendedUserData: ExtendedUserData = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
+      console.log("User from auth-context:", user);
+      const userId = user._id || user.id;
+      if (!userId) {
+        setError("Không thể lấy thông tin người dùng. Vui lòng đăng nhập lại.");
+        router.push("/login");
+        return;
+      }
+
+      const userData: UserData = {
+        id: userId,
+        name: user.name || "",
+        email: user.email || "",
         phone: user.phone || "",
-        avatar: user.avatar || "/placeholder.svg?height=100&width=100",
-        address: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        country: "Vietnam",
-        bio: "",
-        joinDate: "January 2024",
-        totalOrders: user.role === "admin" ? 25 : 5,
-        totalSpent: user.role === "admin" ? 45000 : 12000,
-        dateOfBirth: "",
-        gender: "",
-        role: user.role,
+        address: user.address || "",
+        street: user.address?.split(",")[0]?.trim() || "",
+        dob: user.dob ? new Date(user.dob).toISOString().split("T")[0] : "",
+        role: user.role === 1 ? "admin" : "user",
+        status: user.status ?? true,
+        avatar: user.avatar || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&s",
       };
-      setUserData(extendedUserData);
-      setEditedUser(extendedUserData);
+      setUserData(userData);
+      setEditedUser(userData);
     }
   }, [isAuthenticated, user, router]);
+
+  // Update address whenever location selections or street change
+  useEffect(() => {
+    if (!editedUser) return;
+
+    const provinceName = provinces.find(p => p.id === selectedProvince)?.name || "";
+    const districtName = districts.find(d => d.id === selectedDistrict)?.name || "";
+    const wardName = wards.find(w => w.id === selectedWard)?.name || "";
+    const street = editedUser.street || "";
+
+    const fullAddress = [street, wardName, districtName, provinceName]
+      .filter(Boolean)
+      .join(", ");
+
+    setEditedUser((prev) => (prev ? { ...prev, address: fullAddress } : null));
+  }, [selectedProvince, selectedDistrict, selectedWard, editedUser?.street, provinces, districts, wards]);
 
   // Show loading state while checking authentication
   if (!isAuthenticated || !userData) {
@@ -102,40 +188,118 @@ export default function ProfilePage() {
     );
   }
 
-  const handleEdit = () => {
+  const handleEditPersonal = () => {
     setEditedUser(userData);
-    setIsEditing(true);
+    setIsEditingPersonal(true);
+    setError(null);
   };
 
-  const handleCancel = () => {
+  const handleEditAddress = () => {
     setEditedUser(userData);
-    setIsEditing(false);
+    setIsEditingAddress(true);
+    setError(null);
+  };
+
+  const handleCancelPersonal = () => {
+    setEditedUser(userData);
+    setIsEditingPersonal(false);
+    setError(null);
+  };
+
+  const handleCancelAddress = () => {
+    setEditedUser(userData);
+    setIsEditingAddress(false);
+    setError(null);
+    setSelectedProvince("");
+    setSelectedDistrict("");
+    setSelectedWard("");
   };
 
   const handleSave = async () => {
     if (!editedUser) return;
 
+    // Validate required fields
+    if (!editedUser.name?.trim()) {
+      setError("Họ và tên là bắt buộc");
+      return;
+    }
+    if ((isEditingAddress && (!selectedProvince || !selectedDistrict || !selectedWard))) {
+      setError("Vui lòng chọn đầy đủ tỉnh, quận, phường");
+      return;
+    }
+    if (!editedUser.id) {
+      setError("Không thể xác định người dùng. Vui lòng đăng nhập lại.");
+      return;
+    }
+
     setIsLoading(true);
+    setError(null);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      console.log("Sending update request with ID:", editedUser.id);
+      console.log("Payload:", {
+        name: editedUser.name,
+        email: editedUser.email,
+        phone: editedUser.phone,
+        address: editedUser.address,
+        dob: editedUser.dob || undefined,
+        avatar: editedUser.avatar,
+        role: editedUser.role === "admin" ? 1 : 0,
+      });
 
-    setUserData(editedUser);
-    setIsEditing(false);
-    setIsLoading(false);
+      const response = await fetch(`http://localhost:5000/users/update/${editedUser.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: editedUser.name,
+          email: editedUser.email,
+          phone: editedUser.phone,
+          address: editedUser.address,
+          dob: editedUser.dob || undefined,
+          avatar: editedUser.avatar,
+          role: editedUser.role === "admin" ? 1 : 0,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("API error response:", errorData);
+        throw new Error(errorData.message || "Cập nhật thông tin thất bại");
+      }
+
+      const updatedUser = await response.json();
+      setUserData({
+        ...editedUser,
+        id: updatedUser._id,
+        dob: updatedUser.dob ? new Date(updatedUser.dob).toISOString().split("T")[0] : "",
+        role: updatedUser.role === 1 ? "admin" : "user",
+        street: editedUser.street,
+      });
+      setIsEditingPersonal(false);
+      setIsEditingAddress(false);
+      setSelectedProvince("");
+      setSelectedDistrict("");
+      setSelectedWard("");
+    } catch (err) {
+      console.error("Error in handleSave:", err);
+      setError(err instanceof Error ? err.message : "Đã xảy ra lỗi");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleInputChange = (field: string, value: string) => {
-    if (!editedUser) return;
+  const handleInputChange = (field: keyof UserData, value: string) => {
+    if (!editedUser || field === "email") return;
     setEditedUser((prev) => (prev ? { ...prev, [field]: value } : null));
   };
 
   const handleAvatarChange = () => {
-    // In a real app, this would open a file picker
     console.log("Avatar change clicked");
   };
 
-  const currentData = isEditing ? editedUser : userData;
+  const currentData = (isEditingPersonal || isEditingAddress) ? editedUser : userData;
   if (!currentData) return null;
 
   return (
@@ -152,6 +316,12 @@ export default function ProfilePage() {
               </p>
             </div>
 
+            {error && (
+              <div className="mb-4 p-4 bg-red-50 text-red-600 rounded-lg">
+                {error}
+              </div>
+            )}
+
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Profile Info */}
               <div className="lg:col-span-1">
@@ -160,38 +330,26 @@ export default function ProfilePage() {
                     <div className="relative inline-block mb-4">
                       <Avatar className="h-24 w-24 mx-auto">
                         <AvatarImage
-                          src={currentData.avatar || "/placeholder.svg"}
+                          src={currentData.avatar}
                           alt={currentData.name}
                         />
                         <AvatarFallback className="text-2xl">
                           {currentData.name.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
-                      {isEditing && (
-                        <Button
-                          size="icon"
-                          variant="outline"
-                          className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-white"
-                          onClick={handleAvatarChange}
-                        >
-                          <Camera className="h-4 w-4" />
-                        </Button>
-                      )}
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-white"
+                        onClick={handleAvatarChange}
+                      >
+                        <Camera className="h-4 w-4" />
+                      </Button>
                     </div>
 
-                    {isEditing ? (
-                      <div className="space-y-3 mb-4">
-                        <Input
-                          value={editedUser?.name || ""}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
-                          className="text-center font-semibold"
-                        />
-                      </div>
-                    ) : (
-                      <h2 className="text-xl font-semibold mb-2 text-gray-900">
-                        {currentData.name}
-                      </h2>
-                    )}
+                    <h2 className="text-xl font-semibold mb-2 text-gray-900">
+                      {currentData.name}
+                    </h2>
 
                     <div className="flex items-center justify-center gap-2 mb-4">
                       {currentData.role === "admin" && (
@@ -202,38 +360,13 @@ export default function ProfilePage() {
                     <div className="space-y-2 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center justify-center space-x-2">
                         <Calendar className="h-4 w-4" />
-                        <span>Thành viên từ {currentData.joinDate}</span>
+                        <span>
+                          {currentData.dob
+                            ? new Date(currentData.dob).toLocaleDateString("vi-VN")
+                            : "Chưa cung cấp ngày sinh"}
+                        </span>
                       </div>
                     </div>
-
-                    {isEditing ? (
-                      <div className="space-y-2">
-                        <Button
-                          onClick={handleSave}
-                          disabled={isLoading}
-                          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
-                        >
-                          <Save className="h-4 w-4 mr-2" />
-                          {isLoading ? "Đang tải..." : "Lưu thay đổi"}
-                        </Button>
-                        <Button
-                          variant="outline"
-                          onClick={handleCancel}
-                          className="w-full"
-                        >
-                          <X className="h-4 w-4 mr-2" />
-                          Hủy
-                        </Button>
-                      </div>
-                    ) : (
-                      <Button
-                        onClick={handleEdit}
-                        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
-                      >
-                        <Edit className="h-4 w-4 mr-2" />
-                        Chỉnh sửa hồ sơ
-                      </Button>
-                    )}
                   </CardContent>
                 </Card>
               </div>
@@ -241,8 +374,35 @@ export default function ProfilePage() {
               {/* Account Details */}
               <div className="lg:col-span-2 space-y-6">
                 <Card className="border bg-white">
-                  <CardHeader>
+                  <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="text-gray-900">Thông tin cá nhân</CardTitle>
+                    {!isEditingPersonal ? (
+                      <Button
+                        onClick={handleEditPersonal}
+                        className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                      >
+                        <Edit className="h-4 w-4 mr-2" />
+                        Chỉnh sửa
+                      </Button>
+                    ) : (
+                      <div className="space-x-2">
+                        <Button
+                          onClick={handleSave}
+                          disabled={isLoading}
+                          className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                        >
+                          <Save className="h-4 w-4 mr-2" />
+                          {isLoading ? "Đang tải..." : "Lưu"}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={handleCancelPersonal}
+                        >
+                          <X className="h-4 w-4 mr-2" />
+                          Hủy
+                        </Button>
+                      </div>
+                    )}
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -250,26 +410,17 @@ export default function ProfilePage() {
                         <Label htmlFor="email" className="font-semibold">
                           Email
                         </Label>
-                        {isEditing ? (
-                          <Input
-                            id="email"
-                            type="email"
-                            value={editedUser?.email || ""}
-                            onChange={(e) => handleInputChange("email", e.target.value)}
-                          />
-                        ) : (
-                          <div className="flex items-center space-x-3 mt-2 p-3 bg-gray-50 rounded-lg">
-                            <Mail className="h-5 w-5 text-gray-600" />
-                            <span className="font-medium">{currentData.email}</span>
-                          </div>
-                        )}
+                        <div className="flex items-center space-x-3 mt-2 p-3 bg-gray-50 rounded-lg">
+                          <Mail className="h-5 w-5 text-gray-600" />
+                          <span className="font-medium">{currentData.email}</span>
+                        </div>
                       </div>
 
                       <div>
                         <Label htmlFor="phone" className="font-semibold">
                           Số điện thoại
                         </Label>
-                        {isEditing ? (
+                        {isEditingPersonal ? (
                           <Input
                             id="phone"
                             value={editedUser?.phone || ""}
@@ -286,23 +437,22 @@ export default function ProfilePage() {
                       </div>
 
                       <div>
-                        <Label htmlFor="dateOfBirth" className="font-semibold">
+                        <Label htmlFor="dob" className="font-semibold">
                           Ngày sinh
                         </Label>
-                        {isEditing ? (
+                        {isEditingPersonal ? (
                           <Input
-                            id="dateOfBirth"
+                            id="dob"
                             type="date"
-                            value={editedUser?.dateOfBirth || ""}
-                            onChange={(e) =>
-                              handleInputChange("dateOfBirth", e.target.value)
-                            }
+                            value={editedUser?.dob || ""}
+                            onChange={(e) => handleInputChange("dob", e.target.value)}
                           />
                         ) : (
-                          <div className="mt-2 p-3 bg-gray-50 rounded-lg">
+                          <div className="flex items-center space-x-3 mt-2 p-3 bg-gray-50 rounded-lg">
+                            <Calendar className="h-5 w-5 text-gray-600" />
                             <span className="font-medium">
-                              {currentData.dateOfBirth
-                                ? new Date(currentData.dateOfBirth).toLocaleDateString()
+                              {currentData.dob
+                                ? new Date(currentData.dob).toLocaleDateString("vi-VN")
                                 : "Chưa cung cấp"}
                             </span>
                           </div>
@@ -310,164 +460,151 @@ export default function ProfilePage() {
                       </div>
 
                       <div>
-                        <Label htmlFor="gender" className="font-semibold">
-                          Giới tính
+                        <Label htmlFor="name" className="font-semibold">
+                          Họ và tên
                         </Label>
-                        {isEditing ? (
-                          <Select
-                            value={editedUser?.gender || ""}
-                            onValueChange={(value) => handleInputChange("gender", value)}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Chọn giới tính" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="male">Nam</SelectItem>
-                              <SelectItem value="female">Nữ</SelectItem>
-                              <SelectItem value="other">Khác</SelectItem>
-                              <SelectItem value="prefer-not-to-say">
-                                Không muốn tiết lộ
-                              </SelectItem>
-                            </SelectContent>
-                          </Select>
+                        {isEditingPersonal ? (
+                          <Input
+                            id="name"
+                            value={editedUser?.name || ""}
+                            onChange={(e) => handleInputChange("name", e.target.value)}
+                          />
                         ) : (
-                          <div className="mt-2 p-3 bg-gray-50 rounded-lg">
-                            <span className="font-medium capitalize">
-                              {currentData.gender || "Chưa xác định"}
-                            </span>
+                          <div className="flex items-center space-x-3 mt-2 p-3 bg-gray-50 rounded-lg">
+                            <span className="font-medium">{currentData.name}</span>
                           </div>
                         )}
                       </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="bio" className="font-semibold">
-                        Tiểu sử
-                      </Label>
-                      {isEditing ? (
-                        <Textarea
-                          id="bio"
-                          value={editedUser?.bio || ""}
-                          onChange={(e) => handleInputChange("bio", e.target.value)}
-                          rows={3}
-                          placeholder="Hãy chia sẻ về bản thân bạn..."
-                        />
-                      ) : (
-                        <div className="mt-2 p-3 bg-gray-50 rounded-lg">
-                          <p className="text-muted-foreground">
-                            {currentData.bio || "Chưa có thông tin"}
-                          </p>
-                        </div>
-                      )}
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card className="border bg-white">
-                  <CardHeader>
+                  <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="text-gray-900">Thông tin địa chỉ</CardTitle>
+                    {!isEditingAddress ? (
+                      <Button
+                        onClick={handleEditAddress}
+                        className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                      >
+                        <Edit className="h-4 w-4 mr-2" />
+                        Chỉnh sửa
+                      </Button>
+                    ) : (
+                      <div className="space-x-2">
+                        <Button
+                          onClick={handleSave}
+                          disabled={isLoading}
+                          className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                        >
+                          <Save className="h-4 w-4 mr-2" />
+                          {isLoading ? "Đang tải..." : "Lưu"}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={handleCancelAddress}
+                        >
+                          <X className="h-4 w-4 mr-2" />
+                          Hủy
+                        </Button>
+                      </div>
+                    )}
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div>
-                      <Label htmlFor="address" className="font-semibold">
-                        Địa chỉ
-                      </Label>
-                      {isEditing ? (
-                        <Input
-                          id="address"
-                          value={editedUser?.address || ""}
-                          onChange={(e) => handleInputChange("address", e.target.value)}
-                        />
-                      ) : (
+                    {isEditingAddress ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="street" className="font-semibold">
+                            Địa chỉ cụ thể *
+                          </Label>
+                          <Input
+                            id="street"
+                            value={editedUser?.street || ""}
+                            onChange={(e) => handleInputChange("street", e.target.value)}
+                            placeholder="Số nhà, tên đường"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="province" className="font-semibold">
+                            Tỉnh/Thành phố *
+                          </Label>
+                          <Select value={selectedProvince} onValueChange={setSelectedProvince}>
+                            <SelectTrigger id="province">
+                              <SelectValue placeholder="Chọn tỉnh/thành phố" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {provinces.map((province) => (
+                                <SelectItem key={province.id} value={province.id}>
+                                  {province.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label htmlFor="district" className="font-semibold">
+                            Quận/Huyện *
+                          </Label>
+                          <Select
+                            value={selectedDistrict}
+                            onValueChange={setSelectedDistrict}
+                            disabled={!selectedProvince}
+                          >
+                            <SelectTrigger id="district">
+                              <SelectValue placeholder="Chọn quận/huyện" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {districts.map((district) => (
+                                <SelectItem key={district.id} value={district.id}>
+                                  {district.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label htmlFor="ward" className="font-semibold">
+                            Phường/Xã *
+                          </Label>
+                          <Select
+                            value={selectedWard}
+                            onValueChange={setSelectedWard}
+                            disabled={!selectedDistrict}
+                          >
+                            <SelectTrigger id="ward">
+                              <SelectValue placeholder="Chọn phường/xã" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {wards.map((ward) => (
+                                <SelectItem key={ward.id} value={ward.id}>
+                                  {ward.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <Label htmlFor="address" className="font-semibold">
+                          Địa chỉ
+                        </Label>
                         <div className="flex items-center space-x-3 mt-2 p-3 bg-gray-50 rounded-lg">
                           <MapPin className="h-5 w-5 text-gray-600" />
                           <span className="font-medium">
                             {currentData.address || "Chưa có địa chỉ"}
                           </span>
                         </div>
-                      )}
-                    </div>
-
-                    {isEditing && (
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                          <Label htmlFor="city" className="font-semibold">
-                            Thành phố
-                          </Label>
-                          <Input
-                            id="city"
-                            value={editedUser?.city || ""}
-                            onChange={(e) => handleInputChange("city", e.target.value)}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="state" className="font-semibold">
-                            Tỉnh/Bang
-                          </Label>
-                          <Input
-                            id="state"
-                            value={editedUser?.state || ""}
-                            onChange={(e) => handleInputChange("state", e.target.value)}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="zipCode" className="font-semibold">
-                            Mã bưu điện
-                          </Label>
-                          <Input
-                            id="zipCode"
-                            value={editedUser?.zipCode || ""}
-                            onChange={(e) => handleInputChange("zipCode", e.target.value)}
-                          />
-                        </div>
                       </div>
                     )}
-
-                    {isEditing && (
+                    {isEditingAddress && (
                       <div>
-                        <Label htmlFor="country" className="font-semibold">
-                          Quốc gia
-                        </Label>
-                        <Select
-                          value={editedUser?.country || ""}
-                          onValueChange={(value) => handleInputChange("country", value)}
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Vietnam">Việt Nam</SelectItem>
-                            <SelectItem value="United States">Hoa Kỳ</SelectItem>
-                            <SelectItem value="Canada">Canada</SelectItem>
-                            <SelectItem value="United Kingdom">Anh</SelectItem>
-                            <SelectItem value="Australia">Úc</SelectItem>
-                            <SelectItem value="Other">Khác</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label className="font-semibold">Địa chỉ đầy đủ</Label>
+                        <p className="text-sm text-gray-500 mt-1">
+                          {currentData.address || "Vui lòng nhập đầy đủ thông tin địa chỉ"}
+                        </p>
                       </div>
                     )}
-                  </CardContent>
-                </Card>
-
-                <Card className="border bg-white">
-                  <CardHeader>
-                    <CardTitle className="text-gray-900">Thống kê tài khoản</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="text-center p-4 bg-gray-50 rounded-lg">
-                        <p className="text-2xl font-bold text-gray-900">
-                          {currentData.totalOrders}
-                        </p>
-                        <p className="text-sm text-muted-foreground">Tổng đơn hàng</p>
-                      </div>
-                      <div className="text-center p-4 bg-gray-50 rounded-lg">
-                        <p className="text-2xl font-bold text-gray-900">
-                          {formatPrice(currentData.totalSpent)}
-                        </p>
-                        <p className="text-sm text-muted-foreground">Tổng chi tiêu</p>
-                      </div>
-                    </div>
                   </CardContent>
                 </Card>
               </div>

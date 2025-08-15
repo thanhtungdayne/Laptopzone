@@ -8,14 +8,40 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
+import { useEffect } from "react";
 
 export default function PaymentForm() {
   const { state, dispatch, placeOrder } = useCheckout();
   const { items } = useCart();
   const { user } = useAuth();
 
+  // Check for payment completion when component mounts or window regains focus
+  useEffect(() => {
+    const handlePaymentCallback = async () => {
+      const paymentStatus = localStorage.getItem("zaloPaymentStatus");
+      if (paymentStatus === "completed" && user?._id && items.length > 0) {
+        try {
+          await placeOrder(user._id, items);
+          dispatch({ type: "SET_STEP", payload: 4 }); // Move to confirmation step
+          localStorage.removeItem("zaloPaymentStatus"); // Clean up
+        } catch (error) {
+          console.error("Error placing order after payment:", error);
+          alert("Đã xảy ra lỗi khi hoàn tất đơn hàng: " + error.message);
+        }
+      }
+    };
+
+    // Add focus event listener to detect when user returns to the tab
+    window.addEventListener("focus", handlePaymentCallback);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener("focus", handlePaymentCallback);
+    };
+  }, [user, items, placeOrder, dispatch]);
+
   const handleBack = () => {
-    dispatch({ type: "SET_STEP", payload: 2 }); // Quay lại ShippingForm
+    dispatch({ type: "SET_STEP", payload: 2 }); // Go back to ShippingForm
   };
 
   const handleContinue = async () => {
@@ -34,15 +60,18 @@ export default function PaymentForm() {
 
     try {
       if (state.payment.paymentMethod === "zalopay") {
-        // Tính tổng tiền từ giỏ hàng
+        // Calculate total amount from cart
         const totalAmount = items.reduce(
           (total, item) => total + item.price * item.quantity,
           0
         );
 
-        // Gọi API ZaloPay
+        // Set payment status in localStorage before redirecting
+        localStorage.setItem("zaloPaymentStatus", "pending");
+
+        // Call ZaloPay API
         const response = await axios.post(
-          "http://localhost:5000/payment/zalo/payment",
+          `${process.env.NEXT_PUBLIC_API_URL}/payment/zalo/payment`,
           {
             userId: user._id,
             items: items.map((item) => ({
@@ -62,14 +91,17 @@ export default function PaymentForm() {
 
         const { order_url } = response.data;
         if (order_url) {
-          window.open(order_url, "_blank"); // Mở tab mới
+          window.open(order_url, "_blank"); // Open payment URL in new tab
+          // Assume payment is completed when user returns (for simplicity)
+          // In a real app, verify payment status via API callback
+          localStorage.setItem("zaloPaymentStatus", "completed");
         } else {
           throw new Error("Không nhận được URL thanh toán từ ZaloPay");
         }
       } else {
-        // Xử lý các phương thức thanh toán khác (cash, momo)
+        // Handle other payment methods (cash, momo)
         await placeOrder(user._id, items);
-        dispatch({ type: "SET_STEP", payload: 4 }); // Sang bước xác nhận
+        dispatch({ type: "SET_STEP", payload: 4 }); // Move to confirmation step
       }
     } catch (error) {
       console.error("Lỗi khi đặt hàng:", error.response?.data || error.message);
@@ -81,7 +113,7 @@ export default function PaymentForm() {
     }
   };
 
-  const handleChange = (value: string) => {
+  const handleChange = (value) => {
     dispatch({
       type: "SET_PAYMENT",
       payload: { userId: user._id, paymentMethod: value },

@@ -9,7 +9,7 @@ export default function AddToCartButton({ userId, variantId, quantity = 1 }) {
 
   const handleAddToCart = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/cart/add", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart/add`, {
         userId,
         variantId,
         quantity,

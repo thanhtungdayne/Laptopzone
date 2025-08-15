@@ -55,14 +55,14 @@ async function getProductVariant(productId: string) {
 
 async function getRelatedProducts(categoryId: string, excludeId: string) {
   try {
-    const res = await fetch(`http://localhost:5000/product?category=${categoryId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product?category=${categoryId}`);
     const data = await res.json();
 
     const products = data.result || [];
 
     return products
       .filter((item: any) => item._id !== excludeId)
-      .slice(0, 6);
+      .slice(0, 2);
   } catch (error) {
     console.error("Lỗi khi lấy sản phẩm liên quan:", error);
     return [];
@@ -77,12 +77,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
   if (!laptop) return notFound();
 
   laptop.id = laptop._id;
-  const variants = await getProductVariant(laptop.id);
+  const variants = await getProductVariant(laptop._id);
   laptop.productVariant = variants;
 
   const related = await getRelatedProducts(
     laptop.category.categoryId,
-    laptop.id
+    laptop._id
     
   );
 

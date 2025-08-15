@@ -15,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { useCheckout } from "@/context/checkout-context";
 import { useCart } from "@/context/cart-context";
 import { useEffect, useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 export default function OrderConfirmation() {
   const { state, dispatch, setOrderFromFetch } = useCheckout();
@@ -24,35 +25,44 @@ export default function OrderConfirmation() {
 
   const orderId = searchParams.get("orderId");
   const userId = searchParams.get("userId");
-  
-  // 👉 Fetch lại order nếu không có trong context
- const [localOrder, setLocalOrder] = useState(null);
 
-useEffect(() => {
-  const fetchOrder = async () => {
-    if (!orderId || !userId) return;
+  // Fetch lại order nếu không có trong context
+  const [localOrder, setLocalOrder] = useState(null);
 
-    try {
-      const res = await fetch(
-        `http://localhost:5000/order/orders/${orderId}/${userId}`
-      );
-      if (!res.ok) throw new Error("Order not found");
-      const orderData = await res.json();
+  useEffect(() => {
+    const fetchOrder = async () => {
+      if (!orderId || !userId) return;
 
-      setLocalOrder(orderData); // ✅ dùng state riêng, không dính context
-      setOrderFromFetch(orderData); // Nếu bạn vẫn cần lưu vào context
-    } catch (error) {
-      console.error("❌ Lỗi khi lấy đơn hàng:", error);
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/order/orders/${orderId}/${userId}`
+        );
+        if (!res.ok) throw new Error("Order not found");
+        const orderData = await res.json();
+
+        setLocalOrder(orderData); // Dùng state riêng, không dính context
+        setOrderFromFetch(orderData); // Lưu vào context nếu cần
+      } catch (error) {
+        console.error("❌ Lỗi khi lấy đơn hàng:", error);
+      }
+    };
+
+    fetchOrder();
+  }, [orderId, userId, setOrderFromFetch]);
+
+  // Show toast when order is confirmed
+  useEffect(() => {
+    if (state.order || localOrder) {
+      toast({
+        title: "Thành công!",
+        description: "Đơn hàng của bạn đã được tạo thành công!",
+        variant: "default",
+        duration: 4000,
+      });
     }
-  };
+  }, [state.order, localOrder]);
 
-  fetchOrder();
-}, [orderId, userId]);
-
-
-
-
-  if (!state.order) {
+  if (!state.order && !localOrder) {
     return (
       <div className="text-center p-8">
         <p className="text-lg text-muted-foreground">
@@ -65,7 +75,7 @@ useEffect(() => {
     );
   }
 
-  const { order } = state;
+  const order = localOrder || state.order; // Ưu tiên localOrder nếu có
   const orderItems = order.items || items;
 
   const handleNewOrder = () => {
@@ -79,7 +89,7 @@ useEffect(() => {
     alert("Tải hóa đơn sẽ bắt đầu tại đây");
   };
 
-  if (!localOrder) return (
+  return (
     <div className="space-y-6">
       {/* Success Header */}
       <Card className="text-center">
@@ -231,6 +241,8 @@ useEffect(() => {
                   ? "Thanh toán khi nhận hàng"
                   : order.paymentMethod === "momo"
                   ? "Chuyển khoản qua Momo"
+                  : order.paymentMethod === "zalopay"
+                  ? "Thanh toán qua ZaloPay"
                   : "Không xác định"}
               </p>
             </CardContent>
