@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // TẢI BIẾN MÔI TRƯỜNG TỪ mongo.env
 require("dotenv").config({ path: "mongo.env" });
 
-
+const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 
 // KẾT NỐI ĐẾN MONGODB ATLAS
@@ -31,6 +31,21 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Kết nối thành công tới MongoDB Atlas"))
   .catch((err) => console.log("Lỗi kết nối:", err));
+// Khi tạo token
+const token = jwt.sign(
+  { userId: "12345" },                // payload
+  process.env.JWT_SECRET,             // secret key từ .env
+  { expiresIn: "1h" }                 // thời gian hết hạn
+);
+jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  if (err) {
+    console.log("Token không hợp lệ:", err.message);
+  } else {
+    console.log("Giải mã token:", decoded);
+  }
+});
+
+console.log("Token:", token);
 
 var indexRouter = require("./routers/index");
 var usersRouter = require("./routers/users.routers.js");

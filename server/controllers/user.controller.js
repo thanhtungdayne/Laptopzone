@@ -1,7 +1,8 @@
 const bcrypt = require("bcryptjs");
 const userModel = require("../models/users.model.js"); // Import model User
-module.exports = { addUser, login, getUserById, changePassword, getAllUsers, updateUserInfo };
+const jwt = require("jsonwebtoken");
 
+module.exports = { addUser, login, getUserById, changePassword, getAllUsers, updateUserInfo };
 // Đăng ký user
 async function addUser(data) {
   try {
@@ -32,6 +33,7 @@ async function addUser(data) {
 //login
 async function login(data) {
   try {
+    
     const { email, password } = data;
 
     // Tìm user theo email

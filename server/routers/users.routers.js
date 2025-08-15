@@ -3,7 +3,7 @@ var router = express.Router();
 const userModel = require("../models/users.model.js");
 
 const userController = require("../controllers/user.controller.js");
-const { updateUserInfo } = require("../controllers/user.controller");
+const { updateUserInfo,login } = require("../controllers/user.controller");
 const bcrypt = require("bcryptjs");
 // Đăng ký người dùng
 router.post("/register", async (req, res) => {
@@ -26,6 +26,16 @@ router.post("/register", async (req, res) => {
       .json({ status: false, message: "Lỗi đăng ký người dùng" });
   }
 });
+
+  router.post('/login', async (req, res) => {
+     try {
+       const result = await login(req.body);
+       console.log(req.body);
+       res.json({ user: result.user, token: result.token, message: 'Đăng nhập thành công' });
+     } catch (error) {
+       res.status(400).json({ message: error.message });
+     }
+   });
 // Đăng nhập người dùng
 // router.post('/login', async (req, res) => {
 //   try {
@@ -36,7 +46,7 @@ router.post("/register", async (req, res) => {
 //   }
 // });
 // Lấy thông tin người dùng theo ID
-router.get("/:id", async (req, res) => {
+router.get("/id/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const user = await userController.getUserById(id);
@@ -119,14 +129,7 @@ router.get("/", async (req, res) => {
    };
 
    // Route login (KHÔNG dùng verifyToken)
-   router.post('/login', async (req, res) => {
-     try {
-       const result = await login(req.body);
-       res.json({ user: result.user, token: result.token, message: 'Đăng nhập thành công' });
-     } catch (error) {
-       res.status(400).json({ message: error.message });
-     }
-   });
+ 
 
    router.post('/update/:id', verifyToken, async (req, res) => {
      try {
