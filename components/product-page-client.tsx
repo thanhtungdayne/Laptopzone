@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useMemo, useState, useEffect } from "react";
 import {
@@ -33,89 +33,81 @@ import type { Laptop } from "@/types/product";
 import { useAuth } from "@/context/auth-context";
 import { useToast } from "./ui/use-toast";
 
-// Định nghĩa giao diện cho props của thành phần ProductPageClient
 interface ProductPageClientProps {
   laptop: Laptop;
   relatedProducts: Laptop[];
 }
 
-// Hook kiểm tra trạng thái đã mount (để tránh lỗi hydration)
 export function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
-    setHasMounted(true); // Đặt trạng thái đã mount khi component được render
+    setHasMounted(true);
   }, []);
   return hasMounted;
 }
 
-// Thành phần chính: Hiển thị trang chi tiết sản phẩm
 export default function ProductPageClient({
   laptop,
   relatedProducts,
 }: ProductPageClientProps) {
-  const { user } = useAuth(); // Lấy thông tin người dùng từ context xác thực
-  const [quantity, setQuantity] = useState(1); // Số lượng sản phẩm mặc định là 1
-  const [isSpecsDialogOpen, setIsSpecsDialogOpen] = useState(false); // Trạng thái mở dialog thông số chi tiết
+  const { isAuthenticated } = useAuth();
+  const [quantity, setQuantity] = useState(1);
+  const [isSpecsDialogOpen, setIsSpecsDialogOpen] = useState(false);
   const [selectedAttributes, setSelectedAttributes] = useState<{
-    [key: string]: string;
-  }>({}); // Thuộc tính biến thể được chọn (CPU, GPU, Màu sắc)
-  const [selectedVariant, setSelectedVariant] = useState<any>(null); // Biến thể sản phẩm được chọn
+    [key: string]: string | null;
+  }>({});
+  const [selectedVariant, setSelectedVariant] = useState<any>(null);
 
-  // Tự động chọn biến thể mặc định dựa trên giá của laptop
+  // Định nghĩa thứ tự các thuộc tính
+  const attributeOrder = ["CPU", "RAM", "Storage", "Color"];
+
+  // Tự động chọn biến thể có giá thấp nhất
   useEffect(() => {
-    if (!laptop?.productVariant) return;
+    if (!laptop?.productVariant || !Array.isArray(laptop.productVariant) || laptop.productVariant.length === 0) return;
 
-    const defaultVariant = laptop.productVariant.find(
-      (v: any) => v.price === laptop.price
+    // Tìm biến thể có giá thấp nhất
+    const cheapestVariant = laptop.productVariant.reduce((prev: any, curr: any) =>
+      Number(prev.price) < Number(curr.price) ? prev : curr
     );
 
-    if (defaultVariant) {
-      const defaultAttributes: { [key: string]: string } = {};
-      defaultVariant.attributes.forEach((attr: any) => {
+    if (cheapestVariant && Array.isArray(cheapestVariant.attributes)) {
+      const defaultAttributes: { [key: string]: string | null } = {};
+      cheapestVariant.attributes.forEach((attr: any) => {
         defaultAttributes[attr.attributeName] = attr.value;
       });
-      setSelectedAttributes(defaultAttributes); // Cập nhật thuộc tính mặc định
-      setSelectedVariant(defaultVariant); // Cập nhật biến thể mặc định
+      setSelectedAttributes(defaultAttributes);
+      setSelectedVariant(cheapestVariant);
     }
   }, [laptop]);
 
-  // Cập nhật biến thể khi người dùng thay đổi thuộc tính
+  // Cập nhật biến thể khi thay đổi thuộc tính
   useEffect(() => {
-    if (!laptop?.productVariant) return;
+    if (!laptop?.productVariant || !Array.isArray(laptop.productVariant)) return;
 
     const matchedVariant = laptop.productVariant.find((variant: any) =>
+      Array.isArray(variant.attributes) &&
       variant.attributes.every(
         (attr: any) => selectedAttributes[attr.attributeName] === attr.value
       )
     );
 
-    setSelectedVariant(matchedVariant || null); // Cập nhật biến thể phù hợp
+    setSelectedVariant(matchedVariant || null);
   }, [selectedAttributes, laptop]);
 
-  // Hàm lấy danh sách giá trị có thể chọn cho một thuộc tính (CPU, GPU, Color)
-  function getAvailableOptions(attribute: string): string[] {
-    if (!laptop?.productVariant) return [];
+  // Hàm lấy danh sách tất cả giá trị có thể có cho một thuộc tính
+  function getAllOptions(attribute: string): string[] {
+    if (!laptop?.productVariant || !Array.isArray(laptop.productVariant)) {
+      return [];
+    }
 
-    // Lọc các biến thể phù hợp với thuộc tính đang chọn
-    const filteredVariants = laptop.productVariant.filter((variant: any) =>
-      variant.attributes.every((attr: any) => {
-        const key = attr.attributeName;
-        const val = attr.value;
-        return (
-          key === attribute ||
-          !selectedAttributes[key] ||
-          selectedAttributes[key] === val
-        );
-      })
-    );
-
-    // Lấy danh sách giá trị duy nhất cho thuộc tính
     const values = [
       ...new Set(
-        filteredVariants.flatMap((v: any) =>
-          v.attributes
-            .filter((attr: any) => attr.attributeName === attribute)
-            .map((attr: any) => attr.value)
+        laptop.productVariant.flatMap((v: any) =>
+          Array.isArray(v.attributes)
+            ? v.attributes
+                .filter((attr: any) => attr.attributeName === attribute)
+                .map((attr: any) => attr.value)
+            : []
         )
       ),
     ];
@@ -123,21 +115,109 @@ export default function ProductPageClient({
     return values;
   }
 
-  const { fetchCart, addItem } = useCart(); // Lấy hàm từ context giỏ hàng
-  const { toast } = useToast(); // Hook để hiển thị thông báo
+  // Hàm kiểm tra xem một giá trị có khả dụng không dựa trên các thuộc tính đã chọn trước
+  function isOptionAvailable(attribute: string, value: string): boolean {
+    if (!laptop?.productVariant || !Array.isArray(laptop.productVariant)) {
+      return false;
+    }
 
-  // Ghi log biến thể đang chọn để debug
+    const currentIndex = attributeOrder.indexOf(attribute);
+    if (currentIndex === -1) return false;
+
+    // Lọc các biến thể dựa trên các thuộc tính đã chọn trước đó
+    const filteredVariants = laptop.productVariant.filter((variant: any) =>
+      Array.isArray(variant.attributes) &&
+      variant.attributes.every((attr: any) => {
+        const key = attr.attributeName;
+        const val = attr.value;
+        // Chỉ kiểm tra các thuộc tính trước attribute hiện tại trong attributeOrder
+        const prevAttributes = attributeOrder.slice(0, currentIndex);
+        return (
+          !prevAttributes.includes(key) ||
+          !selectedAttributes[key] ||
+          selectedAttributes[key] === val
+        );
+      })
+    );
+
+    // Kiểm tra xem giá trị có tồn tại trong các biến thể đã lọc
+    return filteredVariants.some((variant: any) =>
+      variant.attributes.some(
+        (attr: any) => attr.attributeName === attribute && attr.value === value
+      )
+    );
+  }
+
+  // Hàm xử lý khi nhấp vào một thuộc tính
+  function handleAttributeClick(attribute: string, value: string) {
+    setSelectedAttributes((prev) => {
+      // Nếu giá trị đã được chọn, bỏ chọn nó
+      if (prev[attribute] === value) {
+        const newAttributes = { ...prev, [attribute]: null };
+        // Reset các thuộc tính không tương thích ở các hàng sau
+        const currentIndex = attributeOrder.indexOf(attribute);
+        attributeOrder.slice(currentIndex + 1).forEach((key) => {
+          if (newAttributes[key]) {
+            const availableOptions = getAllOptions(key).filter((val) =>
+              isOptionAvailable(key, val)
+            );
+            if (!availableOptions.includes(newAttributes[key]!)) {
+              newAttributes[key] = null;
+            }
+          }
+        });
+        return newAttributes;
+      }
+
+      // Chọn giá trị mới và reset các thuộc tính không tương thích ở các hàng sau
+      const newAttributes = { ...prev, [attribute]: value };
+      const currentIndex = attributeOrder.indexOf(attribute);
+      attributeOrder.slice(currentIndex + 1).forEach((key) => {
+        if (newAttributes[key]) {
+          const availableOptions = getAllOptions(key).filter((val) =>
+            isOptionAvailable(key, val)
+          );
+          if (!availableOptions.includes(newAttributes[key]!)) {
+            newAttributes[key] = null;
+          }
+        }
+      });
+
+      return newAttributes;
+    });
+  }
+
+  const { addItem, isLoading } = useCart();
+  const { toast } = useToast();
+
   useEffect(() => {
     console.log("Biến thể đang chọn:", selectedVariant);
   }, [selectedVariant]);
 
-  // Hàm xử lý thêm sản phẩm vào giỏ hàng
   const handleAddToCart = async () => {
+    console.log("handleAddToCart - Bắt đầu:", { isAuthenticated, isLoading, selectedVariant });
     if (!selectedVariant) {
+      console.log("handleAddToCart - Chưa chọn biến thể");
       toast({
         title: "Vui lòng chọn đầy đủ biến thể",
-        description: "Bạn cần chọn CPU, GPU và Màu sắc trước khi thêm vào giỏ hàng.",
+        description: "Bạn cần chọn đầy đủ các thuộc tính trước khi thêm vào giỏ hàng.",
+        variant: "destructive",
       });
+      return;
+    }
+
+    if (!isAuthenticated) {
+      console.log("handleAddToCart - Chưa đăng nhập, hiển thị thông báo");
+      toast({
+        title: "Hãy đăng nhập",
+        description: "Hãy đăng nhập để mua hàng.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (isLoading) {
+      console.log("handleAddToCart - Đang xử lý, không gọi addItem");
       return;
     }
 
@@ -154,80 +234,47 @@ export default function ProductPageClient({
         })),
       };
 
-      // Thêm sản phẩm vào giỏ hàng
+      console.log("handleAddToCart - Gọi addItem:", cartItem);
       await addItem(cartItem);
-
+    } catch (error: any) {
+      console.error("handleAddToCart - Lỗi khi gọi addItem:", error.message);
       toast({
-        title: "Đã thêm vào giỏ hàng",
-        description: "Sản phẩm đã được thêm thành công!",
-      });
-    } catch (error) {
-      console.error("Lỗi khi thêm vào giỏ hàng:", error);
-      toast({
-        title: "Lỗi kết nối server",
-        description: "Không thể gửi yêu cầu tới server.",
+        title: "Lỗi",
+        description: error.message || "Không thể thêm sản phẩm vào giỏ hàng",
+        variant: "destructive",
       });
     }
   };
 
-  // Tạo breadcrumb cho điều hướng
   const breadcrumbItems = [
     { label: "Laptop", href: "/" },
     { label: laptop.category.categoryName },
     { label: laptop.name },
   ];
 
-  // Tối ưu hóa danh sách ảnh với chất lượng cao
   const fixedImages = useMemo(() => {
     return laptop.images.map(fixImageQuality);
   }, [laptop.images]);
 
-  // Hàm sửa chất lượng ảnh
   function fixImageQuality(url: string): string {
     return url.replace(/_AC_[^_]+_/, "_AC_SL1000_");
   }
 
-  // Hàm định dạng giá tiền sang VND
-  function formatPrice(amount: number): string {
-    return amount.toLocaleString("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    });
-  }
-
-  // Hàm lấy danh sách giá trị cho một thuộc tính
-  function getAttributeValues(attribute: string): string[] {
-    return [
-      ...new Set(
-        laptop.productVariant
-          ?.flatMap((v: any) =>
-            Array.isArray(v.attributes)
-              ? v.attributes.filter(
-                  (attr: any) => attr.attributeName === attribute
-                )
-              : []
-          )
-          .map((attr: any) => attr.value)
-      ),
-    ];
-  }
-
-  // Hàm render các tùy chọn thuộc tính
   function renderOption(attribute: string, value: string) {
     const isSelected = selectedAttributes[attribute] === value;
+    const isDisabled = !isOptionAvailable(attribute, value);
+
     return (
       <button
         key={value}
         type="button"
-        onClick={() =>
-          setSelectedAttributes((prev) => ({
-            ...prev,
-            [attribute]: value,
-          }))
-        }
+        onClick={() => handleAttributeClick(attribute, value)}
+        disabled={isDisabled}
         className={`px-3 py-1 rounded border text-sm transition ${
           isSelected
             ? "bg-blue-600 text-white border-blue-600"
+            : isDisabled
+            ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed"
             : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
         }`}
       >
@@ -239,11 +286,9 @@ export default function ProductPageClient({
   return (
     <div>
       <div className="w-[85%] max-w-none mx-auto px-4 py-8">
-        {/* Breadcrumb điều hướng */}
         <Breadcrumb items={breadcrumbItems} />
 
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
-          {/* Phần hiển thị ảnh và mô tả */}
           <div className="flex w-full flex-col space-y-4">
             <ImageGallery images={fixedImages} />
             <div className="text-sm text-gray-700 whitespace-pre-line">
@@ -252,7 +297,6 @@ export default function ProductPageClient({
             </div>
           </div>
 
-          {/* Thông tin sản phẩm */}
           <div className="space-y-6">
             <div>
               <div className="flex items-center space-x-2 mb-2">
@@ -279,7 +323,6 @@ export default function ProductPageClient({
               <h1 className="text-3xl font-bold mb-4">{laptop.name}</h1>
             </div>
 
-            {/* Thông số chính */}
             <Card className="border-2 border-transparent bg-gradient-to-br from-blue-50 to-purple-50">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-3">
@@ -313,133 +356,56 @@ export default function ProductPageClient({
                   </Dialog>
                 </div>
 
-                {/* Hiển thị thông số chính */}
                 <div className="grid grid-cols-1 gap-3 text-sm">
                   {/* CPU */}
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">Bộ xử lý:</span>
                     <div className="flex flex-wrap justify-end gap-2 max-w-[60%]">
-                      {[
-                        ...new Set(
-                          laptop.productVariant
-                            ?.flatMap((v: any) =>
-                              v.attributes.filter(
-                                (a: any) => a.attributeName === "CPU"
-                              )
-                            )
-                            .map((a: any) => a.value)
-                        ),
-                      ].map((value) => (
-                        <button
-                          key={value}
-                          onClick={() =>
-                            setSelectedAttributes((prev) => ({
-                              ...prev,
-                              CPU: value,
-                            }))
-                          }
-                          className={`px-2 py-1 rounded border text-xs ${
-                            selectedAttributes["CPU"] === value
-                              ? "bg-[#5E63F2] text-white border-[#5E63F2]"
-                              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                          }`}
-                        >
-                          {value}
-                        </button>
-                      ))}
+                      {getAllOptions("CPU").map((value) =>
+                        renderOption("CPU", value)
+                      )}
                     </div>
                   </div>
 
-                  {/* GPU */}
+                  {/* RAM */}
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Card đồ họa:</span>
+                    <span className="text-muted-foreground">RAM:</span>
                     <div className="flex flex-wrap justify-end gap-2 max-w-[60%]">
-                      {[
-                        ...new Set(
-                          laptop.productVariant
-                            ?.flatMap((v: any) =>
-                              v.attributes.filter(
-                                (a: any) => a.attributeName === "GPU"
-                              )
-                            )
-                            .map((a: any) => a.value)
-                        ),
-                      ].map((value) => (
-                        <button
-                          key={value}
-                          onClick={() =>
-                            setSelectedAttributes((prev) => ({
-                              ...prev,
-                              GPU: value,
-                            }))
-                          }
-                          className={`px-2 py-1 rounded border text-xs ${
-                            selectedAttributes["GPU"] === value
-                              ? "bg-[#5E63F2] text-white border-[#5E63F2]"
-                              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                          }`}
-                        >
-                          {value}
-                        </button>
-                      ))}
+                      {getAllOptions("RAM").map((value) =>
+                        renderOption("RAM", value)
+                      )}
                     </div>
                   </div>
 
-                  {/* RAM + Storage */}
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">RAM / Lưu trữ:</span>
-                    <span className="font-medium text-right">
-                      {laptop.ram} / {laptop.storage}
-                    </span>
-                  </div>
-
-                  {/* Display */}
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Màn hình:</span>
-                    <span className="font-medium text-right">
-                      {laptop.display}
-                    </span>
+                  {/* Storage */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Lưu trữ:</span>
+                    <div className="flex flex-wrap justify-end gap-2 max-w-[60%]">
+                      {getAllOptions("Storage").map((value) =>
+                        renderOption("Storage", value)
+                      )}
+                    </div>
                   </div>
 
                   {/* Color */}
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">Màu sắc:</span>
                     <div className="flex flex-wrap justify-end gap-2 max-w-[60%]">
-                      {[
-                        ...new Set(
-                          laptop.productVariant
-                            ?.flatMap((v: any) =>
-                              v.attributes.filter(
-                                (a: any) => a.attributeName === "Color"
-                              )
-                            )
-                            .map((a: any) => a.value)
-                        ),
-                      ].map((value) => (
-                        <button
-                          key={value}
-                          onClick={() =>
-                            setSelectedAttributes((prev) => ({
-                              ...prev,
-                              Color: value,
-                            }))
-                          }
-                          className={`px-2 py-1 rounded border text-xs ${
-                            selectedAttributes["Color"] === value
-                              ? "bg-[#5E63F2] text-white border-[#5E63F2]"
-                              : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                          }`}
-                        >
-                          {value}
-                        </button>
-                      ))}
+                      {getAllOptions("Color").map((value) =>
+                        renderOption("Color", value)
+                      )}
                     </div>
+                  </div>
+
+                  {/* Display */}
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Màn hình:</span>
+                    <span className="font-medium text-right">{laptop.display}</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Tùy chọn mua hàng */}
             <div className="space-y-4">
               {selectedVariant ? (
                 <>
@@ -461,7 +427,9 @@ export default function ProductPageClient({
                   )}
                 </>
               ) : (
-                <div className="text-red-600 font-medium">Hết hàng</div>
+                <div className="text-red-600 font-medium">
+                  Vui lòng chọn đầy đủ các thuộc tính
+                </div>
               )}
 
               <div className="flex space-x-3">
@@ -472,10 +440,8 @@ export default function ProductPageClient({
                   disabled={
                     !laptop.inStock ||
                     !laptop.stock ||
-                    !selectedAttributes["CPU"] ||
-                    !selectedAttributes["GPU"] ||
-                    !selectedAttributes["Color"] ||
-                    !selectedVariant
+                    !selectedVariant ||
+                    isLoading
                   }
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
@@ -499,7 +465,6 @@ export default function ProductPageClient({
               </div>
             </div>
 
-            {/* Thông tin vận chuyển và đổi trả */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="flex items-center space-x-2 text-sm p-3 rounded-lg bg-gradient-to-br from-green-50 to-green-100 border border-green-200">
                 <Truck className="h-5 w-5 text-green-600" />
@@ -512,25 +477,20 @@ export default function ProductPageClient({
                 <Shield className="h-5 w-5 text-blue-600" />
                 <div>
                   <div className="font-medium">Bảo hành 2 năm</div>
-                  <div className="text-muted-foreground">
-                    Bảo hành nhà sản xuất
-                  </div>
+                  <div className="text-muted-foreground">Bảo hành nhà sản xuất</div>
                 </div>
               </div>
               <div className="flex items-center space-x-2 text-sm p-3 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200">
                 <RotateCcw className="h-5 w-5 text-orange-600" />
                 <div>
                   <div className="font-medium">Đổi trả 30 ngày</div>
-                  <div className="text-muted-foreground">
-                    Chính sách đổi trả dễ dàng
-                  </div>
+                  <div className="text-muted-foreground">Chính sách đổi trả dễ dàng</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Tab chi tiết sản phẩm */}
         <Tabs defaultValue="specifications" className="mb-12">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="specifications">Thông số kỹ thuật</TabsTrigger>
@@ -556,10 +516,19 @@ export default function ProductPageClient({
                         Xem chi tiết đầy đủ
                       </Button>
                     </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-xl font-bold">
+                          Thông số kỹ thuật chi tiết - {laptop.name}
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="mt-4">
+                        <Specifications laptop={laptop} />
+                      </div>
+                    </DialogContent>
                   </Dialog>
                 </div>
 
-                {/* Hiển thị thông số kỹ thuật */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div className="space-y-3">
                     <div className="flex justify-between py-2 border-b">
@@ -592,20 +561,6 @@ export default function ProductPageClient({
                       <span className="text-right">{laptop.display}</span>
                     </div>
                     <div className="flex justify-between py-2 border-b">
-                      <span className="font-medium">Card đồ họa</span>
-                      <span className="text-right whitespace-normal break-words max-w-[200px]">
-                        <div className="flex flex-col items-end text-right">
-                          {Array.isArray(laptop.graphics) ? (
-                            laptop.graphics.map((gpu, idx) => (
-                              <span key={idx}>{gpu}</span>
-                            ))
-                          ) : (
-                            <span>{laptop.graphics}</span>
-                          )}
-                        </div>
-                      </span>
-                    </div>
-                    <div className="flex justify-between py-2 border-b">
                       <span className="font-medium">Tình trạng</span>
                       <span className="text-right">
                         {laptop.inStock ? "Còn hàng" : "Hết hàng"}
@@ -627,10 +582,8 @@ export default function ProductPageClient({
                       Thông tin vận chuyển
                     </h3>
                     <div className="space-y-2 text-sm">
-                      <p>
-                        • Miễn phí vận chuyển 
-                      </p>
-                      <p>• Vận chuyển nhanh </p>
+                      <p>• Miễn phí vận chuyển</p>
+                      <p>• Vận chuyển nhanh</p>
                       <p>• Giao hàng tiêu chuẩn: 3-5 ngày làm việc</p>
                       <p>• Giao hàng nhanh: 1-2 ngày làm việc</p>
                     </div>
@@ -664,7 +617,6 @@ export default function ProductPageClient({
           </TabsContent>
         </Tabs>
 
-        {/* Sản phẩm liên quan */}
         <div className="w-[85%] max-w-none mx-auto px-4 pb-32">
           <RelatedProducts currentProduct={laptop} allProducts={relatedProducts} />
         </div>

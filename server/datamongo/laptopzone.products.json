@@ -15,20 +15,24 @@
   "stock": 5,
   "new": false,
   "hot": false,
-  "view": 2,
+  "view": 8,
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Apple M2"
+    "M2"
   ],
-  "ram": "8GB Unified Memory",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "13.3\" Retina Display",
-  "graphics": [
-    "Apple 10-core GPU"
-  ],
+  "graphics": "Apple 10-core GPU",
   "color": [
-    "Space Gray",
+    "Gray",
     "Silver",
     "blue"
   ],
@@ -73,16 +77,20 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Intel Core i7-13700HX"
+    "i7"
   ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "512GB SSD",
+    "1TB SSD"
+  ],
   "display": "16.1\" QHD 165Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4060",
   "color": [
-    "Shadow Black",
+    "Black",
     "red"
   ],
   "features": [
@@ -125,17 +133,21 @@
   "inStock": true,
   "rating": 4.2,
   "processor": [
-    "Intel Core i3-1215U",
-    "Intel Core i5-1235U"
+    "i3",
+    "i5"
   ],
-  "ram": "8GB DDR4",
-  "storage": "256GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "15.6\" FHD TN",
-  "graphics": [
-    "Intel UHD Graphics"
-  ],
+  "graphics": "Intel UHD Graphics",
   "color": [
-    "Platinum Grey"
+    "Grey"
   ],
   "features": [
     "Numeric Keypad",
@@ -177,16 +189,20 @@
   "inStock": true,
   "rating": 4.6,
   "processor": [
-    "Intel Core i7-13620H"
+    "i7"
   ],
-  "ram": "16GB DDR5",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB SSD"
+  ],
   "display": "15.6\" FHD 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4060",
   "color": [
-    "Off Black"
+    "Black"
   ],
   "features": [
     "Thiết kế mỏng nhẹ",
@@ -229,18 +245,22 @@
   "inStock": true,
   "rating": 4.4,
   "processor": [
-    "Intel Core i5-1235U",
-    "Intel Core i7-1255U"
+    "i5",
+    "i7"
   ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "15.6\" FHD IPS",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
     "Silver",
-    "Fog Blue"
+    "Blue"
   ],
   "features": [
     "Backlit Keyboard",
@@ -282,18 +302,22 @@
   "inStock": true,
   "rating": 4.6,
   "processor": [
-    "Intel Core i5-12500H",
-    "Intel Core i7-12700H"
+    "i5",
+    "i7"
   ],
-  "ram": "16GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "15.6\" FHD IPS 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 3050"
-  ],
+  "graphics": "NVIDIA GeForce RTX 3050",
   "color": [
-    "Obsidian Black",
-    "Shale Blue"
+    "Black",
+    "Blue"
   ],
   "features": [
     "Wi-Fi 6",
@@ -336,17 +360,21 @@
   "inStock": true,
   "rating": 4.8,
   "processor": [
-    "Intel Core i7-12700H",
-    "Intel Core i9-12900H"
+    "i7",
+    "i9"
   ],
-  "ram": "32GB DDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB ",
+    "32GB"
+  ],
+  "storage": [
+    "512GB ",
+    "1TB "
+  ],
   "display": "16\" QHD+ Touch 120Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 3060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 3060",
   "color": [
-    "Lunar Gray"
+    "Gray"
   ],
   "features": [
     "Touchscreen Display",
@@ -389,17 +417,20 @@
   "inStock": true,
   "rating": 4.5,
   "processor": [
-    "AMD Ryzen 7 5800U"
+    "Ryzen 7 "
   ],
-  "ram": "16GB LPDDR4x",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "14\" 2.2K IPS",
-  "graphics": [
-    "AMD Radeon Graphics"
-  ],
+  "graphics": "AMD Radeon Graphics",
   "color": [
-    "Slate Grey",
-    "Orchid"
+    "Grey"
   ],
   "features": [
     "Fingerprint Reader",
@@ -442,17 +473,21 @@
   "inStock": true,
   "rating": 4.6,
   "processor": [
-    "AMD Ryzen 7 7840HS"
+    "Ryzen 7"
   ],
-  "ram": "16GB DDR5",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "256GB ",
+    "512GB ",
+    "1TB "
+  ],
   "display": "16\" WQXGA 165Hz IPS",
-  "graphics": [
-    "NVIDIA GeForce RTX 4050"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4050",
   "color": [
-    "Storm Grey",
-    "Onyx Grey"
+    "Grey"
   ],
   "features": [
     "Slim Build",
@@ -494,19 +529,22 @@
   "inStock": true,
   "rating": 4.5,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H"
+    "i5",
+    "i7"
   ],
-  "ram": "16GB DDR4",
-  "storage": "512GB PCIe SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "15.6\" FHD OLED (1920 x 1080), 60Hz",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA GeForce MX550"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
-    "Cool Silver"
+    "Black",
+    "Silver"
   ],
   "features": [
     "Màn hình OLED",
@@ -550,17 +588,21 @@
   "inStock": true,
   "rating": 4.6,
   "processor": [
-    "Intel Core i7-12700H",
-    "Intel Core i5-12500H"
+    "i7",
+    "i5"
   ],
-  "ram": "16GB DDR5",
-  "storage": "1TB PCIe SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "512GB ",
+    "1TB "
+  ],
   "display": "15.6\" FHD 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4060",
   "color": [
-    "Jaeger Gray"
+    "Gray"
   ],
   "features": [
     "RTX 4060",
@@ -604,16 +646,20 @@
   "inStock": true,
   "rating": 4.9,
   "processor": [
-    "Apple M3 Pro"
+    "M3"
   ],
-  "ram": "18GB Unified Memory",
-  "storage": "512GB SSD",
+  "ram": [
+    "16GB",
+    "32GB "
+  ],
+  "storage": [
+    "512GB ",
+    "1TB "
+  ],
   "display": "14.2\" Liquid Retina XDR",
-  "graphics": [
-    "Apple 14-core GPU"
-  ],
+  "graphics": "Apple 14-core GPU",
   "color": [
-    "Space Black"
+    "Black"
   ],
   "features": [
     "Liquid Retina XDR",
@@ -656,17 +702,20 @@
   "inStock": true,
   "rating": 4.3,
   "processor": [
-    "AMD Ryzen 5 5500U"
+    "Ryzen 5 "
   ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "15.6\" FHD IPS",
-  "graphics": [
-    "NVIDIA GeForce GTX 1650",
-    "AMD Radeon Graphics"
-  ],
+  "graphics": "NVIDIA GeForce GTX 1650",
   "color": [
-    "Charcoal Black"
+    "Black"
   ],
   "features": [
     "Backlit Keyboard",
@@ -709,17 +758,20 @@
   "inStock": true,
   "rating": 4.8,
   "processor": [
-    "Apple M2"
+    "M2"
   ],
-  "ram": "8GB Unified Memory",
-  "storage": "256GB SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "13.6\" Liquid Retina (2560 x 1664)",
-  "graphics": [
-    "Apple 8-core GPU"
-  ],
+  "graphics": "Apple 8-core GPU",
   "color": [
-    "Midnight",
-    "Starlight"
+    "Gray"
   ],
   "features": [
     "Touch ID",
@@ -762,14 +814,18 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Apple M1"
+    "M1"
   ],
-  "ram": "8GB Unified Memory",
-  "storage": "256GB SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "13.3\" Retina Display",
-  "graphics": [
-    "Apple 7-core GPU"
-  ],
+  "graphics": "Apple 7-core GPU",
   "color": [
     "Gold",
     "Silver"
@@ -815,17 +871,21 @@
   "inStock": true,
   "rating": 4.3,
   "processor": [
-    "Intel Core i5-1335U"
+    "i5"
   ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB ",
+    "512GB"
+  ],
   "display": "14\" FHD IPS",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Classic Black",
-    "Urban Silver"
+    "Black",
+    "Silver"
   ],
   "features": [
     "Thin & Light Design",
@@ -867,16 +927,20 @@
   "inStock": true,
   "rating": 4.8,
   "processor": [
-    "Intel Core i7-1355U"
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB "
+  ],
   "display": "14\" 2.8K OLED, 400-nits",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Black with Red TrackPoint"
+    "Black"
   ],
   "features": [
     "Carbon Fiber Build",
@@ -918,16 +982,20 @@
   "inStock": true,
   "rating": 4.95,
   "processor": [
-    "Apple M3 Max"
+    "M3"
   ],
-  "ram": "36GB Unified Memory",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "16.2\" Liquid Retina XDR",
-  "graphics": [
-    "Apple 40-core GPU"
-  ],
+  "graphics": "Apple 40-core GPU",
   "color": [
-    "Space Black"
+    "Black"
   ],
   "features": [
     "Mini-LED Display",
@@ -970,18 +1038,22 @@
   "inStock": true,
   "rating": 4.4,
   "processor": [
-    "Intel Core i5-1240P",
-    "Intel Core i7-1260P"
+    "i5",
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "14\" 2.8K OLED, 90Hz",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Pure Silver",
-    "Steel Gray"
+    "Silver",
+    "Gray"
   ],
   "features": [
     "Wi-Fi 6E",
@@ -1024,17 +1096,21 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Intel Core i7-13620H",
-    "Intel Core i5-13420H"
+    "i7",
+    "i5"
   ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "15.6\" FHD 144Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4060",
   "color": [
-    "Core Black"
+    "Black"
   ],
   "features": [
     "Cooler Boost 5",
@@ -1076,17 +1152,20 @@
   "inStock": true,
   "rating": 4.5,
   "processor": [
-    "Intel Core i7-13650HX"
+    "i7"
   ],
-  "ram": "16GB DDR5",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB ",
+    "16GB "
+  ],
+  "storage": [
+    "512GB ",
+    "1TB "
+  ],
   "display": "15.6\" FHD 165Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 3050"
-  ],
+  "graphics": "NVIDIA GeForce RTX 3050",
   "color": [
-    "Phantom Grey",
-    "Dark Shadow Grey"
+    "Grey"
   ],
   "features": [
     "Alienware Command Center",
@@ -1128,16 +1207,20 @@
   "inStock": true,
   "rating": 4.6,
   "processor": [
-    "Intel Core i7-1355U"
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "512GB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB ",
+    "1TB "
+  ],
   "display": "14\" WUXGA Anti-Glare",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Titan Gray"
+    "Gray"
   ],
   "features": [
     "Thunderbolt 4",
@@ -1176,18 +1259,21 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H"
+    "i5",
+    "i7"
   ],
-  "ram": "16gb",
-  "storage": "512gb",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "120hz",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
+    "Black",
     "ok bro"
   ],
   "originalprice": "123",
@@ -1227,15 +1313,19 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Intel Core i7-12700H",
-    "Intel Core i9-12900H"
+    "i7",
+    "i9"
   ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "256GB ",
+    "512GB "
+  ],
   "display": "16\" WQUXGA 400-nit Pantone Validated",
-  "graphics": [
-    "NVIDIA RTX A1000"
-  ],
+  "graphics": "NVIDIA RTX A1000",
   "color": [
     "White"
   ],
@@ -1280,17 +1370,21 @@
   "inStock": true,
   "rating": 4.2,
   "processor": [
-    "Intel Core i5-1335U"
+    "i5"
   ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "15.6\" FHD 120Hz",
-  "graphics": [
-    "Intel UHD Graphics"
-  ],
+  "graphics": "Intel UHD Graphics",
   "color": [
-    "Carbon Black",
-    "Platinum Silver"
+    "Black",
+    "Silver"
   ],
   "features": [
     "Wi-Fi 6",
@@ -1332,15 +1426,19 @@
   "inStock": true,
   "rating": 4.2,
   "processor": [
-    "Intel Core i5-11400H",
-    "Intel Core i7-11800H"
+    "i5",
+    "i7"
   ],
-  "ram": "8GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "15.6\" FHD IPS 60Hz",
-  "graphics": [
-    "NVIDIA GeForce GTX 1650"
-  ],
+  "graphics": "NVIDIA GeForce GTX 1650",
   "color": [
     "Black",
     "Gray"
@@ -1385,17 +1483,21 @@
   "inStock": true,
   "rating": 4.5,
   "processor": [
-    "Intel Core i7-1360P"
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "13.3\" FHD+ IPS",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Stellar Blue",
-    "Urban Silver"
+    "Blue",
+    "Silver"
   ],
   "features": [
     "Fingerprint Reader",
@@ -1438,16 +1540,20 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "AMD Ryzen 7 6800H"
+    "Ryzen 7"
   ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "16\" QHD 165Hz IPS",
-  "graphics": [
-    "NVIDIA GeForce RTX 4060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4060",
   "color": [
-    "Storm Grey"
+    "Grey"
   ],
   "features": [
     "Legion Coldfront 4.0",
@@ -1489,16 +1595,20 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Intel Core i7-1360P"
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "13.4\" 3.5K OLED Touch",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Platinum Silver"
+    "Silver"
   ],
   "features": [
     "Fingerprint Sensor",
@@ -1540,16 +1650,20 @@
   "inStock": true,
   "rating": 4.8,
   "processor": [
-    "Intel Core i7-1355U"
+    "i7"
   ],
-  "ram": "16GB LPDDR4x",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB ",
+    "32GB"
+  ],
+  "storage": [
+    "512GB ",
+    "1TB "
+  ],
   "display": "13.5\" 3K2K OLED Touchscreen",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Nocturne Blue"
+    "Blue"
   ],
   "features": [
     "360° Hinge",
@@ -1592,17 +1706,21 @@
   "inStock": true,
   "rating": 4.4,
   "processor": [
-    "Intel Core i5-1240P",
-    "Intel Core i7-1260P"
+    "i5",
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "512GB PCIe SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "14\" FHD Anti-glare",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Star Black"
+    "Black"
   ],
   "features": [
     "Siêu nhẹ 1kg",
@@ -1645,17 +1763,20 @@
   "inStock": true,
   "rating": 4.8,
   "processor": [
-    "Intel Core i7-13700HX"
+    "i7"
   ],
-  "ram": "16GB DDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "16\" WQXGA 240Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4070",
-    "NVIDIA GeForce RTX 4060"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4070",
   "color": [
-    "Abyssal Black"
+    "Black"
   ],
   "features": [
     "Per-Key RGB",
@@ -1698,16 +1819,20 @@
   "inStock": true,
   "rating": 4.7,
   "processor": [
-    "Intel Core i7-13700H"
+    "i7"
   ],
-  "ram": "16GB LPDDR5",
-  "storage": "1TB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "14.5\" 2.8K OLED Touch 120Hz",
-  "graphics": [
-    "Intel Iris Xe Graphics"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Inkwell Gray"
+    "Gray"
   ],
   "features": [
     "Màn hình OLED cảm ứng",
@@ -1751,17 +1876,21 @@
   "inStock": true,
   "rating": 4.6,
   "processor": [
-    "Intel Core i7-1255U"
+    "i7"
   ],
-  "ram": "16GB DDR4",
-  "storage": "512GB SSD",
+  "ram": [
+    "16GB",
+    "32GB"
+  ],
+  "storage": [
+    "512GB",
+    "1TB"
+  ],
   "display": "15.6\" FHD Touchscreen",
-  "graphics": [
-    "Intel Iris Xe"
-  ],
+  "graphics": "Intel Iris Xe",
   "color": [
-    "Nightfall Black",
-    "Natural Silver"
+    "Black",
+    "Silver"
   ],
   "features": [
     "2-in-1 Design",
@@ -1803,16 +1932,20 @@
   "inStock": true,
   "rating": 4.1,
   "processor": [
-    "AMD Ryzen 3 5300U"
+    "Ryzen 3"
   ],
-  "ram": "8GB DDR4",
-  "storage": "256GB SSD",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "14\" HD Anti-Glare",
-  "graphics": [
-    "AMD Radeon Graphics"
-  ],
+  "graphics": "AMD Radeon Graphics",
   "color": [
-    "Asteroid Silver"
+    "Silver"
   ],
   "features": [
     "Lightweight Design",
@@ -1854,17 +1987,20 @@
   "inStock": true,
   "rating": 4.9,
   "processor": [
-    "Intel Core i9-13900HK"
+    "i9"
   ],
-  "ram": "32GB DDR5",
-  "storage": "2TB SSD",
+  "ram": [
+    "32GB",
+    "64GB"
+  ],
+  "storage": [
+    "1TB SSD",
+    "2TB SSD"
+  ],
   "display": "16\" QHD+ 240Hz",
-  "graphics": [
-    "NVIDIA GeForce RTX 4080",
-    "Intel UHD Graphics"
-  ],
+  "graphics": "NVIDIA GeForce RTX 4080",
   "color": [
-    "Lunar Silver"
+    "Silver"
   ],
   "features": [
     "AlienFX Lighting",
@@ -1903,18 +2039,21 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H"
+    "i5",
+    "i7"
   ],
-  "ram": "14",
-  "storage": "12",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "12",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
+    "Black",
     "Silver"
   ],
   "originalprice": "14",
@@ -1952,18 +2091,15 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H"
+    "i5",
+    "i7"
   ],
   "ram": "11",
   "storage": "11",
   "display": "11",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
+    "Black",
     "Silver"
   ],
   "originalprice": "1",
@@ -2001,20 +2137,15 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H",
-    "12"
+    "i5",
+    "i7"
   ],
   "ram": "12",
   "storage": "12",
   "display": "12",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050",
-    "12"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
+    "Black",
     "Silver",
     "12"
   ],
@@ -2053,22 +2184,21 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H",
-    "âd"
+    "i5-13500H",
+    "i7-13700H",
+    ""
   ],
-  "ram": "te",
-  "storage": "12",
+  "ram": [
+    "16GB "
+  ],
+  "storage": [
+    "512GB "
+  ],
   "display": "ád",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050",
-    "dsa"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
-    "Silver",
-    "đ"
+    "Black",
+    "Silver"
   ],
   "originalprice": "1",
   "features": [],
@@ -2103,20 +2233,15 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H",
-    "22"
+    "i5",
+    "i7"
   ],
   "ram": "22",
   "storage": "22",
   "display": "22",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050",
-    "22"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
+    "Black",
     "Silver",
     "22"
   ],
@@ -2153,22 +2278,18 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H",
-    "55"
+    "i5",
+    "i7"
   ],
-  "ram": "55",
+  "ram": [
+    "32GB "
+  ],
   "storage": "55",
   "display": "55",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050",
-    "55"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
-    "Silver",
-    "55"
+    "Black",
+    "Silver"
   ],
   "originalprice": "4",
   "features": [],
@@ -2205,20 +2326,21 @@
   "inStock": true,
   "rating": 0,
   "processor": [
-    "Intel Core i5-13500H",
-    "Intel Core i7-13700H",
-    "i3"
+    "i5",
+    "i7"
   ],
-  "ram": "16gb",
-  "storage": "256gb",
+  "ram": [
+    "8GB",
+    "16GB"
+  ],
+  "storage": [
+    "256GB",
+    "512GB"
+  ],
   "display": "120hz",
-  "graphics": [
-    "Intel Iris Xe Graphics",
-    "NVIDIA RTX 3050",
-    "4060"
-  ],
+  "graphics": "Intel Iris Xe Graphics",
   "color": [
-    "Indie Black",
+    "Black",
     "Silver"
   ],
   "originalprice": "1",

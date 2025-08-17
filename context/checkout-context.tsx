@@ -1,7 +1,9 @@
 "use client";
 
 import type React from "react";
-import { createContext, useContext, useReducer, type ReactNode } from "react";
+import { createContext, useContext, useReducer, useEffect, useRef, type ReactNode } from "react";
+import { useCart } from "@/context/cart-context";
+import { useAuth } from "@/context/auth-context";
 import axios from "axios";
 
 export interface ShippingInfo {
@@ -56,7 +58,6 @@ type CheckoutAction =
   | { type: "SET_ORDER"; payload: Order }
   | { type: "RESET_CHECKOUT" };
 
-// Interface cho Context
 interface CheckoutContextType {
   state: CheckoutState;
   dispatch: React.Dispatch<CheckoutAction>;
@@ -64,7 +65,6 @@ interface CheckoutContextType {
   setOrderFromFetch: (order: Order) => void;
 }
 
-// Tạo context với kiểu đầy đủ
 const CheckoutContext = createContext<CheckoutContextType | null>(null);
 
 function checkoutReducer(state: CheckoutState, action: CheckoutAction): CheckoutState {
@@ -104,8 +104,51 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
     isProcessing: false,
     error: null,
   });
+  const { items } = useCart();
+  const { user, isAuthenticated, isLoading } = useAuth();
+  // Theo dõi danh sách sản phẩm trước đó
+  const prevItemsRef = useRef<any[]>([]);
 
-  // Hàm để đặt lại order từ dữ liệu fetch
+  // Thiết lập bước và reset khi có sản phẩm mới
+  useEffect(() => {
+    if (isLoading) return; // Đợi xác thực hoàn tất
+
+    console.log("Kiểm tra giỏ hàng:", { itemsLength: items.length, currentStep: state.currentStep, order: state.order });
+
+    // Kiểm tra xem giỏ hàng có thay đổi không
+    const prevItems = prevItemsRef.current;
+    const itemsChanged = JSON.stringify(items) !== JSON.stringify(prevItems);
+
+    if (!isAuthenticated || !user) {
+      dispatch({ type: "SET_STEP", payload: 1 }); // Chuyển về giỏ hàng hoặc đăng nhập
+    } else if (items.length > 0 && itemsChanged && state.currentStep === 4) {
+      // Reset về bước 1 khi có sản phẩm mới và đang ở bước 4
+      dispatch({ type: "RESET_CHECKOUT" });
+    } else if (items.length === 0 && !state.order) {
+      dispatch({ type: "SET_STEP", payload: 4 }); // Chuyển đến OrderConfirmation nếu giỏ rỗng và không có đơn hàng
+    } else if (state.currentStep === 4 && !state.order) {
+      dispatch({ type: "SET_STEP", payload: 1 }); // Chuyển về giỏ hàng nếu không có đơn hàng
+    }
+
+    // Cập nhật danh sách sản phẩm trước đó
+    prevItemsRef.current = items;
+  }, [items, isAuthenticated, isLoading, user, state.currentStep, state.order]);
+
+  // Tự động điền thông tin giao hàng từ dữ liệu người dùng
+  useEffect(() => {
+    if (isLoading || !isAuthenticated || !user) return;
+
+    const shippingData: Partial<ShippingInfo> = {
+      fullName: user.name || "",
+      email: user.email || "",
+      phone: user.phone || "",
+      address: user.address || "",
+    };
+
+    dispatch({ type: "SET_SHIPPING", payload: shippingData });
+  }, [isLoading, isAuthenticated, user]);
+
+  // Hàm để đặt lại đơn hàng từ dữ liệu fetch
   const setOrderFromFetch = (order: Order) => {
     dispatch({ type: "SET_ORDER", payload: order });
   };
@@ -120,14 +163,22 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
         return null;
       }
 
-      // Set isPaid to true if payment method is zalopay, otherwise use provided isPaid value
+      // Đặt isPaid thành true nếu phương thức thanh toán là zalopay
       const isOrderPaid = state.payment.paymentMethod === "zalopay" ? true : isPaid;
-      console.log("isPaid received:", isPaid);
-console.log("paymentMethod:", state.payment.paymentMethod);
-console.log("isOrderPaid:", isOrderPaid);
+      console.log("isPaid nhận được:", isPaid);
+      console.log("paymentMethod:", state.payment.paymentMethod);
+      console.log("isOrderPaid:", isOrderPaid);
+
       const payload = {
         userId,
-        items,
+        items: items.map((item) => ({
+          VariantId: item._id,
+          quantity: item.quantity,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          attributes: item.attributes,
+        })),
         shippingAddress: {
           fullName: state.shipping.fullName,
           address: state.shipping.address,
@@ -137,9 +188,9 @@ console.log("isOrderPaid:", isOrderPaid);
         isPaid: isOrderPaid,
       };
 
-      console.log("Sending payload to API:", payload);
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/order/place`, payload); 
-      console.log("API response:", response.data);
+      console.log("Gửi payload đến API:", payload);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/order/place`, payload);
+      console.log("Phản hồi API:", response.data);
 
       const orderData: Order = {
         ...response.data.order,
@@ -162,7 +213,8 @@ console.log("isOrderPaid:", isOrderPaid);
       }
 
       dispatch({ type: "SET_ORDER", payload: orderData });
-      console.log("Order dispatched:", orderData);
+      console.log("Đơn hàng đã được gửi:", orderData);
+
       return orderData;
     } catch (error: any) {
       console.error("Lỗi khi đặt hàng:", error);
@@ -186,7 +238,7 @@ console.log("isOrderPaid:", isOrderPaid);
 export function useCheckout() {
   const context = useContext(CheckoutContext);
   if (!context) {
-    throw new Error("useCheckout must be used within a CheckoutProvider");
+    throw new Error("useCheckout phải được sử dụng trong CheckoutProvider");
   }
   return context;
 }

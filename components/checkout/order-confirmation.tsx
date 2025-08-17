@@ -17,6 +17,30 @@ import { useCart } from "@/context/cart-context";
 import { useEffect, useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
+export interface Order {
+  id: string;
+  orderCode?: string;
+  items: Array<{
+    VariantId?: string;
+    id?: string;
+    quantity: number;
+    name?: string;
+    price?: number;
+    image?: string;
+    attributes?: Array<{ name: string; value: string }>;
+  }>;
+  shippingAddress: {
+    fullName: string;
+    address: string;
+    phone: string;
+  };
+  paymentMethod: "cash" | "momo" | "zalopay";
+  totalAmount: number;
+  isPaid: boolean;
+  status: string;
+  createdAt: string;
+}
+
 export default function OrderConfirmation() {
   const { state, dispatch, setOrderFromFetch } = useCheckout();
   const { items, clearCart } = useCart();
@@ -25,10 +49,9 @@ export default function OrderConfirmation() {
 
   const orderId = searchParams.get("orderId");
   const userId = searchParams.get("userId");
+  const [localOrder, setLocalOrder] = useState<Order | null>(null);
 
-  // Fetch lại order nếu không có trong context
-  const [localOrder, setLocalOrder] = useState(null);
-
+  // Fetch order if not in context
   useEffect(() => {
     const fetchOrder = async () => {
       if (!orderId || !userId) return;
@@ -37,20 +60,26 @@ export default function OrderConfirmation() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/order/orders/${orderId}/${userId}`
         );
-        if (!res.ok) throw new Error("Order not found");
+        if (!res.ok) throw new Error("Không tìm thấy đơn hàng");
         const orderData = await res.json();
 
-        setLocalOrder(orderData); // Dùng state riêng, không dính context
-        setOrderFromFetch(orderData); // Lưu vào context nếu cần
+        setLocalOrder(orderData);
+        setOrderFromFetch(orderData);
       } catch (error) {
         console.error("❌ Lỗi khi lấy đơn hàng:", error);
+        toast({
+          title: "Lỗi",
+          description: "Không thể tải thông tin đơn hàng. Vui lòng thử lại.",
+          variant: "destructive",
+          duration: 4000,
+        });
       }
     };
 
     fetchOrder();
   }, [orderId, userId, setOrderFromFetch]);
 
-  // Show toast when order is confirmed
+  // Show toast when order is confirmed or cart is empty
   useEffect(() => {
     if (state.order || localOrder) {
       toast({
@@ -59,8 +88,32 @@ export default function OrderConfirmation() {
         variant: "default",
         duration: 4000,
       });
+    } else if (items.length === 0) {
+      toast({
+        title: "Giỏ hàng trống",
+        description: "Không có sản phẩm trong giỏ hàng. Vui lòng thêm sản phẩm để đặt hàng.",
+        variant: "destructive",
+        duration: 4000,
+      });
     }
-  }, [state.order, localOrder]);
+  }, [state.order, localOrder, items]);
+
+  // Handle empty cart and no order
+  if (items.length === 0 && !state.order && !localOrder) {
+    return (
+      <div className="text-center p-8">
+        <p className="text-lg text-muted-foreground">
+          Giỏ hàng của bạn đang trống và không có đơn hàng nào được tìm thấy.
+        </p>
+        <Button
+          onClick={() => router.push("/")}
+          className="mt-4 bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition"
+        >
+          Tiếp tục mua sắm
+        </Button>
+      </div>
+    );
+  }
 
   if (!state.order && !localOrder) {
     return (
@@ -68,15 +121,35 @@ export default function OrderConfirmation() {
         <p className="text-lg text-muted-foreground">
           Không tìm thấy thông tin đơn hàng.
         </p>
-        <Button onClick={() => router.push("/")} className="mt-4">
+        <Button
+          onClick={() => router.push("/")}
+          className="mt-4 bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition"
+        >
           Quay lại trang chủ
         </Button>
       </div>
     );
   }
 
-  const order = localOrder || state.order; // Ưu tiên localOrder nếu có
+  const order = localOrder || state.order;
   const orderItems = order.items || items;
+
+  // Validate orderItems
+  if (!Array.isArray(orderItems)) {
+    return (
+      <div className="text-center p-8">
+        <p className="text-lg text-muted-foreground">
+          Dữ liệu đơn hàng không hợp lệ.
+        </p>
+        <Button
+          onClick={() => router.push("/")}
+          className="mt-4 bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition"
+        >
+          Quay lại trang chủ
+        </Button>
+      </div>
+    );
+  }
 
   const handleNewOrder = () => {
     dispatch({ type: "RESET_CHECKOUT" });
@@ -86,7 +159,12 @@ export default function OrderConfirmation() {
 
   const handleDownloadReceipt = () => {
     console.log("Downloading receipt for order:", order.id);
-    alert("Tải hóa đơn sẽ bắt đầu tại đây");
+    toast({
+      title: "Tải hóa đơn",
+      description: "Hóa đơn đang được chuẩn bị. Vui lòng chờ trong giây lát.",
+      variant: "default",
+      duration: 4000,
+    });
   };
 
   return (
@@ -117,23 +195,34 @@ export default function OrderConfirmation() {
             <CardTitle>Tóm tắt đơn hàng</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {orderItems.map((item) => (
-              <div key={item.productVariantId || item.id} className="flex space-x-4">
+            {orderItems.map((item, index) => (
+              <div
+                key={item.VariantId || item.id || item._id || `item-${index}`}
+                className="flex space-x-4"
+              >
                 <div className="relative w-16 h-16 flex-shrink-0">
                   <Image
-                    src={item.productImage || item.image || "/placeholder.svg"}
-                    alt={item.productName || item.name || "Ảnh sản phẩm"}
+                    src={item.productImage || "/placeholder.svg"}
+                    alt={item.name || "Ảnh sản phẩm"}
                     fill
                     className="object-cover rounded"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-medium text-sm line-clamp-2">
-                    {item.productName || item.name || "Không có tên"}
+                    {item.productName || "Không có tên"}
                   </h4>
                   <p className="text-sm text-muted-foreground">
                     Số lượng: {item.quantity}
                   </p>
+                  {item.attributes && item.attributes.length > 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      Thuộc tính:{" "}
+                      {item.attributes
+                        .map((attr) => `${attr.name}: ${attr.value}`)
+                        .join(", ")}
+                    </p>
+                  )}
                 </div>
                 <div className="text-right">
                   <p className="font-medium">
@@ -193,10 +282,10 @@ export default function OrderConfirmation() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2 text-sm">
-                <p className="font-medium">{order.shippingAddress.fullName}</p>
-                <p>{order.shippingAddress.address}</p>
+                <p className="font-medium">{order.shippingAddress?.fullName || "Không có thông tin"}</p>
+                <p>{order.shippingAddress?.address || "Không có thông tin"}</p>
                 <p className="text-muted-foreground">
-                  {order.shippingAddress.phone}
+                  {order.shippingAddress?.phone || "Không có thông tin"}
                 </p>
               </div>
             </CardContent>
@@ -252,11 +341,20 @@ export default function OrderConfirmation() {
 
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button onClick={handleDownloadReceipt} variant="outline">
+        {/* <Button
+          onClick={handleDownloadReceipt}
+          variant="outline"
+          className="border-gray-300 hover:bg-gray-100"
+        >
           <Download className="h-4 w-4 mr-2" />
           Tải hóa đơn
+        </Button> */}
+        <Button
+          onClick={handleNewOrder}
+          className="bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition"
+        >
+          Tiếp tục mua sắm
         </Button>
-        <Button onClick={handleNewOrder}>Tiếp tục mua sắm</Button>
       </div>
     </div>
   );

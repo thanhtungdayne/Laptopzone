@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useCheckout } from "@/context/checkout-context";
 import { useCart } from "@/context/cart-context";
 import { useAuth } from "@/context/auth-context";
@@ -8,25 +9,24 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
-import { useEffect } from "react";
 
 export default function PaymentForm() {
   const { state, dispatch, placeOrder } = useCheckout();
   const { items } = useCart();
-  const { user } = useAuth();
+  const { user, isAuthenticated, isLoading } = useAuth();
 
   // Check for payment completion when component mounts or window regains focus
   useEffect(() => {
     const handlePaymentCallback = async () => {
       const paymentStatus = localStorage.getItem("zaloPaymentStatus");
-      if (paymentStatus === "completed" && user?._id && items.length > 0) {
+      if (paymentStatus === "completed" && user?.id && items.length > 0) {
         try {
-          await placeOrder(user._id, items);
+          await placeOrder(user.id, items);
           dispatch({ type: "SET_STEP", payload: 4 }); // Move to confirmation step
           localStorage.removeItem("zaloPaymentStatus"); // Clean up
         } catch (error) {
           console.error("Error placing order after payment:", error);
-          alert("Đã xảy ra lỗi khi hoàn tất đơn hàng: " + error.message);
+          alert("Đã xảy ra lỗi khi hoàn tất đơn hàng: " + (error.message || "Lỗi không xác định"));
         }
       }
     };
@@ -45,13 +45,18 @@ export default function PaymentForm() {
   };
 
   const handleContinue = async () => {
-    if (!state.payment.paymentMethod) {
-      alert("Vui lòng chọn phương thức thanh toán");
+    if (isLoading) {
+      alert("Đang tải thông tin người dùng, vui lòng chờ...");
       return;
     }
 
-    if (!user?._id) {
+    if (!isAuthenticated || !user?.id) {
       alert("Vui lòng đăng nhập trước khi đặt hàng");
+      return;
+    }
+
+    if (!state.payment.paymentMethod) {
+      alert("Vui lòng chọn phương thức thanh toán");
       return;
     }
 
@@ -73,7 +78,7 @@ export default function PaymentForm() {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/payment/zalo/payment`,
           {
-            userId: user._id,
+            userId: user.id,
             items: items.map((item) => ({
               id: item._id,
               name: item.name,
@@ -100,14 +105,14 @@ export default function PaymentForm() {
         }
       } else {
         // Handle other payment methods (cash, momo)
-        await placeOrder(user._id, items);
+        await placeOrder(user.id, items);
         dispatch({ type: "SET_STEP", payload: 4 }); // Move to confirmation step
       }
     } catch (error) {
       console.error("Lỗi khi đặt hàng:", error.response?.data || error.message);
       alert(
         `Đã xảy ra lỗi khi đặt hàng: ${
-          error.response?.data?.details || error.message
+          error.response?.data?.details || error.message || "Lỗi không xác định"
         }`
       );
     }
@@ -116,7 +121,7 @@ export default function PaymentForm() {
   const handleChange = (value) => {
     dispatch({
       type: "SET_PAYMENT",
-      payload: { userId: user._id, paymentMethod: value },
+      payload: { userId: user?.id, paymentMethod: value },
     });
   };
 
@@ -127,24 +132,31 @@ export default function PaymentForm() {
           <CardTitle>Chọn phương thức thanh toán</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <RadioGroup
-            defaultValue={state.payment.paymentMethod}
-            onValueChange={handleChange}
-            className="space-y-2"
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="cash" id="cash" />
-              <Label htmlFor="cash">Thanh toán khi nhận hàng</Label>
+          {isLoading ? (
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+              <p className="text-muted-foreground">Đang tải...</p>
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="momo" id="momo" />
-              <Label htmlFor="momo">Chuyển khoản qua Momo</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="zalopay" id="zalopay" />
-              <Label htmlFor="zalopay">Thanh toán qua ZaloPay</Label>
-            </div>
-          </RadioGroup>
+          ) : (
+            <RadioGroup
+              defaultValue={state.payment.paymentMethod}
+              onValueChange={handleChange}
+              className="space-y-2"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="cash" id="cash" />
+                <Label htmlFor="cash">Thanh toán khi nhận hàng</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="momo" id="momo" />
+                <Label htmlFor="momo">Chuyển khoản qua Momo</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="zalopay" id="zalopay" />
+                <Label htmlFor="zalopay">Thanh toán qua ZaloPay</Label>
+              </div>
+            </RadioGroup>
+          )}
         </CardContent>
       </Card>
 
@@ -152,7 +164,13 @@ export default function PaymentForm() {
         <Button variant="outline" onClick={handleBack}>
           Quay lại vận chuyển
         </Button>
-        <Button onClick={handleContinue}>Tiếp tục</Button>
+        <Button
+          onClick={handleContinue}
+          disabled={isLoading || !isAuthenticated}
+          className="bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition disabled:opacity-50"
+        >
+          Tiếp tục
+        </Button>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const createPayment = async (req, res) => {
     }
 
     const embed_data = {
-      redirecturl: 'https://your-website.com/payment-success', // Thay bằng URL thực tế
+      redirecturl: 'http://localhost:3000/checkout', // Thay bằng URL thực tế
     };
 
     const transID = Math.floor(Math.random() * 1000000);
@@ -28,7 +28,7 @@ const createPayment = async (req, res) => {
       item: JSON.stringify(items),
       embed_data: JSON.stringify(embed_data),
       amount: Math.round(amount),
-      callback_url: 'https://your-domain.com/api/payment/zalo/callback', // Thay bằng URL callback thực tế
+      callback_url: 'http://localhost:3000/checkout', // Thay bằng URL callback thực tế
       description: `YourApp - Payment for order #${transID}`,
       bank_code: '',
     };

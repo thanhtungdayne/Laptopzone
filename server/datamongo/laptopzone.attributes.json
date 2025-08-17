@@ -1,0 +1,2539 @@
+[
+  {
+  "_id": {
+    "$oid": "689f4000e9017f48bb7b7001"
+  },
+  "productId": {
+    "$oid": "68625f1c597a8ed103030b14"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7002"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7003"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Gray",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7004"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "M2",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7005"
+          }
+        }
+      ],
+      "price": 33990000,
+      "originalprice": 36990000,
+      "sku": "MACBOOKPRO-M2-8GB-256GB-GRAY",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4000e9017f48bb7b7006"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7007"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7008"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7009"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "M2",
+          "_id": {
+            "$oid": "689f4000e9017f48bb7b7010"
+          }
+        }
+      ],
+      "price": 35990000,
+      "originalprice": 38990000,
+      "sku": "MACBOOKPRO-M2-16GB-512GB-SILVER",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4000e9017f48bb7b7011"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4001e9017f48bb7b7012"
+  },
+  "productId": {
+    "$oid": "68626a70597a8ed103030b5f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7013"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB SSD",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7014"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7015"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7016"
+          }
+        }
+      ],
+      "price": 31990000,
+      "originalprice": 34990000,
+      "sku": "HPVIC-i7-8GB-512GB-BLACK",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4001e9017f48bb7b7017"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7018"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB SSD",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7019"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Red",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7020"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4001e9017f48bb7b7021"
+          }
+        }
+      ],
+      "price": 33990000,
+      "originalprice": 36990000,
+      "sku": "HPVIC-i7-16GB-1TB-RED",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4001e9017f48bb7b7022"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4002e9017f48bb7b7023"
+  },
+  "productId": {
+    "$oid": "68626c80597a8ed103030b6b"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7024"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7025"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7026"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i3",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7027"
+          }
+        }
+      ],
+      "price": 9490000,
+      "originalprice": 10490000,
+      "sku": "LENOVOIDEAPAD-i3-8GB-256GB-GREY",
+      "stock": 10,
+      "_id": {
+        "$oid": "689f4002e9017f48bb7b7028"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7029"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7030"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7031"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4002e9017f48bb7b7032"
+          }
+        }
+      ],
+      "price": 10490000,
+      "originalprice": 11490000,
+      "sku": "LENOVOIDEAPAD-i5-16GB-512GB-GREY",
+      "stock": 10,
+      "_id": {
+        "$oid": "689f4002e9017f48bb7b7033"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4003e9017f48bb7b7034"
+  },
+  "productId": {
+    "$oid": "68625cd5597a8ed103030b08"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7035"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7036"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7037"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7038"
+          }
+        }
+      ],
+      "price": 26990000,
+      "originalprice": 28990000,
+      "sku": "ASUSTUF-i7-8GB-512GB-BLACK",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4003e9017f48bb7b7039"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7040"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB SSD",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7041"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7042"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4003e9017f48bb7b7043"
+          }
+        }
+      ],
+      "price": 28990000,
+      "originalprice": 30990000,
+      "sku": "ASUSTUF-i7-16GB-1TB-BLACK",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4003e9017f48bb7b7044"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4004e9017f48bb7b7045"
+  },
+  "productId": {
+    "$oid": "6862696b597a8ed103030b4f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7046"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7047"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7048"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7049"
+          }
+        }
+      ],
+      "price": 14990000,
+      "originalprice": 16990000,
+      "sku": "HPPAVILION-i5-8GB-256GB-SILVER",
+      "stock": 8,
+      "_id": {
+        "$oid": "689f4004e9017f48bb7b7050"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7051"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7052"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Blue",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7053"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4004e9017f48bb7b7054"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 18990000,
+      "sku": "HPPAVILION-i7-16GB-512GB-BLUE",
+      "stock": 8,
+      "_id": {
+        "$oid": "689f4004e9017f48bb7b7055"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4006e9017f48bb7b7067"
+  },
+  "productId": {
+    "$oid": "68626360597a8ed103030b24"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7068"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7069"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7070"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7071"
+          }
+        }
+      ],
+      "price": 21990000,
+      "originalprice": 23990000,
+      "sku": "ACERNITRO-i5-8GB-256GB-BLACK",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4006e9017f48bb7b7072"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7073"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7074"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Blue",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7075"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4006e9017f48bb7b7076"
+          }
+        }
+      ],
+      "price": 23990000,
+      "originalprice": 25990000,
+      "sku": "ACERNITRO-i7-16GB-512GB-BLUE",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4006e9017f48bb7b7077"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4007e9017f48bb7b7078"
+  },
+  "productId": {
+    "$oid": "68626784597a8ed103030b44"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7079"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7080"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Gray",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7081"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7082"
+          }
+        }
+      ],
+      "price": 44990000,
+      "originalprice": 47990000,
+      "sku": "MSICREATOR-i7-16GB-512GB-GRAY",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4007e9017f48bb7b7083"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "32GB",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7084"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7085"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Gray",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7086"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i9",
+          "_id": {
+            "$oid": "689f4007e9017f48bb7b7087"
+          }
+        }
+      ],
+      "price": 46990000,
+      "originalprice": 49990000,
+      "sku": "MSICREATOR-i9-32GB-1TB-GRAY",
+      "stock": 1,
+      "_id": {
+        "$oid": "689f4007e9017f48bb7b7088"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4008e9017f48bb7b7089"
+  },
+  "productId": {
+    "$oid": "68626d61597a8ed103030b6f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7090"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7091"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7092"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 7",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7093"
+          }
+        }
+      ],
+      "price": 20990000,
+      "originalprice": 22990000,
+      "sku": "YOGASLIM7-RYZEN7-8GB-256GB-GREY",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4008e9017f48bb7b7094"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7095"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7096"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7097"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 7",
+          "_id": {
+            "$oid": "689f4008e9017f48bb7b7098"
+          }
+        }
+      ],
+      "price": 22990000,
+      "originalprice": 24990000,
+      "sku": "YOGASLIM7-RYZEN7-16GB-512GB-GREY",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4008e9017f48bb7b7099"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4009e9017f48bb7b7100"
+  },
+  "productId": {
+    "$oid": "68629f79597a8ed103030b7b"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7101"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7102"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7103"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 7",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7104"
+          }
+        }
+      ],
+      "price": 27990000,
+      "originalprice": 29990000,
+      "sku": "LEGION5-RYZEN7-8GB-256GB-GREY",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4009e9017f48bb7b7105"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7106"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7107"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7108"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 7",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7109"
+          }
+        }
+      ],
+      "price": 28990000,
+      "originalprice": 30990000,
+      "sku": "LEGION5-RYZEN7-16GB-512GB-GREY",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4009e9017f48bb7b7110"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7111"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7112"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7113"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 7",
+          "_id": {
+            "$oid": "689f4009e9017f48bb7b7114"
+          }
+        }
+      ],
+      "price": 29990000,
+      "originalprice": 31990000,
+      "sku": "LEGION5-RYZEN7-16GB-1TB-GREY",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4009e9017f48bb7b7115"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4010e9017f48bb7b7116"
+  },
+  "productId": {
+    "$oid": "68625b2d597a8ed103030b00"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7117"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7118"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7119"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7120"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 17990000,
+      "sku": "VIVOBOOK15-i5-8GB-256GB-BLACK",
+      "stock": 8,
+      "_id": {
+        "$oid": "689f4010e9017f48bb7b7121"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7122"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7123"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7124"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4010e9017f48bb7b7125"
+          }
+        }
+      ],
+      "price": 18990000,
+      "originalprice": 19990000,
+      "sku": "VIVOBOOK15-i7-16GB-512GB-SILVER",
+      "stock": 7,
+      "_id": {
+        "$oid": "689f4010e9017f48bb7b7126"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4011e9017f48bb7b7127"
+  },
+  "productId": {
+    "$oid": "68625d6f597a8ed103030b0c"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7128"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7129"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7130"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7131"
+          }
+        }
+      ],
+      "price": 14990000,
+      "originalprice": 16990000,
+      "sku": "DELLINSPIRON-i5-8GB-256GB-SILVER",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4011e9017f48bb7b7132"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7133"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7134"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7135"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4011e9017f48bb7b7136"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 18990000,
+      "sku": "DELLINSPIRON-i7-16GB-512GB-BLACK",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4011e9017f48bb7b7137"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4012e9017f48bb7b7138"
+  },
+  "productId": {
+    "$oid": "686260ce597a8ed103030b18"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7139"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7140"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7141"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7142"
+          }
+        }
+      ],
+      "price": 18990000,
+      "originalprice": 20990000,
+      "sku": "HPENVY-i5-8GB-512GB-SILVER",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4012e9017f48bb7b7143"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7144"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7145"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7146"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4012e9017f48bb7b7147"
+          }
+        }
+      ],
+      "price": 20990000,
+      "originalprice": 22990000,
+      "sku": "HPENVY-i7-16GB-1TB-BLACK",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4012e9017f48bb7b7148"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4013e9017f48bb7b7149"
+  },
+  "productId": {
+    "$oid": "68626262597a8ed103030b1c"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7150"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7151"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7152"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7153"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 18990000,
+      "sku": "ACERASPIRE-i5-8GB-512GB-BLACK",
+      "stock": 6,
+      "_id": {
+        "$oid": "689f4013e9017f48bb7b7154"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7155"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7156"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7157"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4013e9017f48bb7b7158"
+          }
+        }
+      ],
+      "price": 18990000,
+      "originalprice": 20990000,
+      "sku": "ACERASPIRE-i7-16GB-1TB-BLACK",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4013e9017f48bb7b7159"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4014e9017f48bb7b7160"
+  },
+  "productId": {
+    "$oid": "68626691597a8ed103030b40"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7161"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7162"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7163"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7164"
+          }
+        }
+      ],
+      "price": 27990000,
+      "originalprice": 29990000,
+      "sku": "DELLXPS-i5-8GB-512GB-SILVER",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4014e9017f48bb7b7165"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7166"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7167"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7168"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4014e9017f48bb7b7169"
+          }
+        }
+      ],
+      "price": 29990000,
+      "originalprice": 31990000,
+      "sku": "DELLXPS-i7-16GB-1TB-BLACK",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4014e9017f48bb7b7170"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4015e9017f48bb7b7171"
+  },
+  "productId": {
+    "$oid": "68626479597a8ed103030b30"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7172"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7173"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7174"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7175"
+          }
+        }
+      ],
+      "price": 19990000,
+      "originalprice": 21990000,
+      "sku": "MSIKATANA-i5-8GB-512GB-BLACK",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4015e9017f48bb7b7176"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7177"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7178"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7179"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4015e9017f48bb7b7180"
+          }
+        }
+      ],
+      "price": 21990000,
+      "originalprice": 23990000,
+      "sku": "MSIKATANA-i7-16GB-1TB-BLACK",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4015e9017f48bb7b7181"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4016e9017f48bb7b7182"
+  },
+  "productId": {
+    "$oid": "686261b9597a8ed103030b20"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7183"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7184"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Blue",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7185"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7186"
+          }
+        }
+      ],
+      "price": 34990000,
+      "originalprice": 36990000,
+      "sku": "HPSPECTRE-i7-16GB-512GB-BLUE",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4016e9017f48bb7b7187"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7188"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7189"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7190"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4016e9017f48bb7b7191"
+          }
+        }
+      ],
+      "price": 36990000,
+      "originalprice": 38990000,
+      "sku": "HPSPECTRE-i7-16GB-1TB-SILVER",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4016e9017f48bb7b7192"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4017e9017f48bb7b7193"
+  },
+  "productId": {
+    "$oid": "6862658b597a8ed103030b34"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7194"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7195"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7196"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7197"
+          }
+        }
+      ],
+      "price": 36990000,
+      "originalprice": 39990000,
+      "sku": "THINKPADX1-i7-16GB-512GB-BLACK",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4017e9017f48bb7b7198"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "32GB",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7199"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7200"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7201"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4017e9017f48bb7b7202"
+          }
+        }
+      ],
+      "price": 38990000,
+      "originalprice": 41990000,
+      "sku": "THINKPADX1-i7-32GB-1TB-BLACK",
+      "stock": 1,
+      "_id": {
+        "$oid": "689f4017e9017f48bb7b7203"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4018e9017f48bb7b7204"
+  },
+  "productId": {
+    "$oid": "68626870597a8ed103030b48"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7205"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7206"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7207"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 7",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7208"
+          }
+        }
+      ],
+      "price": 31990000,
+      "originalprice": 33990000,
+      "sku": "ROGZEPHYRUS-RYZEN7-16GB-512GB-GREY",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4018e9017f48bb7b7209"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "32GB",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7210"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7211"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "White",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7212"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Ryzen 9",
+          "_id": {
+            "$oid": "689f4018e9017f48bb7b7213"
+          }
+        }
+      ],
+      "price": 34990000,
+      "originalprice": 36990000,
+      "sku": "ROGZEPHYRUS-RYZEN9-32GB-1TB-WHITE",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4018e9017f48bb7b7214"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4019e9017f48bb7b7215"
+  },
+  "productId": {
+    "$oid": "686269f5597a8ed103030b54"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7216"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7217"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7218"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7219"
+          }
+        }
+      ],
+      "price": 30990000,
+      "originalprice": 32990000,
+      "sku": "PREDATORHELIOS-i7-16GB-512GB-BLACK",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4019e9017f48bb7b7220"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "32GB",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7221"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7222"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7223"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i9",
+          "_id": {
+            "$oid": "689f4019e9017f48bb7b7224"
+          }
+        }
+      ],
+      "price": 32990000,
+      "originalprice": 34990000,
+      "sku": "PREDATORHELIOS-i9-32GB-1TB-BLACK",
+      "stock": 2,
+      "_id": {
+        "$oid": "689f4019e9017f48bb7b7225"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4020e9017f48bb7b7226"
+  },
+  "productId": {
+    "$oid": "68625e5b597a8ed103030b10"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7227"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "256GB",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7228"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7229"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "M1",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7230"
+          }
+        }
+      ],
+      "price": 24990000,
+      "originalprice": 27990000,
+      "sku": "MACBOOKAIR-M1-8GB-256GB-SILVER",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4020e9017f48bb7b7231"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7232"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7233"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Gold",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7234"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "M1",
+          "_id": {
+            "$oid": "689f4020e9017f48bb7b7235"
+          }
+        }
+      ],
+      "price": 27990000,
+      "originalprice": 30990000,
+      "sku": "MACBOOKAIR-M1-16GB-512GB-GOLD",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4020e9017f48bb7b7236"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4021e9017f48bb7b7237"
+  },
+  "productId": {
+    "$oid": "68625a3c597a8ed103030afc"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7238"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7239"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7240"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7241"
+          }
+        }
+      ],
+      "price": 19990000,
+      "originalprice": 21990000,
+      "sku": "ZENBOOK14-i5-8GB-512GB-SILVER",
+      "stock": 5,
+      "_id": {
+        "$oid": "689f4021e9017f48bb7b7242"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7243"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7244"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Blue",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7245"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4021e9017f48bb7b7246"
+          }
+        }
+      ],
+      "price": 21990000,
+      "originalprice": 23990000,
+      "sku": "ZENBOOK14-i7-16GB-1TB-BLUE",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4021e9017f48bb7b7247"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f4022e9017f48bb7b7248"
+  },
+  "productId": {
+    "$oid": "68626e6a597a8ed103030b73"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "8GB",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7249"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "512GB",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7250"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7251"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i5",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7252"
+          }
+        }
+      ],
+      "price": 22990000,
+      "originalprice": 24990000,
+      "sku": "DELLG15-i5-8GB-512GB-BLACK",
+      "stock": 4,
+      "_id": {
+        "$oid": "689f4022e9017f48bb7b7253"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "689f321ce9017f48bb7b636b"
+          },
+          "attributeName": "RAM",
+          "value": "16GB",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7254"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "689f322ae9017f48bb7b636d"
+          },
+          "attributeName": "Storage",
+          "value": "1TB",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7255"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Grey",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7256"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "i7",
+          "_id": {
+            "$oid": "689f4022e9017f48bb7b7257"
+          }
+        }
+      ],
+      "price": 24990000,
+      "originalprice": 26990000,
+      "sku": "DELLG15-i7-16GB-1TB-GREY",
+      "stock": 3,
+      "_id": {
+        "$oid": "689f4022e9017f48bb7b7258"
+      }
+    }
+  ],
+  "__v": 0
+}
+]

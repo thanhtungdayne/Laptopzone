@@ -1,0 +1,2489 @@
+[{
+  "_id": {
+    "$oid": "6866633a39ea8800c55c6060"
+  },
+  "productId": {
+    "$oid": "68625b2d597a8ed103030b00"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-13500H",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d12d"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe Graphics",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d12e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Indie Black",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d12f"
+          }
+        }
+      ],
+      "price": 40000,
+      "originalprice": 18990000,
+      "sku": "VBOOK15OLED-i5-XE-BLK",
+      "stock": 8,
+      "_id": {
+        "$oid": "6866633a39ea8800c55c6061"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13700H",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d133"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce MX550",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d134"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Cool Silver",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d135"
+          }
+        }
+      ],
+      "price": 18990000,
+      "originalprice": 20990000,
+      "sku": "VBOOK15OLED-i7-MX550-SIL",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866633a39ea8800c55c6065"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-13500H",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d139"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce MX550",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d13a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Cool Silver",
+          "_id": {
+            "$oid": "68932d84abdb9e24cca9d13b"
+          }
+        }
+      ],
+      "price": 17990000,
+      "originalprice": 19990000,
+      "sku": "VBOOK15OLED-i5-MX550-SIL",
+      "stock": 4,
+      "_id": {
+        "$oid": "6866633a39ea8800c55c6069"
+      }
+    }
+  ],
+  "__v": 14
+},
+{
+  "_id": {
+    "$oid": "6866641839ea8800c55c6076"
+  },
+  "productId": {
+    "$oid": "68626a70597a8ed103030b5f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13700HX",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e6d"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e6e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Shadow Black",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e6f"
+          }
+        }
+      ],
+      "price": 32990000,
+      "originalprice": 35990000,
+      "sku": "HPVICTUS-I7-4060-BLK",
+      "stock": 6,
+      "_id": {
+        "$oid": "6866641839ea8800c55c6077"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13700HX",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e73"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e74"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Shadow Black",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e75"
+          }
+        }
+      ],
+      "price": 32990000,
+      "originalprice": 34490000,
+      "sku": "VICTUS-i7-RTX4060-BLK1",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866806339ea8800c55c618a"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13700HX",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e79"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e7a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Shadow Black",
+          "_id": {
+            "$oid": "688cb5afbf8c2f49b7514e7b"
+          }
+        }
+      ],
+      "price": 33490000,
+      "originalprice": 35990000,
+      "sku": "VICTUS-i7-RTX4060-BLK2",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866806339ea8800c55c618e"
+      }
+    }
+  ],
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "6866646f39ea8800c55c6083"
+  },
+  "productId": {
+    "$oid": "68626af9597a8ed103030b63"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "6866646f39ea8800c55c6085"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866646f39ea8800c55c6086"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Nocturne Blue",
+          "_id": {
+            "$oid": "6866646f39ea8800c55c6087"
+          }
+        }
+      ],
+      "price": 39990000,
+      "originalprice": 42990000,
+      "sku": "SPECTRE-I7-NB",
+      "stock": 4,
+      "_id": {
+        "$oid": "6866646f39ea8800c55c6084"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "6866806a39ea8800c55c61a0"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866806a39ea8800c55c61a1"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Nocturne Blue",
+          "_id": {
+            "$oid": "6866806a39ea8800c55c61a2"
+          }
+        }
+      ],
+      "price": 39990000,
+      "originalprice": 41490000,
+      "sku": "SPX360-i7-XE-BLU1",
+      "stock": 2,
+      "_id": {
+        "$oid": "6866806a39ea8800c55c619f"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "6866806a39ea8800c55c61a4"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866806a39ea8800c55c61a5"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Nocturne Blue",
+          "_id": {
+            "$oid": "6866806a39ea8800c55c61a6"
+          }
+        }
+      ],
+      "price": 40990000,
+      "originalprice": 42990000,
+      "sku": "SPX360-i7-XE-BLU2",
+      "stock": 2,
+      "_id": {
+        "$oid": "6866806a39ea8800c55c61a3"
+      }
+    }
+  ],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "686664c039ea8800c55c6095"
+  },
+  "productId": {
+    "$oid": "68626c80597a8ed103030b6b"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i3-1215U",
+          "_id": {
+            "$oid": "686664c039ea8800c55c6097"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel UHD Graphics",
+          "_id": {
+            "$oid": "686664c039ea8800c55c6098"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Platinum Grey",
+          "_id": {
+            "$oid": "686664c039ea8800c55c6099"
+          }
+        }
+      ],
+      "price": 9990000,
+      "originalprice": 10990000,
+      "sku": "IDEAPAD3-I3-GREY",
+      "stock": 10,
+      "_id": {
+        "$oid": "686664c039ea8800c55c6096"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-1235U",
+          "_id": {
+            "$oid": "686664c039ea8800c55c609b"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel UHD Graphics",
+          "_id": {
+            "$oid": "686664c039ea8800c55c609c"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Platinum Grey",
+          "_id": {
+            "$oid": "686664c039ea8800c55c609d"
+          }
+        }
+      ],
+      "price": 11490000,
+      "originalprice": 12490000,
+      "sku": "IDEAPAD3-I5-GREY",
+      "stock": 10,
+      "_id": {
+        "$oid": "686664c039ea8800c55c609a"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i3-1215U",
+          "_id": {
+            "$oid": "686680ee39ea8800c55c61cd"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel UHD Graphics",
+          "_id": {
+            "$oid": "686680ee39ea8800c55c61ce"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Platinum Grey",
+          "_id": {
+            "$oid": "686680ee39ea8800c55c61cf"
+          }
+        }
+      ],
+      "price": 9990000,
+      "originalprice": 10990000,
+      "sku": "IDEAPAD3-i3-UHD-GREY",
+      "stock": 10,
+      "_id": {
+        "$oid": "686680ee39ea8800c55c61cc"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-1235U",
+          "_id": {
+            "$oid": "686680ee39ea8800c55c61d1"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel UHD Graphics",
+          "_id": {
+            "$oid": "686680ee39ea8800c55c61d2"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Platinum Grey",
+          "_id": {
+            "$oid": "686680ee39ea8800c55c61d3"
+          }
+        }
+      ],
+      "price": 10990000,
+      "originalprice": 12490000,
+      "sku": "IDEAPAD3-i5-UHD-GREY",
+      "stock": 10,
+      "_id": {
+        "$oid": "686680ee39ea8800c55c61d0"
+      }
+    }
+  ],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "686664ec39ea8800c55c60aa"
+  },
+  "productId": {
+    "$oid": "68625a0b597a8ed103030afc"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-12500H",
+          "_id": {
+            "$oid": "686664ec39ea8800c55c60ac"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "686664ec39ea8800c55c60ad"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Jaeger Gray",
+          "_id": {
+            "$oid": "686664ec39ea8800c55c60ae"
+          }
+        }
+      ],
+      "price": 25990000,
+      "originalprice": 27990000,
+      "sku": "TUF15-I5-4060-GRY",
+      "stock": 5,
+      "_id": {
+        "$oid": "686664ec39ea8800c55c60ab"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-12700H",
+          "_id": {
+            "$oid": "686664ec39ea8800c55c60b0"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "686664ec39ea8800c55c60b1"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Jaeger Gray",
+          "_id": {
+            "$oid": "686664ec39ea8800c55c60b2"
+          }
+        }
+      ],
+      "price": 28990000,
+      "originalprice": 30990000,
+      "sku": "TUF15-I7-4060-GRY",
+      "stock": 5,
+      "_id": {
+        "$oid": "686664ec39ea8800c55c60af"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68666b3539ea8800c55c60bb"
+  },
+  "productId": {
+    "$oid": "68625cd5597a8ed103030b08"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13620H",
+          "_id": {
+            "$oid": "68666b3539ea8800c55c60bd"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "68666b3539ea8800c55c60be"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Off Black",
+          "_id": {
+            "$oid": "68666b3539ea8800c55c60bf"
+          }
+        }
+      ],
+      "price": 27990000,
+      "originalprice": 29990000,
+      "sku": "TUFDASH15-I7-4060-BLK",
+      "stock": 8,
+      "_id": {
+        "$oid": "68666b3539ea8800c55c60bc"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866752239ea8800c55c60cd"
+  },
+  "productId": {
+    "$oid": "686263e4597a8ed103030b28"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 5 5500U",
+          "_id": {
+            "$oid": "6866752239ea8800c55c60cf"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce GTX 1650",
+          "_id": {
+            "$oid": "6866752239ea8800c55c60d0"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Charcoal Black",
+          "_id": {
+            "$oid": "6866752239ea8800c55c60d1"
+          }
+        }
+      ],
+      "price": 17990000,
+      "originalprice": 18990000,
+      "sku": "A7-R5-GTX1650-BLK",
+      "stock": 6,
+      "_id": {
+        "$oid": "6866752239ea8800c55c60ce"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 5 5500U",
+          "_id": {
+            "$oid": "6866752239ea8800c55c60d3"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "AMD Radeon Graphics",
+          "_id": {
+            "$oid": "6866752239ea8800c55c60d4"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Charcoal Black",
+          "_id": {
+            "$oid": "6866752239ea8800c55c60d5"
+          }
+        }
+      ],
+      "price": 17490000,
+      "originalprice": 18490000,
+      "sku": "A7-R5-Radeon-BLK",
+      "stock": 5,
+      "_id": {
+        "$oid": "6866752239ea8800c55c60d2"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866755939ea8800c55c60e1"
+  },
+  "productId": {
+    "$oid": "6862658f597a8ed103030b34"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-12700H",
+          "_id": {
+            "$oid": "6866755939ea8800c55c60e3"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA RTX A1000",
+          "_id": {
+            "$oid": "6866755939ea8800c55c60e4"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "White",
+          "_id": {
+            "$oid": "6866755939ea8800c55c60e5"
+          }
+        }
+      ],
+      "price": 38990000,
+      "originalprice": 41990000,
+      "sku": "CPTD5-I7-A1000-WHT",
+      "stock": 2,
+      "_id": {
+        "$oid": "6866755939ea8800c55c60e2"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i9-12900H",
+          "_id": {
+            "$oid": "6866755939ea8800c55c60e7"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA RTX A1000",
+          "_id": {
+            "$oid": "6866755939ea8800c55c60e8"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "White",
+          "_id": {
+            "$oid": "6866755939ea8800c55c60e9"
+          }
+        }
+      ],
+      "price": 41990000,
+      "originalprice": 44990000,
+      "sku": "CPTD5-I9-A1000-WHT",
+      "stock": 2,
+      "_id": {
+        "$oid": "6866755939ea8800c55c60e6"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68667f1839ea8800c55c60fa"
+  },
+  "productId": {
+    "$oid": "68626639597a8ed103030b38"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-11400H",
+          "_id": {
+            "$oid": "68667f1839ea8800c55c60fc"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce GTX 1650",
+          "_id": {
+            "$oid": "68667f1839ea8800c55c60fd"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black",
+          "_id": {
+            "$oid": "68667f1839ea8800c55c60fe"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 18900000,
+      "sku": "GF63-i5-GTX1650-BLK",
+      "stock": 6,
+      "_id": {
+        "$oid": "68667f1839ea8800c55c60fb"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-11800H",
+          "_id": {
+            "$oid": "68667f1839ea8800c55c6100"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce GTX 1650",
+          "_id": {
+            "$oid": "68667f1839ea8800c55c6101"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Gray",
+          "_id": {
+            "$oid": "68667f1839ea8800c55c6102"
+          }
+        }
+      ],
+      "price": 17990000,
+      "originalprice": 19900000,
+      "sku": "GF63-i7-GTX1650-GRY",
+      "stock": 6,
+      "_id": {
+        "$oid": "68667f1839ea8800c55c60ff"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68667f5139ea8800c55c610e"
+  },
+  "productId": {
+    "$oid": "686266b1597a8ed103030b3c"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-13420H",
+          "_id": {
+            "$oid": "68667f5139ea8800c55c6110"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "68667f5139ea8800c55c6111"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Core Black",
+          "_id": {
+            "$oid": "68667f5139ea8800c55c6112"
+          }
+        }
+      ],
+      "price": 27990000,
+      "originalprice": 28990000,
+      "sku": "Katana15-i5-RTX4060-BLK",
+      "stock": 4,
+      "_id": {
+        "$oid": "68667f5139ea8800c55c610f"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13620H",
+          "_id": {
+            "$oid": "68667f5139ea8800c55c6114"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "68667f5139ea8800c55c6115"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Core Black",
+          "_id": {
+            "$oid": "68667f5139ea8800c55c6116"
+          }
+        }
+      ],
+      "price": 28990000,
+      "originalprice": 29990000,
+      "sku": "Katana15-i7-RTX4060-BLK",
+      "stock": 4,
+      "_id": {
+        "$oid": "68667f5139ea8800c55c6113"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68667f5b39ea8800c55c6123"
+  },
+  "productId": {
+    "$oid": "6862670d597a8ed103030b40"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-1335U",
+          "_id": {
+            "$oid": "68667f5b39ea8800c55c6125"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe Graphics",
+          "_id": {
+            "$oid": "68667f5b39ea8800c55c6126"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Classic Black",
+          "_id": {
+            "$oid": "68667f5b39ea8800c55c6127"
+          }
+        }
+      ],
+      "price": 15990000,
+      "originalprice": 16990000,
+      "sku": "Modern14-i5-XE-BLK",
+      "stock": 7,
+      "_id": {
+        "$oid": "68667f5b39ea8800c55c6124"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-1335U",
+          "_id": {
+            "$oid": "68667f5b39ea8800c55c6129"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe Graphics",
+          "_id": {
+            "$oid": "68667f5b39ea8800c55c612a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Urban Silver",
+          "_id": {
+            "$oid": "68667f5b39ea8800c55c612b"
+          }
+        }
+      ],
+      "price": 15990000,
+      "originalprice": 17900000,
+      "sku": "Modern14-i5-XE-SIL",
+      "stock": 7,
+      "_id": {
+        "$oid": "68667f5b39ea8800c55c6128"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68667f6439ea8800c55c6137"
+  },
+  "productId": {
+    "$oid": "68626784597a8ed103030b44"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-12700H",
+          "_id": {
+            "$oid": "68667f6439ea8800c55c6139"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 3060",
+          "_id": {
+            "$oid": "68667f6439ea8800c55c613a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Lunar Gray",
+          "_id": {
+            "$oid": "68667f6439ea8800c55c613b"
+          }
+        }
+      ],
+      "price": 45990000,
+      "originalprice": 46990000,
+      "sku": "Z16-i7-RTX3060-GRY",
+      "stock": 2,
+      "_id": {
+        "$oid": "68667f6439ea8800c55c6138"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i9-12900H",
+          "_id": {
+            "$oid": "68667f6439ea8800c55c613d"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 3060",
+          "_id": {
+            "$oid": "68667f6439ea8800c55c613e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Lunar Gray",
+          "_id": {
+            "$oid": "68667f6439ea8800c55c613f"
+          }
+        }
+      ],
+      "price": 46990000,
+      "originalprice": 48990000,
+      "sku": "Z16-i9-RTX3060-GRY",
+      "stock": 1,
+      "_id": {
+        "$oid": "68667f6439ea8800c55c613c"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68667f6d39ea8800c55c614b"
+  },
+  "productId": {
+    "$oid": "68626805597a8ed103030b48"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1360P",
+          "_id": {
+            "$oid": "68667f6d39ea8800c55c614d"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "68667f6d39ea8800c55c614e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Stellar Blue",
+          "_id": {
+            "$oid": "68667f6d39ea8800c55c614f"
+          }
+        }
+      ],
+      "price": 32990000,
+      "originalprice": 33990000,
+      "sku": "Prestige13-i7-XE-BLU",
+      "stock": 3,
+      "_id": {
+        "$oid": "68667f6d39ea8800c55c614c"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1360P",
+          "_id": {
+            "$oid": "68667f6d39ea8800c55c6151"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "68667f6d39ea8800c55c6152"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Urban Silver",
+          "_id": {
+            "$oid": "68667f6d39ea8800c55c6153"
+          }
+        }
+      ],
+      "price": 32990000,
+      "originalprice": 34990000,
+      "sku": "Prestige13-i7-XE-SIL",
+      "stock": 2,
+      "_id": {
+        "$oid": "68667f6d39ea8800c55c6150"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866805139ea8800c55c6160"
+  },
+  "productId": {
+    "$oid": "6862696b597a8ed103030b4f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-1235U",
+          "_id": {
+            "$oid": "6866805139ea8800c55c6162"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe Graphics",
+          "_id": {
+            "$oid": "6866805139ea8800c55c6163"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Silver",
+          "_id": {
+            "$oid": "6866805139ea8800c55c6164"
+          }
+        }
+      ],
+      "price": 15990000,
+      "originalprice": 17490000,
+      "sku": "PAV15-i5-XE-SIL",
+      "stock": 8,
+      "_id": {
+        "$oid": "6866805139ea8800c55c6161"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1255U",
+          "_id": {
+            "$oid": "6866805139ea8800c55c6166"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe Graphics",
+          "_id": {
+            "$oid": "6866805139ea8800c55c6167"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Fog Blue",
+          "_id": {
+            "$oid": "6866805139ea8800c55c6168"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 18990000,
+      "sku": "PAV15-i7-XE-BLU",
+      "stock": 8,
+      "_id": {
+        "$oid": "6866805139ea8800c55c6165"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866805b39ea8800c55c6174"
+  },
+  "productId": {
+    "$oid": "68626a07597a8ed103030b5b"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1255U",
+          "_id": {
+            "$oid": "6866805b39ea8800c55c6176"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866805b39ea8800c55c6177"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Nightfall Black",
+          "_id": {
+            "$oid": "6866805b39ea8800c55c6178"
+          }
+        }
+      ],
+      "price": 23990000,
+      "originalprice": 25490000,
+      "sku": "ENVY-i7-XE-BLK",
+      "stock": 4,
+      "_id": {
+        "$oid": "6866805b39ea8800c55c6175"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1255U",
+          "_id": {
+            "$oid": "6866805b39ea8800c55c617a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866805b39ea8800c55c617b"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Natural Silver",
+          "_id": {
+            "$oid": "6866805b39ea8800c55c617c"
+          }
+        }
+      ],
+      "price": 24990000,
+      "originalprice": 25990000,
+      "sku": "ENVY-i7-XE-SIL",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866805b39ea8800c55c6179"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866807539ea8800c55c61b2"
+  },
+  "productId": {
+    "$oid": "68626bb9597a8ed103030b67"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 3 5300U",
+          "_id": {
+            "$oid": "6866807539ea8800c55c61b4"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "AMD Radeon Graphics",
+          "_id": {
+            "$oid": "6866807539ea8800c55c61b5"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Asteroid Silver",
+          "_id": {
+            "$oid": "6866807539ea8800c55c61b6"
+          }
+        }
+      ],
+      "price": 9990000,
+      "originalprice": 10490000,
+      "sku": "HP245-R3-Radeon-SIL1",
+      "stock": 9,
+      "_id": {
+        "$oid": "6866807539ea8800c55c61b3"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 3 5300U",
+          "_id": {
+            "$oid": "6866807539ea8800c55c61b8"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "AMD Radeon Graphics",
+          "_id": {
+            "$oid": "6866807539ea8800c55c61b9"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Asteroid Silver",
+          "_id": {
+            "$oid": "6866807539ea8800c55c61ba"
+          }
+        }
+      ],
+      "price": 10490000,
+      "originalprice": 10990000,
+      "sku": "HP245-R3-Radeon-SIL2",
+      "stock": 9,
+      "_id": {
+        "$oid": "6866807539ea8800c55c61b7"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686680f639ea8800c55c61e0"
+  },
+  "productId": {
+    "$oid": "68626d61597a8ed103030b6f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 7 5800U",
+          "_id": {
+            "$oid": "686680f639ea8800c55c61e2"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "AMD Radeon Graphics",
+          "_id": {
+            "$oid": "686680f639ea8800c55c61e3"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Slate Grey",
+          "_id": {
+            "$oid": "686680f639ea8800c55c61e4"
+          }
+        }
+      ],
+      "price": 21990000,
+      "originalprice": 23490000,
+      "sku": "YOGA7-R7-Radeon-GREY",
+      "stock": 5,
+      "_id": {
+        "$oid": "686680f639ea8800c55c61e1"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 7 5800U",
+          "_id": {
+            "$oid": "686680f639ea8800c55c61e6"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "AMD Radeon Graphics",
+          "_id": {
+            "$oid": "686680f639ea8800c55c61e7"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Orchid",
+          "_id": {
+            "$oid": "686680f639ea8800c55c61e8"
+          }
+        }
+      ],
+      "price": 22990000,
+      "originalprice": 24490000,
+      "sku": "YOGA7-R7-Radeon-ORCHID",
+      "stock": 4,
+      "_id": {
+        "$oid": "686680f639ea8800c55c61e5"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686680ff39ea8800c55c61f4"
+  },
+  "productId": {
+    "$oid": "68626db7597a8ed103030b73"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 7 6800H",
+          "_id": {
+            "$oid": "686680ff39ea8800c55c61f6"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "686680ff39ea8800c55c61f7"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Storm Grey",
+          "_id": {
+            "$oid": "686680ff39ea8800c55c61f8"
+          }
+        }
+      ],
+      "price": 32990000,
+      "originalprice": 34490000,
+      "sku": "LEGION5P-R7-4060-GREY1",
+      "stock": 4,
+      "_id": {
+        "$oid": "686680ff39ea8800c55c61f5"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 7 6800H",
+          "_id": {
+            "$oid": "686680ff39ea8800c55c61fa"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4060",
+          "_id": {
+            "$oid": "686680ff39ea8800c55c61fb"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Storm Grey",
+          "_id": {
+            "$oid": "686680ff39ea8800c55c61fc"
+          }
+        }
+      ],
+      "price": 33990000,
+      "originalprice": 35990000,
+      "sku": "LEGION5P-R7-4060-GREY2",
+      "stock": 3,
+      "_id": {
+        "$oid": "686680ff39ea8800c55c61f9"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866810539ea8800c55c6207"
+  },
+  "productId": {
+    "$oid": "68629f23597a8ed103030b77"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "6866810539ea8800c55c6209"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866810539ea8800c55c620a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black with Red TrackPoint",
+          "_id": {
+            "$oid": "6866810539ea8800c55c620b"
+          }
+        }
+      ],
+      "price": 42990000,
+      "originalprice": 44490000,
+      "sku": "X1CARBON-i7-XE-BLK1",
+      "stock": 2,
+      "_id": {
+        "$oid": "6866810539ea8800c55c6208"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "6866810539ea8800c55c620d"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866810539ea8800c55c620e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Black with Red TrackPoint",
+          "_id": {
+            "$oid": "6866810539ea8800c55c620f"
+          }
+        }
+      ],
+      "price": 43990000,
+      "originalprice": 45990000,
+      "sku": "X1CARBON-i7-XE-BLK2",
+      "stock": 2,
+      "_id": {
+        "$oid": "6866810539ea8800c55c620c"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866810f39ea8800c55c621c"
+  },
+  "productId": {
+    "$oid": "68629f79597a8ed103030b7b"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 7 7840HS",
+          "_id": {
+            "$oid": "6866810f39ea8800c55c621e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4050",
+          "_id": {
+            "$oid": "6866810f39ea8800c55c621f"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Storm Grey",
+          "_id": {
+            "$oid": "6866810f39ea8800c55c6220"
+          }
+        }
+      ],
+      "price": 28990000,
+      "originalprice": 30490000,
+      "sku": "SLIM5-R7-4050-GREY",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866810f39ea8800c55c621d"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "AMD Ryzen 7 7840HS",
+          "_id": {
+            "$oid": "6866810f39ea8800c55c6222"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4050",
+          "_id": {
+            "$oid": "6866810f39ea8800c55c6223"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Onyx Grey",
+          "_id": {
+            "$oid": "6866810f39ea8800c55c6224"
+          }
+        }
+      ],
+      "price": 29990000,
+      "originalprice": 31990000,
+      "sku": "SLIM5-R7-4050-ONYX",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866810f39ea8800c55c6221"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866817e39ea8800c55c622f"
+  },
+  "productId": {
+    "$oid": "6862a05f597a8ed103030b83"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1360P",
+          "_id": {
+            "$oid": "6866817e39ea8800c55c6231"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866817e39ea8800c55c6232"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Platinum Silver",
+          "_id": {
+            "$oid": "6866817e39ea8800c55c6233"
+          }
+        }
+      ],
+      "price": 45990000,
+      "originalprice": 46990000,
+      "sku": "XPS13P-i7-XE-PLT",
+      "stock": 4,
+      "_id": {
+        "$oid": "6866817e39ea8800c55c6230"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1360P",
+          "_id": {
+            "$oid": "6866817e39ea8800c55c6235"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "6866817e39ea8800c55c6236"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Platinum Silver",
+          "_id": {
+            "$oid": "6866817e39ea8800c55c6237"
+          }
+        }
+      ],
+      "price": 45990000,
+      "originalprice": 47990000,
+      "sku": "XPS13P-i7-XE-PLT2",
+      "stock": 3,
+      "_id": {
+        "$oid": "6866817e39ea8800c55c6234"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866818639ea8800c55c6245"
+  },
+  "productId": {
+    "$oid": "6862a0a5597a8ed103030b87"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13650HX",
+          "_id": {
+            "$oid": "6866818639ea8800c55c6247"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 3050",
+          "_id": {
+            "$oid": "6866818639ea8800c55c6248"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Phantom Grey",
+          "_id": {
+            "$oid": "6866818639ea8800c55c6249"
+          }
+        }
+      ],
+      "price": 25990000,
+      "originalprice": 27490000,
+      "sku": "G15-i7-3050-PHA",
+      "stock": 4,
+      "_id": {
+        "$oid": "6866818639ea8800c55c6246"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13650HX",
+          "_id": {
+            "$oid": "6866818639ea8800c55c624b"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 3050",
+          "_id": {
+            "$oid": "6866818639ea8800c55c624c"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Dark Shadow Grey",
+          "_id": {
+            "$oid": "6866818639ea8800c55c624d"
+          }
+        }
+      ],
+      "price": 25990000,
+      "originalprice": 27990000,
+      "sku": "G15-i7-3050-DSG",
+      "stock": 4,
+      "_id": {
+        "$oid": "6866818639ea8800c55c624a"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686681a239ea8800c55c6258"
+  },
+  "productId": {
+    "$oid": "6862a0fd597a8ed103030b8b"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "686681a239ea8800c55c625a"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "686681a239ea8800c55c625b"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Titan Gray",
+          "_id": {
+            "$oid": "686681a239ea8800c55c625c"
+          }
+        }
+      ],
+      "price": 30990000,
+      "originalprice": 32490000,
+      "sku": "LAT5450-i7-XE-TIT",
+      "stock": 5,
+      "_id": {
+        "$oid": "686681a239ea8800c55c6259"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-1355U",
+          "_id": {
+            "$oid": "686681a239ea8800c55c625e"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe",
+          "_id": {
+            "$oid": "686681a239ea8800c55c625f"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Titan Gray",
+          "_id": {
+            "$oid": "686681a239ea8800c55c6260"
+          }
+        }
+      ],
+      "price": 30990000,
+      "originalprice": 32990000,
+      "sku": "LAT5450-i7-XE-TIT2",
+      "stock": 4,
+      "_id": {
+        "$oid": "686681a239ea8800c55c625d"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686681b439ea8800c55c626d"
+  },
+  "productId": {
+    "$oid": "6862a154597a8ed103030b8f"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i9-13900HK",
+          "_id": {
+            "$oid": "686681b439ea8800c55c626f"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce RTX 4080",
+          "_id": {
+            "$oid": "686681b439ea8800c55c6270"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Lunar Silver",
+          "_id": {
+            "$oid": "686681b439ea8800c55c6271"
+          }
+        }
+      ],
+      "price": 81990000,
+      "originalprice": 83990000,
+      "sku": "AWX16-i9-4080-LUN",
+      "stock": 2,
+      "_id": {
+        "$oid": "686681b439ea8800c55c626e"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i9-13900HK",
+          "_id": {
+            "$oid": "686681b439ea8800c55c6273"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel UHD Graphics",
+          "_id": {
+            "$oid": "686681b439ea8800c55c6274"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Lunar Silver",
+          "_id": {
+            "$oid": "686681b439ea8800c55c6275"
+          }
+        }
+      ],
+      "price": 81990000,
+      "originalprice": 85990000,
+      "sku": "AWX16-i9-UHD-LUN",
+      "stock": 2,
+      "_id": {
+        "$oid": "686681b439ea8800c55c6272"
+      }
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686681e339ea8800c55c627f"
+  },
+  "productId": {
+    "$oid": "686564f26ac1d654c6eee73c"
+  },
+  "variants": [
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i5-13500H",
+          "_id": {
+            "$oid": "686681e339ea8800c55c6281"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "Intel Iris Xe Graphics",
+          "_id": {
+            "$oid": "686681e339ea8800c55c6282"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Indie Black",
+          "_id": {
+            "$oid": "686681e339ea8800c55c6283"
+          }
+        }
+      ],
+      "price": 16990000,
+      "originalprice": 18490000,
+      "sku": "TEST-i5-XE-BLK",
+      "stock": 7,
+      "_id": {
+        "$oid": "686681e339ea8800c55c6280"
+      }
+    },
+    {
+      "attributes": [
+        {
+          "attributeId": {
+            "$oid": "684b7592717187a689b777ff"
+          },
+          "attributeName": "CPU",
+          "value": "Intel Core i7-13700H",
+          "_id": {
+            "$oid": "686681e339ea8800c55c6285"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "684b75a7717187a689b77801"
+          },
+          "attributeName": "GPU",
+          "value": "NVIDIA GeForce MX550",
+          "_id": {
+            "$oid": "686681e339ea8800c55c6286"
+          }
+        },
+        {
+          "attributeId": {
+            "$oid": "686654cc8f46f9f9cb7d992f"
+          },
+          "attributeName": "Color",
+          "value": "Cool Silver",
+          "_id": {
+            "$oid": "686681e339ea8800c55c6287"
+          }
+        }
+      ],
+      "price": 17990000,
+      "originalprice": 19990000,
+      "sku": "TEST-i7-MX550-SIL",
+      "stock": 8,
+      "_id": {
+        "$oid": "686681e339ea8800c55c6284"
+      }
+    }
+  ],
+  "__v": 0
+}]

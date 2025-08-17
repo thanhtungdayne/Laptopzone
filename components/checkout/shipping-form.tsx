@@ -1,13 +1,13 @@
+"use client";
 
-"use client"
-
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useCheckout, type ShippingInfo } from "@/context/checkout-context"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useCheckout, type ShippingInfo } from "@/context/checkout-context";
+import { useAuth } from "@/context/auth-context";
 
 interface Location {
   id: string;
@@ -15,109 +15,179 @@ interface Location {
 }
 
 export default function ShippingForm() {
-  const { state, dispatch } = useCheckout()
-  const [errors, setErrors] = useState<Partial<ShippingInfo>>({})
-  const [provinces, setProvinces] = useState<Location[]>([])
-  const [districts, setDistricts] = useState<Location[]>([])
-  const [wards, setWards] = useState<Location[]>([])
-  const [selectedProvince, setSelectedProvince] = useState<string>("")
-  const [selectedDistrict, setSelectedDistrict] = useState<string>("")
-  const [selectedWard, setSelectedWard] = useState<string>("")
-  const [street, setStreet] = useState<string>(state.shipping.street || "")
+  const { state, dispatch } = useCheckout();
+  const { user, isAuthenticated, isLoading } = useAuth();
+  const [errors, setErrors] = useState<Partial<ShippingInfo>>({});
+  const [provinces, setProvinces] = useState<Location[]>([]);
+  const [districts, setDistricts] = useState<Location[]>([]);
+  const [wards, setWards] = useState<Location[]>([]);
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("");
+  const [selectedWard, setSelectedWard] = useState<string>("");
+  const [street, setStreet] = useState<string>(state.shipping.street || "");
+
+  // Initialize user data
+  useEffect(() => {
+    if (isLoading || !isAuthenticated || !user) return;
+
+    // Set default values from user data
+    const shippingData: Partial<ShippingInfo> = {
+      fullName: user.name || "",
+      email: user.email || "",
+      phone: user.phone || "",
+      address: user.address || "",
+      street: user.address?.split(",")[0]?.trim() || "",
+    };
+
+    // Update checkout context with user data
+    dispatch({ type: "SET_SHIPPING", payload: shippingData });
+
+    // If user has an address, parse it to prefill province, district, ward
+    if (user.address) {
+      const addressParts = user.address.split(",").map(part => part.trim());
+      const streetPart = addressParts[0] || "";
+      const wardName = addressParts[1] || "";
+      const districtName = addressParts[2] || "";
+      const provinceName = addressParts[3] || "";
+
+      setStreet(streetPart);
+
+      // Find province ID
+      const fetchProvinceId = async () => {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/provinces`);
+          if (!response.ok) throw new Error("Không thể tải danh sách tỉnh/thành phố");
+          const data: Location[] = await response.json();
+          const province = data.find(p => p.name === provinceName);
+          if (province) {
+            setSelectedProvince(province.id);
+          }
+        } catch (error) {
+          console.error("Error fetching province ID:", error);
+        }
+      };
+
+      fetchProvinceId();
+    }
+  }, [isLoading, isAuthenticated, user, dispatch]);
 
   // Fetch provinces on component mount
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
-        const response = await fetch("http://localhost:5000/location/provinces")
-        const data = await response.json()
-        setProvinces(data)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/provinces`);
+        if (!response.ok) throw new Error("Không thể tải danh sách tỉnh/thành phố");
+        const data = await response.json();
+        setProvinces(data);
       } catch (error) {
-        console.error("Error fetching provinces:", error)
+        console.error("Error fetching provinces:", error);
       }
-    }
-    fetchProvinces()
-  }, [])
+    };
+    fetchProvinces();
+  }, []);
 
   // Fetch districts when province changes
   useEffect(() => {
     if (selectedProvince) {
       const fetchDistricts = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/location/districts/${selectedProvince}`)
-          const data = await response.json()
-          setDistricts(data)
-          setWards([]) // Reset wards when province changes
-          setSelectedDistrict("")
-          setSelectedWard("")
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/districts/${selectedProvince}`);
+          if (!response.ok) throw new Error("Không thể tải danh sách quận/huyện");
+          const data = await response.json();
+          setDistricts(data);
+          setWards([]);
+          setSelectedDistrict("");
+          setSelectedWard("");
+
+          // If user.address exists, prefill district
+          if (user?.address) {
+            const addressParts = user.address.split(",").map(part => part.trim());
+            const districtName = addressParts[2] || "";
+            const district = data.find((d: Location) => d.name === districtName);
+            if (district) {
+              setSelectedDistrict(district.id);
+            }
+          }
         } catch (error) {
-          console.error("Error fetching districts:", error)
+          console.error("Error fetching districts:", error);
         }
-      }
-      fetchDistricts()
+      };
+      fetchDistricts();
     } else {
-      setDistricts([])
-      setWards([])
-      setSelectedDistrict("")
-      setSelectedWard("")
+      setDistricts([]);
+      setWards([]);
+      setSelectedDistrict("");
+      setSelectedWard("");
     }
-  }, [selectedProvince])
+  }, [selectedProvince, user?.address]);
 
   // Fetch wards when district changes
   useEffect(() => {
     if (selectedDistrict) {
       const fetchWards = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/location/wards/${selectedDistrict}`)
-          const data = await response.json()
-          setWards(data)
-          setSelectedWard("")
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/wards/${selectedDistrict}`);
+          if (!response.ok) throw new Error("Không thể tải danh sách phường/xã");
+          const data = await response.json();
+          setWards(data);
+          setSelectedWard("");
+
+          // If user.address exists, prefill ward
+          if (user?.address) {
+            const addressParts = user.address.split(",").map(part => part.trim());
+            const wardName = addressParts[1] || "";
+            const ward = data.find((w: Location) => w.name === wardName);
+            if (ward) {
+              setSelectedWard(ward.id);
+            }
+          }
         } catch (error) {
-          console.error("Error fetching wards:", error)
+          console.error("Error fetching wards:", error);
         }
-      }
-      fetchWards()
+      };
+      fetchWards();
     } else {
-      setWards([])
-      setSelectedWard("")
+      setWards([]);
+      setSelectedWard("");
     }
-  }, [selectedDistrict])
+  }, [selectedDistrict, user?.address]);
 
   const handleInputChange = (field: keyof ShippingInfo, value: string) => {
-    dispatch({ type: "SET_SHIPPING", payload: { [field]: value } })
+    dispatch({ type: "SET_SHIPPING", payload: { [field]: value } });
     if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }))
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
-  }
+  };
 
   const handleStreetChange = (value: string) => {
-    setStreet(value)
-    handleInputChange("street", value)
-  }
+    setStreet(value);
+    handleInputChange("street", value);
+  };
 
   // Update address whenever location selections or street change
   useEffect(() => {
-    const provinceName = provinces.find(p => p.id === selectedProvince)?.name || ""
-    const districtName = districts.find(d => d.id === selectedDistrict)?.name || ""
-    const wardName = wards.find(w => w.id === selectedWard)?.name || ""
+    const provinceName = provinces.find(p => p.id === selectedProvince)?.name || "";
+    const districtName = districts.find(d => d.id === selectedDistrict)?.name || "";
+    const wardName = wards.find(w => w.id === selectedWard)?.name || "";
     
     const fullAddress = [street, wardName, districtName, provinceName]
       .filter(Boolean)
-      .join(", ")
+      .join(", ");
     
-    dispatch({ type: "SET_SHIPPING", payload: { address: fullAddress } })
-  }, [selectedProvince, selectedDistrict, selectedWard, street, provinces, districts, wards])
+    dispatch({ type: "SET_SHIPPING", payload: { address: fullAddress } });
+  }, [selectedProvince, selectedDistrict, selectedWard, street, provinces, districts, wards, dispatch]);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<ShippingInfo> = {};
     const shipping = state.shipping;
 
     if (!shipping.fullName?.trim()) newErrors.fullName = "Họ và tên bắt buộc";
+    if (!shipping.email?.trim()) newErrors.email = "Email bắt buộc";
     if (!shipping.phone?.trim()) newErrors.phone = "Số điện thoại bắt buộc";
+    if (!street?.trim()) newErrors.street = "Địa chỉ cụ thể bắt buộc";
     if (!selectedProvince) newErrors.address = "Vui lòng chọn tỉnh/thành phố";
     if (!selectedDistrict) newErrors.address = "Vui lòng chọn quận/huyện";
     if (!selectedWard) newErrors.address = "Vui lòng chọn phường/xã";
-    if (!street?.trim()) newErrors.street = "Địa chỉ cụ thể bắt buộc";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -125,13 +195,13 @@ export default function ShippingForm() {
 
   const handleContinue = () => {
     if (validateForm()) {
-      dispatch({ type: "SET_STEP", payload: 3 })
+      dispatch({ type: "SET_STEP", payload: 3 });
     }
-  }
+  };
 
   const handleBack = () => {
-    dispatch({ type: "SET_STEP", payload: 1 })
-  }
+    dispatch({ type: "SET_STEP", payload: 1 });
+  };
 
   return (
     <div className="space-y-6">
@@ -190,6 +260,9 @@ export default function ShippingForm() {
                   ))}
                 </SelectContent>
               </Select>
+              {errors.address && selectedProvince === "" && (
+                <p className="text-sm text-red-500 mt-1">{errors.address}</p>
+              )}
             </div>
 
             <div>
@@ -206,6 +279,9 @@ export default function ShippingForm() {
                   ))}
                 </SelectContent>
               </Select>
+              {errors.address && selectedDistrict === "" && (
+                <p className="text-sm text-red-500 mt-1">{errors.address}</p>
+              )}
             </div>
 
             <div>
@@ -222,6 +298,9 @@ export default function ShippingForm() {
                   ))}
                 </SelectContent>
               </Select>
+              {errors.address && selectedWard === "" && (
+                <p className="text-sm text-red-500 mt-1">{errors.address}</p>
+              )}
             </div>
           </div>
 
@@ -248,10 +327,14 @@ export default function ShippingForm() {
         <Button variant="outline" onClick={handleBack}>
           Quay lại giỏ hàng
         </Button>
-        <Button onClick={handleContinue} className="bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition">
+        <Button
+          onClick={handleContinue}
+          disabled={Object.keys(errors).length > 0}
+          className="bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white hover:bg-gradient-to-r hover:from-[#7e33cc] hover:to-[#5744d3] transition disabled:opacity-50"
+        >
           Tiếp tục thanh toán
         </Button>
       </div>
     </div>
-  )
+  );
 }

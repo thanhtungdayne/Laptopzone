@@ -1,16 +1,11 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import React, { createContext, useContext, useEffect, useState, useMemo, useCallback, type ReactNode } from "react";
 import axios from "axios";
 import { useAuth } from "@/context/auth-context";
+import { useToast } from "@/components/ui/use-toast";
+import { debounce } from "lodash";
 
-// Cấu trúc item trong giỏ hàng từ backend
 interface CartItem {
   variantId: string;
   quantity: number;
@@ -20,227 +15,393 @@ interface CartItem {
   attributes: { name: string; value: string }[];
 }
 
-// Kiểu dữ liệu cho context
 interface CartContextType {
   items: CartItem[];
   total: number;
+  isLoading: boolean;
   addItem: (item: CartItem) => Promise<void>;
   removeItem: (variantId: string) => Promise<void>;
   updateQuantity: (variantId: string, quantity: number) => Promise<void>;
   clearCart: () => Promise<void>;
-  refreshCart: () => Promise<void>;
+  fetchCart: () => Promise<void>;
 }
 
-// Context mặc định là null
 const CartContext = createContext<CartContextType | null>(null);
 
-// Provider để bao bọc toàn ứng dụng
 export function CartProvider({ children }: { children: ReactNode }) {
   const { user, isAuthenticated } = useAuth();
+  const { toast } = useToast();
   const [items, setItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Hàm fetch giỏ hàng từ backend
-  const fetchCart = async () => {
-    if (!user?._id || !isAuthenticated) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const userId = useMemo(() => user?.id, [user]);
+
+  const fetchCart = useCallback(async () => {
+    console.log("fetchCart - Bắt đầu:", { isAuthenticated, userId });
+    if (!isAuthenticated || !userId) {
+      console.log("fetchCart - Chưa đăng nhập, đặt giỏ hàng rỗng");
       setItems([]);
       setTotal(0);
       return;
     }
 
+    setIsLoading(true);
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/cart/${user._id}`
-      );
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.log("fetchCart - Không tìm thấy token");
+        throw new Error("Không tìm thấy token");
+      }
+
+      console.log("fetchCart - Gửi yêu cầu API:", { url: `${API_URL}/cart/${userId}` });
+      const res = await axios.get(`${API_URL}/cart/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      console.log("fetchCart - Phản hồi API:", res.data, res.status);
       const data = res.data;
 
-      if (!data) {
-        console.warn("⚠️ Không có dữ liệu giỏ hàng trả về");
-        setItems([]);
-        setTotal(0);
+      if (!data.result || !Array.isArray(data.result.items)) {
+        throw new Error(data?.message || "Dữ liệu giỏ hàng không hợp lệ");
+      }
+
+      const cartItems = data.result.items.map((item: any) => ({
+        variantId: item.variantId,
+        quantity: item.quantity,
+        price: item.price,
+        productName: item.productName,
+        productImage: item.productImage,
+        attributes: item.attributes || [],
+      }));
+
+      setItems(cartItems);
+      setTotal(data.result.cartTotal || 0);
+    } catch (error: any) {
+      console.error("fetchCart - Lỗi:", error.response?.status, error.response?.data || error.message);
+      setItems([]);
+      setTotal(0);
+      toast({
+        title: "Lỗi",
+        description: error.message || "Không thể tải giỏ hàng",
+        variant: "destructive",
+      });
+      if (error.response?.status === 401) {
+        localStorage.removeItem("token");
+        toast({
+          title: "Phiên hết hạn",
+          description: "Vui lòng đăng nhập lại.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [userId, isAuthenticated, toast]);
+
+  useEffect(() => {
+    console.log("useEffect - Kiểm tra fetchCart:", { isAuthenticated, userId });
+    if (isAuthenticated && userId) {
+      fetchCart();
+    } else {
+      setItems([]);
+      setTotal(0);
+    }
+  }, [userId, isAuthenticated, fetchCart]);
+
+  const addItem = useCallback(
+    async (item: CartItem) => {
+      console.log("addItem - Bắt đầu:", { isAuthenticated, userId });
+      if (!isAuthenticated || !userId) {
+        console.log("addItem - Chưa đăng nhập, thoát sớm:", { isAuthenticated, userId });
+        toast({
+          title: "Hãy đăng nhập",
+          description: "Hãy đăng nhập để mua hàng.",
+          variant: "destructive",
+        });
         return;
       }
 
-      // Chuẩn hóa dữ liệu từ server
-      const cartItems = (data.items || data.result?.items || []).map(
-        (item: any) => ({
+      if (isLoading) {
+        console.log("addItem - Đang xử lý, thoát sớm");
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("addItem - Không tìm thấy token");
+          throw new Error("Không tìm thấy token");
+        }
+
+        const payload = {
+          userId,
           variantId: item.variantId,
           quantity: item.quantity,
           price: item.price,
           productName: item.productName,
           productImage: item.productImage,
-          attributes: item.attributes || [],
-        })
-      );
+          attributes: item.attributes,
+        };
 
-      setItems(cartItems);
-      setTotal(data.cartTotal || data.result?.cartTotal || 0);
-    } catch (error) {
-      console.error("Lỗi khi lấy giỏ hàng:", error);
-      setItems([]);
-      setTotal(0);
-    }
-  };
+        console.log("addItem - Gửi yêu cầu API:", { url: `${API_URL}/cart/add`, payload });
+        const res = await axios.post(`${API_URL}/cart/add`, payload, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-  // Gọi fetchCart khi user thay đổi
-  useEffect(() => {
-    fetchCart();
-  }, [user, isAuthenticated]);
+        console.log("addItem - Phản hồi API:", res.data, res.status);
 
-  // Thêm sản phẩm vào giỏ
-  const addItem = async (item: CartItem) => {
-    if (!user?._id || !isAuthenticated) return;
-
-    try {
-      // Cập nhật UI ngay lập tức (optimistic update)
-      setItems((prevItems) => {
-        const existingItem = prevItems.find(
-          (i) => i.variantId === item.variantId
-        );
-        if (existingItem) {
-          return prevItems.map((i) =>
-            i.variantId === item.variantId
-              ? { ...i, quantity: i.quantity + item.quantity }
-              : i
-          );
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error(res.data?.message || "Không thể thêm sản phẩm vào giỏ hàng");
         }
-        return [...prevItems, item];
-      });
-      setTotal((prevTotal) => prevTotal + item.price * item.quantity);
 
-      // Gọi API để thêm sản phẩm
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/cart/add`,
-        {
-          userId: user._id,
-          variantId: item.variantId,
-          quantity: item.quantity,
+        await fetchCart();
+        console.log("addItem - Hiển thị thông báo thành công");
+        toast({
+          title: "Thành công",
+          description: "Sản phẩm đã được thêm vào giỏ hàng!",
+        });
+      } catch (error: any) {
+        console.error("addItem - Lỗi:", error.response?.status, error.response?.data || error.message);
+        if (error.response?.status === 401) {
+          localStorage.removeItem("token");
+          toast({
+            title: "Phiên hết hạn",
+            description: "Vui lòng đăng nhập lại.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Lỗi",
+            description: error.response?.data?.message || error.message || "Không thể thêm sản phẩm",
+            variant: "destructive",
+          });
         }
-      );
-
-      // Đồng bộ lại với server
-      await fetchCart();
-    } catch (error) {
-      console.error("Lỗi khi thêm vào giỏ hàng:", error);
-      // Hoàn nguyên trạng thái nếu API thất bại
-      await fetchCart();
-    }
-  };
-
-  // Cập nhật số lượng
-  const updateQuantity = async (variantId: string, quantity: number) => {
-    if (!user?._id || !isAuthenticated) return;
-
-    try {
-      // Cập nhật UI ngay lập tức
-      setItems((prevItems) => {
-        const item = prevItems.find((i) => i.variantId === variantId);
-        if (!item) return prevItems;
-
-        const quantityDiff = quantity - item.quantity;
-        setTotal((prevTotal) => prevTotal + quantityDiff * item.price);
-
-        return prevItems.map((i) =>
-          i.variantId === variantId ? { ...i, quantity } : i
-        );
-      });
-
-      // Gọi API để cập nhật số lượng
-      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/cart/update`, {
-        userId: user._id,
-        variantId,
-        quantity: Number(quantity),
-      });
-
-      // Đồng bộ lại với server
-      await fetchCart();
-    } catch (error) {
-      console.error("Lỗi khi cập nhật số lượng:", error);
-      // Hoàn nguyên trạng thái nếu API thất bại
-      await fetchCart();
-    }
-  };
-
-  // Xóa 1 sản phẩm
-  const removeItem = async (variantId: string) => {
-    if (!user?._id || !isAuthenticated) return;
-
-    try {
-      // Cập nhật UI ngay lập tức
-      setItems((prevItems) => {
-        const item = prevItems.find((i) => i.variantId === variantId);
-        if (item) {
-          setTotal((prevTotal) => prevTotal - item.price * item.quantity);
-        }
-        return prevItems.filter((i) => i.variantId !== variantId);
-      });
-
-      // Gọi API để xóa sản phẩm
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/cart/remove`, {
-        data: {
-          userId: user._id,
-          variantId,
-        },
-      });
-
-      // Đồng bộ lại với server
-      await fetchCart();
-    } catch (error) {
-      console.error("Lỗi khi xóa sản phẩm:", error);
-      // Hoàn nguyên trạng thái nếu API thất bại
-      await fetchCart();
-    }
-  };
-
-  // Xóa toàn bộ giỏ hàng
-  const clearCart = async () => {
-    if (!user?._id || !isAuthenticated) return;
-
-    try {
-      // Cập nhật UI ngay lập tức
-      setItems([]);
-      setTotal(0);
-
-      // Gọi API để xóa giỏ hàng
-      await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/cart/clear/${user._id}`
-      );
-
-      // Đồng bộ lại với server
-      await fetchCart();
-    } catch (error) {
-      console.error("Lỗi khi xóa toàn bộ giỏ hàng:", error);
-      // Hoàn nguyên trạng thái nếu API thất bại
-      await fetchCart();
-    }
-  };
-  //tải lại giỏ hàng
-  const refreshCart = async () => {
-    await fetchCart();
-  };
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
-
-  return (
-    <CartContext.Provider
-      value={{
-        items,
-        total,
-        addItem,
-        updateQuantity,
-        removeItem,
-        clearCart,
-        refreshCart,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [userId, isAuthenticated, fetchCart, toast, isLoading]
   );
+
+  const updateQuantity = useCallback(
+    async (variantId: string, quantity: number) => {
+      console.log("updateQuantity - Bắt đầu:", { variantId, quantity, isAuthenticated, userId });
+      if (!isAuthenticated || !userId) {
+        console.log("updateQuantity - Chưa đăng nhập, thoát sớm");
+        toast({
+          title: "Hãy đăng nhập",
+          description: "Hãy đăng nhập để mua hàng.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (isLoading) {
+        console.log("updateQuantity - Đang xử lý, thoát sớm");
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("updateQuantity - Không tìm thấy token");
+          throw new Error("Không tìm thấy token");
+        }
+
+        const payload = { userId, variantId, quantity: Number(quantity) };
+        console.log("updateQuantity - Gửi yêu cầu API:", { url: `${API_URL}/cart/update`, payload });
+        const res = await axios.put(`${API_URL}/cart/update`, payload, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log("updateQuantity - Phản hồi API:", res.data, res.status);
+
+        if (res.status !== 200) {
+          throw new Error(res.data?.message || "Không thể cập nhật số lượng");
+        }
+
+        await fetchCart();
+        console.log("updateQuantity - Cập nhật thành công");
+      } catch (error: any) {
+        console.error("updateQuantity - Lỗi:", error.response?.status, error.response?.data || error.message);
+        toast({
+          title: "Lỗi",
+          description: error.response?.data?.message || error.message || "Không thể cập nhật số lượng",
+          variant: "destructive",
+        });
+        if (error.response?.status === 401) {
+          localStorage.removeItem("token");
+          toast({
+            title: "Phiên hết hạn",
+            description: "Vui lòng đăng nhập lại.",
+            variant: "destructive",
+          });
+        }
+        await fetchCart();
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [userId, isAuthenticated, fetchCart, toast, isLoading]
+  );
+
+  const debouncedUpdateQuantity = useCallback(debounce(updateQuantity, 300), [updateQuantity]);
+
+  const removeItem = useCallback(
+    async (variantId: string) => {
+      console.log("removeItem - Bắt đầu:", { variantId, isAuthenticated, userId });
+      if (!isAuthenticated || !userId) {
+        console.log("removeItem - Chưa đăng nhập, thoát sớm");
+        toast({
+          title: "Hãy đăng nhập",
+          description: "Hãy đăng nhập để mua hàng.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (isLoading) {
+        console.log("removeItem - Đang xử lý, thoát sớm");
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("removeItem - Không tìm thấy token");
+          throw new Error("Không tìm thấy token");
+        }
+
+        const payload = { userId, variantId };
+        console.log("removeItem - Gửi yêu cầu API:", { url: `${API_URL}/cart/remove`, payload });
+        const res = await axios.delete(`${API_URL}/cart/remove`, {
+          headers: { Authorization: `Bearer ${token}` },
+          data: payload,
+        });
+
+        console.log("removeItem - Phản hồi API:", res.data, res.status);
+
+        if (res.status !== 200 && res.status !== 204) {
+          throw new Error(res.data?.message || "Không thể xóa sản phẩm");
+        }
+
+        await fetchCart();
+        console.log("removeItem - Hiển thị thông báo thành công");
+        toast({
+          title: "Thành công",
+          description: "Sản phẩm đã được xóa khỏi giỏ hàng!",
+        });
+      } catch (error: any) {
+        console.error("removeItem - Lỗi:", error.response?.status, error.response?.data || error.message);
+        toast({
+          title: "Lỗi",
+          description: error.response?.data?.message || error.message || "Không thể xóa sản phẩm",
+          variant: "destructive",
+        });
+        if (error.response?.status === 401) {
+          localStorage.removeItem("token");
+          toast({
+            title: "Phiên hết hạn",
+            description: "Vui lòng đăng nhập lại.",
+            variant: "destructive",
+          });
+        }
+        await fetchCart();
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [userId, isAuthenticated, fetchCart, toast, isLoading]
+  );
+
+  const clearCart = useCallback(
+    async () => {
+      console.log("clearCart - Bắt đầu:", { isAuthenticated, userId });
+      if (!isAuthenticated || !userId) {
+        console.log("clearCart - Chưa đăng nhập, thoát sớm");
+        toast({
+          title: "Hãy đăng nhập",
+          description: "Hãy đăng nhập để mua hàng.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (isLoading) {
+        console.log("clearCart - Đang xử lý, thoát sớm");
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("clearCart - Không tìm thấy token");
+          throw new Error("Không tìm thấy token");
+        }
+
+        console.log("clearCart - Gửi yêu cầu API:", { url: `${API_URL}/cart/clear/${userId}` });
+        const res = await axios.delete(`${API_URL}/cart/clear/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log("clearCart - Phản hồi API:", res.data, res.status);
+
+        if (res.status !== 200 && res.status !== 204) {
+          throw new Error(res.data?.message || "Không thể xóa giỏ hàng");
+        }
+
+        await fetchCart();
+        console.log("clearCart - Hiển thị thông báo thành công");
+        toast({
+          title: "Thành công",
+          description: "Giỏ hàng đã được xóa!",
+        });
+      } catch (error: any) {
+        console.error("clearCart - Lỗi:", error.response?.status, error.response?.data || error.message);
+        toast({
+          title: "Lỗi",
+          description: error.response?.data?.message || error.message || "Không thể xóa giỏ hàng",
+          variant: "destructive",
+        });
+        if (error.response?.status === 401) {
+          localStorage.removeItem("token");
+          toast({
+            title: "Phiên hết hạn",
+            description: "Vui lòng đăng nhập lại.",
+            variant: "destructive",
+          });
+        }
+        await fetchCart();
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [userId, isAuthenticated, fetchCart, toast, isLoading]
+  );
+
+  const value = useMemo(
+    () => ({
+      items,
+      total,
+      isLoading,
+      addItem,
+      updateQuantity: debouncedUpdateQuantity,
+      removeItem,
+      clearCart,
+      fetchCart,
+    }),
+    [items, total, isLoading, addItem, debouncedUpdateQuantity, removeItem, clearCart, fetchCart]
+  );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-// Hook dùng trong component
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) {

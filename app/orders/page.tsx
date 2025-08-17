@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 import { Package, Truck, CheckCircle, Clock, Eye, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/components/ui/use-toast";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { useAuth } from "@/context/auth-context";
@@ -70,60 +73,114 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { user } = useAuth();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+  const { toast } = useToast();
+  const router = useRouter();
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const userId = useMemo(() => user?.id, [user]);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleViewDetails = (order) => {
     setSelectedOrder(order);
     setIsModalOpen(true);
   };
 
-  useEffect(() => {
-    async function fetchOrders() {
-      if (!user) {
-        setLoading(false);
+  const fetchOrders = async () => {
+    if (authLoading) {
+      console.log("Auth is loading, waiting...");
+      return;
+    }
+
+    if (!isAuthenticated || !userId) {
+      setLoading(false);
+      setError("Vui lòng đăng nhập để xem danh sách đơn hàng.");
+      toast({
+        title: "Vui lòng đăng nhập",
+        description: (
+          <div>
+            Bạn cần đăng nhập để xem danh sách đơn hàng.{" "}
+            <Link href="/login" className="underline text-blue-600">
+              Đăng nhập ngay
+            </Link>
+          </div>
+        ),
+        variant: "destructive",
+        duration: 6000,
+      });
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Không tìm thấy token xác thực");
+      }
+
+      const response = await axios.get(`${API_URL}/order/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = response.data;
+      console.log("fetchOrders - API response:", data);
+
+      if (!data.result || !Array.isArray(data.result)) {
+        setOrders([]);
+        setError("Dữ liệu đơn hàng không đúng định dạng, hiển thị danh sách rỗng.");
+        toast({
+          title: "Lỗi",
+          description: "Dữ liệu đơn hàng không hợp lệ.",
+          variant: "destructive",
+          duration: 4000,
+        });
         return;
       }
 
-      try {
-        const response = await fetch(`http://localhost:5000/order/${user._id}`);
-        if (!response.ok) {
-          throw new Error("Không thể lấy danh sách đơn hàng");
-        }
-        const data = await response.json();
-        console.log("API response:", data);
-        data.result.forEach((order) => {
-          order.items.forEach((item) => {
-            console.log("Item productImage:", item.productImage);
-            console.log("Item productName:", item.productName);
-          });
+      data.result.forEach((order) => {
+        order.items.forEach((item) => {
+          console.log("Item productName:", item.productName);
+          console.log("Item productImage:", item.productImage);
         });
-        if (Array.isArray(data.result)) {
-          setOrders(data.result);
-        } else {
-          setOrders([]);
-          setError("Dữ liệu đơn hàng không đúng định dạng, hiển thị danh sách rỗng.");
-        }
-      } catch (err) {
-        setError(err.message);
-        setOrders([]);
-      } finally {
-        setLoading(false);
+      });
+
+      setOrders(data.result);
+    } catch (error: any) {
+      console.error("fetchOrders - Error:", error.response?.status, error.response?.data || error.message);
+      if (error.response?.status === 401) {
+        localStorage.removeItem("token");
+        setError("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.");
+        toast({
+          title: "Phiên hết hạn",
+          description: "Vui lòng đăng nhập lại.",
+          variant: "destructive",
+          duration: 4000,
+        });
+      } else {
+        setError(error.response?.data?.message || "Không thể lấy danh sách đơn hàng");
+        toast({
+          title: "Lỗi",
+          description: error.response?.data?.message || "Không thể lấy danh sách đơn hàng",
+          variant: "destructive",
+          duration: 4000,
+        });
       }
+      setOrders([]);
+    } finally {
+      setLoading(false);
     }
+  };
 
+  useEffect(() => {
     fetchOrders();
-  }, [user]);
+  }, [userId, isAuthenticated, authLoading]);
 
-  if (loading) {
+  if (authLoading) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
         <div className="w-[85%] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-2">Đơn hàng của bạn</h1>
-            <p className="text-muted-foreground">Đang tải...</p>
+            <p className="text-muted-foreground">Đang kiểm tra trạng thái đăng nhập...</p>
           </div>
         </div>
         <Footer />
@@ -139,6 +196,23 @@ export default function OrdersPage() {
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-2">Đơn hàng của bạn</h1>
             <p className="text-red-600">Lỗi: {error}</p>
+            <Button
+              onClick={() => router.push("/login")}
+              className="mt-4 bg-gradient-to-r from-[#923ce9] to-[#644feb] text-white"
+            >
+              Đăng nhập lại
+            </Button>
+            <Button
+              onClick={() => {
+                setLoading(true);
+                setError(null);
+                fetchOrders();
+              }}
+              variant="outline"
+              className="mt-4 ml-4"
+            >
+              Thử lại
+            </Button>
           </div>
         </div>
         <Footer />
@@ -157,13 +231,13 @@ export default function OrdersPage() {
           </div>
 
           <div className="space-y-6">
-            {Array.isArray(orders) && orders.length > 0 ? (
+            {orders.length > 0 ? (
               orders.map((order) => (
                 <Card key={order._id}>
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div>
-                        <CardTitle className="text-lg">Đơn hàng {order._id}</CardTitle>
+                        <CardTitle className="text-lg">Đơn hàng {order.orderCode}</CardTitle>
                         <p className="text-sm text-muted-foreground">
                           Đặt hàng vào {new Date(order.createdAt).toLocaleDateString("vi-VN")}
                         </p>

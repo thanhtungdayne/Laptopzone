@@ -11,46 +11,63 @@ module.exports = {
   removeItem,
   clearCart,
 };
-//thêm giỏ hàng
+// Thêm giỏ hàng
 async function addToCart({ userId, variantId, quantity }) {
+  console.log('addToCart - Input:', { userId, variantId, quantity });
   try {
     if (!mongoose.Types.ObjectId.isValid(userId)) {
+      console.log('addToCart - Invalid userId:', userId);
       return { status: false, code: 400, message: "userId không hợp lệ" };
     }
 
     if (!mongoose.Types.ObjectId.isValid(variantId)) {
+      console.log('addToCart - Invalid variantId:', variantId);
       return { status: false, code: 400, message: "variantId không hợp lệ" };
     }
 
+    console.log('addToCart - Querying productVariantModel for variantId:', variantId);
     const variantDoc = await productVariantModel.findOne({ "variants._id": variantId });
     if (!variantDoc) {
+      console.log('addToCart - Variant not found for variantId:', variantId);
       return { status: false, code: 404, message: "Không tìm thấy biến thể sản phẩm" };
     }
 
     const variant = variantDoc.variants.find(v => v._id.toString() === variantId);
     if (!variant) {
+      console.log('addToCart - Sub-variant not found for variantId:', variantId);
       return { status: false, code: 404, message: "Không tìm thấy biến thể con" };
     }
+    console.log('addToCart - Found variant:', variant);
 
+    console.log('addToCart - Querying productModel for productId:', variantDoc.productId);
     const product = await productModel.findById(variantDoc.productId);
     if (!product) {
+      console.log('addToCart - Product not found for productId:', variantDoc.productId);
       return { status: false, code: 404, message: "Không tìm thấy sản phẩm gốc" };
     }
+    console.log('addToCart - Found product:', product);
 
     const attributesSnapshot = variant.attributes.map(attr => ({
       name: attr.attributeName,
       value: attr.value,
     }));
+    console.log('addToCart - Attributes snapshot:', attributesSnapshot);
 
+    console.log('addToCart - Querying cartModel for userId:', userId);
     let cart = await cartModel.findOne({ userId });
+    console.log('addToCart - Current cart:', cart);
+
     if (!cart) {
+      console.log('addToCart - Creating new cart for userId:', userId);
       cart = new cartModel({ userId, items: [] });
     }
 
     const existingItem = cart.items.find(item => item.variantId.toString() === variantId);
     if (existingItem) {
+      console.log('addToCart - Updating existing item quantity:', { variantId, newQuantity: existingItem.quantity + quantity });
       existingItem.quantity += quantity;
     } else {
+      console.log('addToCart - Adding new item:', { variantId, quantity });
       cart.items.push({
         variantId,
         quantity,
@@ -63,34 +80,39 @@ async function addToCart({ userId, variantId, quantity }) {
 
     cart.updatedAt = new Date();
     cart.cartTotal = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    await cart.save();
+    console.log('addToCart - Cart before save:', cart);
+
+    const savedCart = await cart.save();
+    console.log('addToCart - Cart after save:', savedCart);
 
     return {
       status: true,
       code: 200,
       message: "Đã thêm vào giỏ hàng",
-      data: cart,
+      data: savedCart,
     };
   } catch (error) {
-    console.error("❌ Lỗi trong addToCart:", error);
-    return { status: false, code: 500, message: "Lỗi server khi thêm vào giỏ hàng" };
+    console.error("addToCart - Lỗi trong addToCart:", error);
+    return { status: false, code: 500, message: "Lỗi server khi thêm vào giỏ hàng", error: error.message };
   }
 }
 
-
-//lấy giỏ hàng theo userId
+// Lấy giỏ hàng theo userId
 async function getCartByUser(userId) {
+  console.log('getCartByUser - Starting', { userId });
   try {
     const cart = await cartModel.findOne({ userId });
+    console.log('getCartByUser - Found cart:', cart);
 
     if (!cart) {
+      console.log('getCartByUser - No cart found, returning empty cart');
       return { success: true, data: { items: [], cartTotal: 0 } };
     }
 
     return { success: true, data: cart };
   } catch (error) {
-    console.error(error);
-    return { success: false, message: "Lỗi khi lấy giỏ hàng" };
+    console.error('getCartByUser - Lỗi khi lấy giỏ hàng:', error);
+    return { success: false, message: "Lỗi khi lấy giỏ hàng", error: error.message };
   }
 }
 //cập nhật số lượng sản phẩm trong giỏ hàng

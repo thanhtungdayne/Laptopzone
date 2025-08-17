@@ -95,8 +95,8 @@ const getStatusBadge = (status: string) => {
       return <Badge className="bg-yellow-100 text-yellow-800">Chờ xác nhận</Badge>;
     case "cancelled":
       return <Badge variant="destructive">Đã hủy</Badge>;
-    case "returned":
-      return <Badge className="bg-gray-100 text-gray-800">Đã trả hàng</Badge>;
+    // case "returned":
+    //   return <Badge className="bg-gray-100 text-gray-800">Đã trả hàng</Badge>;
     default:
       return <Badge variant="secondary">Không xác định</Badge>;
   }
@@ -184,7 +184,7 @@ const statusOptions = [
   { value: "shipping", label: "Đang giao", icon: Truck },
   { value: "delivered", label: "Đã giao", icon: Package },
   { value: "cancelled", label: "Đã hủy", icon: XCircle },
-  { value: "returned", label: "Đã trả hàng", icon: RotateCcw },
+  // { value: "returned", label: "Đã trả hàng", icon: RotateCcw },
 ];
 
 export default function OrdersPage() {
@@ -514,9 +514,9 @@ export default function OrdersPage() {
                   <DropdownMenuItem onClick={() => setSelectedStatus("cancelled")}>
                     Đã hủy
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedStatus("returned")}>
+                  {/* <DropdownMenuItem onClick={() => setSelectedStatus("returned")}>
                     Đã trả hàng
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>

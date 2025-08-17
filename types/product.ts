@@ -1,29 +1,34 @@
+// types/product.ts
 export interface Laptop {
-  id: string; // từ _id trong Mongo
+  id: string;
   name: string;
-  brand: string; // bạn nên map từ brand.brandName
+  description: string;
+  brand: {
+    brandId: string;
+    brandName: string;
+  };
   price: number;
-  originalprice?: number; // từ originalprice (cẩn thận: schema là string!)
+  originalPrice?: number;
   image: string;
   images: string[];
-  processor: string[]; // vì schema là mảng
+  processor: string;
   ram: string;
   storage: string;
   display: string;
-  graphics: string[]; // vì schema là mảng
-  color: string[];
+  graphics: string;
   stock: number;
   inStock: boolean;
-  category: string; // map từ category.categoryName
+  category: {
+    categoryId: string;
+    categoryName: string;
+  };
   features: string[];
-  resolution?: string;
-  panelType?: string;
-  refreshRate?: string;
-}
-
-export interface CartItem {
-  laptop: Laptop;
-  quantity: number;
+  rating: number;
+  color: string[];
+  new: boolean;
+  hot: boolean;
+  view: number;
+  status: boolean;
 }
 
 export interface FilterState {

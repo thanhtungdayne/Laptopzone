@@ -14,7 +14,6 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { useAuth } from "@/context/auth-context";
 
-// Interface based on userSchema
 interface UserData {
   id: string;
   name: string;
@@ -28,18 +27,17 @@ interface UserData {
   avatar?: string;
 }
 
-// Interface for location data from API
 interface Location {
   id: string;
   name: string;
 }
 
 export default function ProfilePage() {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, isLoading, updateUser } = useAuth();
   const router = useRouter();
   const [isEditingPersonal, setIsEditingPersonal] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [editedUser, setEditedUser] = useState<UserData | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -50,11 +48,11 @@ export default function ProfilePage() {
   const [selectedDistrict, setSelectedDistrict] = useState<string>("");
   const [selectedWard, setSelectedWard] = useState<string>("");
 
-  // Fetch provinces on component mount
+  // Fetch provinces
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
-        const response = await fetch("http://localhost:5000/location/provinces");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/provinces`);
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message || "Không thể tải danh sách tỉnh/thành phố");
@@ -69,12 +67,12 @@ export default function ProfilePage() {
     fetchProvinces();
   }, []);
 
-  // Fetch districts when province changes
+  // Fetch districts
   useEffect(() => {
     if (selectedProvince) {
       const fetchDistricts = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/location/districts/${selectedProvince}`);
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/districts/${selectedProvince}`);
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || "Không thể tải danh sách quận/huyện");
@@ -98,12 +96,12 @@ export default function ProfilePage() {
     }
   }, [selectedProvince]);
 
-  // Fetch wards when district changes
+  // Fetch wards
   useEffect(() => {
     if (selectedDistrict) {
       const fetchWards = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/location/wards/${selectedDistrict}`);
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/location/wards/${selectedDistrict}`);
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || "Không thể tải danh sách phường/xã");
@@ -123,8 +121,10 @@ export default function ProfilePage() {
     }
   }, [selectedDistrict]);
 
-  // Check authentication and initialize user data
+  // Initialize user data
   useEffect(() => {
+    if (isLoading) return; // Chờ xác thực từ AuthContext
+
     if (!isAuthenticated) {
       router.push("/login");
       return;
@@ -132,15 +132,8 @@ export default function ProfilePage() {
 
     if (user) {
       console.log("User from auth-context:", user);
-      const userId = user._id || user.id;
-      if (!userId) {
-        setError("Không thể lấy thông tin người dùng. Vui lòng đăng nhập lại.");
-        router.push("/login");
-        return;
-      }
-
       const userData: UserData = {
-        id: userId,
+        id: user.id,
         name: user.name || "",
         email: user.email || "",
         phone: user.phone || "",
@@ -149,14 +142,14 @@ export default function ProfilePage() {
         dob: user.dob ? new Date(user.dob).toISOString().split("T")[0] : "",
         role: user.role === 1 ? "admin" : "user",
         status: user.status ?? true,
-        avatar: user.avatar || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&s",
+        avatar: user.avatar || "https://encrypted-tbn0.gstatic.com/images?q=tbn...",
       };
       setUserData(userData);
       setEditedUser(userData);
     }
-  }, [isAuthenticated, user, router]);
+  }, [isAuthenticated, user, router, isLoading]);
 
-  // Update address whenever location selections or street change
+  // Update address
   useEffect(() => {
     if (!editedUser) return;
 
@@ -172,8 +165,8 @@ export default function ProfilePage() {
     setEditedUser((prev) => (prev ? { ...prev, address: fullAddress } : null));
   }, [selectedProvince, selectedDistrict, selectedWard, editedUser?.street, provinces, districts, wards]);
 
-  // Show loading state while checking authentication
-  if (!isAuthenticated || !userData) {
+  // Show loading state
+  if (isLoading || !userData) {
     return (
       <div className="min-h-screen bg-white">
         <Header />
@@ -218,12 +211,11 @@ export default function ProfilePage() {
   const handleSave = async () => {
     if (!editedUser) return;
 
-    // Validate required fields
     if (!editedUser.name?.trim()) {
       setError("Họ và tên là bắt buộc");
       return;
     }
-    if ((isEditingAddress && (!selectedProvince || !selectedDistrict || !selectedWard))) {
+    if (isEditingAddress && (!selectedProvince || !selectedDistrict || !selectedWard)) {
       setError("Vui lòng chọn đầy đủ tỉnh, quận, phường");
       return;
     }
@@ -232,49 +224,25 @@ export default function ProfilePage() {
       return;
     }
 
-    setIsLoading(true);
+    setIsLoadingUser(true);
     setError(null);
 
     try {
-      console.log("Sending update request with ID:", editedUser.id);
-      console.log("Payload:", {
+      const { success, message } = await updateUser({
         name: editedUser.name,
-        email: editedUser.email,
         phone: editedUser.phone,
         address: editedUser.address,
         dob: editedUser.dob || undefined,
         avatar: editedUser.avatar,
-        role: editedUser.role === "admin" ? 1 : 0,
       });
 
-      const response = await fetch(`http://localhost:5000/users/update/${editedUser.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: editedUser.name,
-          email: editedUser.email,
-          phone: editedUser.phone,
-          address: editedUser.address,
-          dob: editedUser.dob || undefined,
-          avatar: editedUser.avatar,
-          role: editedUser.role === "admin" ? 1 : 0,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("API error response:", errorData);
-        throw new Error(errorData.message || "Cập nhật thông tin thất bại");
+      if (!success) {
+        throw new Error(message);
       }
 
-      const updatedUser = await response.json();
       setUserData({
         ...editedUser,
-        id: updatedUser._id,
-        dob: updatedUser.dob ? new Date(updatedUser.dob).toISOString().split("T")[0] : "",
-        role: updatedUser.role === 1 ? "admin" : "user",
+        role: user?.role === 1 ? "admin" : "user",
         street: editedUser.street,
       });
       setIsEditingPersonal(false);
@@ -286,7 +254,7 @@ export default function ProfilePage() {
       console.error("Error in handleSave:", err);
       setError(err instanceof Error ? err.message : "Đã xảy ra lỗi");
     } finally {
-      setIsLoading(false);
+      setIsLoadingUser(false);
     }
   };
 
@@ -305,7 +273,6 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-
       <main className="w-full">
         <div className="w-[85%] max-w-none mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
@@ -323,16 +290,12 @@ export default function ProfilePage() {
             )}
 
             <div className="grid lg:grid-cols-3 gap-8">
-              {/* Profile Info */}
               <div className="lg:col-span-1">
                 <Card className="border bg-white">
                   <CardContent className="p-6 text-center">
                     <div className="relative inline-block mb-4">
                       <Avatar className="h-24 w-24 mx-auto">
-                        <AvatarImage
-                          src={currentData.avatar}
-                          alt={currentData.name}
-                        />
+                        <AvatarImage src={currentData.avatar} alt={currentData.name} />
                         <AvatarFallback className="text-2xl">
                           {currentData.name.charAt(0)}
                         </AvatarFallback>
@@ -346,17 +309,14 @@ export default function ProfilePage() {
                         <Camera className="h-4 w-4" />
                       </Button>
                     </div>
-
                     <h2 className="text-xl font-semibold mb-2 text-gray-900">
                       {currentData.name}
                     </h2>
-
                     <div className="flex items-center justify-center gap-2 mb-4">
                       {currentData.role === "admin" && (
                         <Badge variant="destructive">Admin</Badge>
                       )}
                     </div>
-
                     <div className="space-y-2 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center justify-center space-x-2">
                         <Calendar className="h-4 w-4" />
@@ -371,7 +331,6 @@ export default function ProfilePage() {
                 </Card>
               </div>
 
-              {/* Account Details */}
               <div className="lg:col-span-2 space-y-6">
                 <Card className="border bg-white">
                   <CardHeader className="flex flex-row items-center justify-between">
@@ -388,16 +347,13 @@ export default function ProfilePage() {
                       <div className="space-x-2">
                         <Button
                           onClick={handleSave}
-                          disabled={isLoading}
+                          disabled={isLoadingUser}
                           className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
                         >
                           <Save className="h-4 w-4 mr-2" />
-                          {isLoading ? "Đang tải..." : "Lưu"}
+                          {isLoadingUser ? "Đang tải..." : "Lưu"}
                         </Button>
-                        <Button
-                          variant="outline"
-                          onClick={handleCancelPersonal}
-                        >
+                        <Button variant="outline" onClick={handleCancelPersonal}>
                           <X className="h-4 w-4 mr-2" />
                           Hủy
                         </Button>
@@ -415,7 +371,6 @@ export default function ProfilePage() {
                           <span className="font-medium">{currentData.email}</span>
                         </div>
                       </div>
-
                       <div>
                         <Label htmlFor="phone" className="font-semibold">
                           Số điện thoại
@@ -435,7 +390,6 @@ export default function ProfilePage() {
                           </div>
                         )}
                       </div>
-
                       <div>
                         <Label htmlFor="dob" className="font-semibold">
                           Ngày sinh
@@ -458,7 +412,6 @@ export default function ProfilePage() {
                           </div>
                         )}
                       </div>
-
                       <div>
                         <Label htmlFor="name" className="font-semibold">
                           Họ và tên
@@ -494,16 +447,13 @@ export default function ProfilePage() {
                       <div className="space-x-2">
                         <Button
                           onClick={handleSave}
-                          disabled={isLoading}
+                          disabled={isLoadingUser}
                           className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
                         >
                           <Save className="h-4 w-4 mr-2" />
-                          {isLoading ? "Đang tải..." : "Lưu"}
+                          {isLoadingUser ? "Đang tải..." : "Lưu"}
                         </Button>
-                        <Button
-                          variant="outline"
-                          onClick={handleCancelAddress}
-                        >
+                        <Button variant="outline" onClick={handleCancelAddress}>
                           <X className="h-4 w-4 mr-2" />
                           Hủy
                         </Button>
@@ -612,7 +562,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </main>
-
       <Footer />
     </div>
   );

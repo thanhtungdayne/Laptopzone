@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import type { Laptop } from "@/types/product"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import type { Laptop } from "@/types/product";
 
 interface SpecificationsProps {
-  laptop: Laptop
+  laptop: Laptop;
 }
 
 export default function Specifications({ laptop }: SpecificationsProps) {
@@ -11,10 +11,30 @@ export default function Specifications({ laptop }: SpecificationsProps) {
     {
       category: "Hiệu năng",
       items: [
-        { label: "Bộ xử lý", value: laptop.processor?.join(", ") || "Đang cập nhật" },
-        { label: "Bộ nhớ (RAM)", value: laptop.ram || "Đang cập nhật" },
-        { label: "Bộ nhớ", value: laptop.storage || "Đang cập nhật" },
-        { label: "Đồ họa", value: laptop.graphics?.join(", ") || "Đang cập nhật" },
+        {
+          label: "Bộ xử lý",
+          value: Array.isArray(laptop.processor)
+            ? laptop.processor.join(", ")
+            : laptop.processor || "Đang cập nhật",
+        },
+        {
+          label: "Bộ nhớ (RAM)",
+          value: Array.isArray(laptop.ram)
+            ? laptop.ram.join(", ")
+            : laptop.ram || "Đang cập nhật",
+        },
+        {
+          label: "Bộ nhớ",
+          value: Array.isArray(laptop.storage)
+            ? laptop.storage.join(", ")
+            : laptop.storage || "Đang cập nhật",
+        },
+        {
+          label: "Đồ họa",
+          value: Array.isArray(laptop.graphics)
+            ? laptop.graphics.join(", ")
+            : laptop.graphics || "Đang cập nhật",
+        },
       ],
     },
     {
@@ -38,7 +58,12 @@ export default function Specifications({ laptop }: SpecificationsProps) {
               ? "Nhôm"
               : "Nhựa/Kim loại",
         },
-        { label: "Màu sắc", value: laptop.color?.join(", ") || "Đang cập nhật" },
+        {
+          label: "Màu sắc",
+          value: Array.isArray(laptop.color)
+            ? laptop.color.join(", ")
+            : laptop.color || "Đang cập nhật",
+        },
       ],
     },
     {
@@ -77,8 +102,13 @@ export default function Specifications({ laptop }: SpecificationsProps) {
             <CardContent>
               <div className="grid gap-3">
                 {section.items.map((item) => (
-                  <div key={item.label} className="flex justify-between items-start py-2 border-b last:border-b-0">
-                    <span className="font-medium text-sm text-muted-foreground min-w-0 flex-1">{item.label}</span>
+                  <div
+                    key={item.label}
+                    className="flex justify-between items-start py-2 border-b last:border-b-0"
+                  >
+                    <span className="font-medium text-sm text-muted-foreground min-w-0 flex-1">
+                      {item.label}
+                    </span>
                     <span className="font-medium text-sm text-right ml-4">{item.value}</span>
                   </div>
                 ))}
@@ -88,7 +118,6 @@ export default function Specifications({ laptop }: SpecificationsProps) {
         ))}
       </div>
 
-      {/* Key Features */}
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Tính năng chính</CardTitle>

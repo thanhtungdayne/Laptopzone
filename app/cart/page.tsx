@@ -20,7 +20,7 @@ const formatPriceVND = (price: number) => `${price.toLocaleString()} VND`;
 
 export default function CartPage() {
   const { isAuthenticated } = useAuth();
-  const { items, total, updateQuantity, removeItem } = useCart();
+  const { items, total, updateQuantity, removeItem, fetchCart } = useCart();
   const [recommendedProducts, setRecommendedProducts] = useState<any[]>([]);
 
   const subtotal = total ?? 0;
@@ -29,6 +29,19 @@ export default function CartPage() {
   const excludeIds = useMemo(() => items.map((item) => item.variantId), [items]);
   // Giả sử categoryId lấy từ sản phẩm đầu tiên trong giỏ hàng (nếu có)
   const categoryId = items.length > 0 ? items[0].categoryId : undefined;
+
+  // Đồng bộ giỏ hàng khi component mount hoặc khi items thay đổi
+  useEffect(() => {
+    if (isAuthenticated&& items.length === 0) {
+      fetchCart(); // Lấy dữ liệu giỏ hàng mới từ server
+    }
+  }, [isAuthenticated, items.length, fetchCart]);
+
+  // Log để debug state giỏ hàng
+  useEffect(() => {
+    console.log('CartPage - Current items:', items);
+    console.log('CartPage - Current total:', total);
+  }, [items, total]);
 
   // Hàm lấy sản phẩm gợi ý
   useEffect(() => {
@@ -137,8 +150,7 @@ export default function CartPage() {
                   items.map((item, index) => (
                     <div key={item.variantId}>
                       <div className="flex space-x-4">
-                        <div className="relative w-24 prijs-30">
-                          takdirnya
+                        <div className="relative w-24 h-24">
                           <Image
                             src={item.productImage || "/placeholder.svg"}
                             alt={item.productName}

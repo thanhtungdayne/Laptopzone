@@ -1,9 +1,7 @@
-//Thực hiện thao tác CRUD với collection products
 const productModel = require("../models/product.model.js");
 const categoryModel = require("../models/category.model.js");
 const brandModel = require("../models/brand.model.js");
 const mongoose = require("mongoose");
-// import { v2 as cloudinary } from 'cloudinary';
 
 module.exports = {
   getAllPro,
@@ -20,62 +18,16 @@ module.exports = {
   getProductsByBrand,
 };
 
-//Lấy tất cả sản phẩm
-async function getAllPro() {
-  try {
-    // Chỉ lấy sản phẩm có status = true
-    const result = await productModel.find({ status: true });
-    return result;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Lỗi lấy dữ liệu");
-  }
-}
-
-// lấy tất cả sản phẩm k dk
-async function getPro() {
- try {
-    // Lấy tất cả sản phẩm từ database
-    const result = await productModel.find();
-    return result;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Lỗi lấy dữ liệu");
-  }
-}
-
-//lấy chi tiết sản phẩm
-async function getDetailPro(id) {
-  try {
-    // Tìm sản phẩm theo ID và status = true
-    const product = await productModel.findOne({ _id: id, status: true });
-    if (!product) {
-      throw new Error("Không tìm thấy sản phẩm");
-    }
-
-    // Tăng lượt xem
-    product.view = (product.view || 0) + 1;
-    await product.save();
-
-    return product;
-  } catch (error) {
-    console.log(error);
-    throw new Error("Lỗi lấy dữ liệu");
-  }
-}
-// thêm dữ liệu
 async function addProduct(data) {
   try {
-    // Lấy categoryId và brandId trực tiếp từ data
     let categoryId = data.categoryId;
     let brandId = data.brandId;
     let features = data.features;
     let images = data.images;
     let processor = data.processor;
-    let graphics = data.graphics;
+    let graphics = data.graphics; // Không parse JSON cho graphics
     let color = data.color;
 
-    // Kiểm tra ObjectId hợp lệ
     if (!mongoose.Types.ObjectId.isValid(categoryId)) {
       throw new Error("categoryId không hợp lệ");
     }
@@ -83,19 +35,11 @@ async function addProduct(data) {
       throw new Error("brandId không hợp lệ");
     }
 
-    // Parse nếu cần
     if (typeof processor === "string") {
       try {
         processor = JSON.parse(processor);
       } catch (e) {
         throw new Error("processor không đúng định dạng JSON");
-      }
-    }
-    if (typeof graphics === "string") {
-      try {
-        graphics = JSON.parse(graphics);
-      } catch (e) {
-        throw new Error("graphics không đúng định dạng JSON");
       }
     }
     if (typeof color === "string") {
@@ -138,14 +82,12 @@ async function addProduct(data) {
       status,
     } = data;
 
-    // Kiểm tra category & brand có tồn tại không
     const categoryFind = await categoryModel.findById(categoryId);
     if (!categoryFind) throw new Error("Không tìm thấy loại sản phẩm");
 
     const brandFind = await brandModel.findById(brandId);
     if (!brandFind) throw new Error("Không tìm thấy thương hiệu");
 
-    // Chuyển đổi Boolean nếu cần
     const isNewBoolean = isNew && isNew.toString().toLowerCase() !== "false";
     const isHotBoolean = isHot && isHot.toString().toLowerCase() !== "false";
     const isInStockBoolean =
@@ -157,7 +99,7 @@ async function addProduct(data) {
       image,
       images: Array.isArray(images) ? images : [],
       price,
-      originalprice,
+      originalprice: String(originalprice),
       stock,
       new: isNewBoolean,
       view: Number(view) || 0,
@@ -168,7 +110,7 @@ async function addProduct(data) {
       ram,
       storage,
       display,
-      graphics: Array.isArray(graphics) ? graphics : [],
+      graphics,
       features: Array.isArray(features) ? features : [],
       color: Array.isArray(color) ? color : [],
       category: {
@@ -189,7 +131,6 @@ async function addProduct(data) {
     throw new Error("Lỗi thêm dữ liệu");
   }
 }
-// cập nhật dữ liệu
 
 async function updateProduct(data, id) {
   try {
@@ -212,16 +153,14 @@ async function updateProduct(data, id) {
       stock,
       category,
       brand,
-     
       storage,
       display,
       processor,
       graphics,
       color,
-      attributes,
+      features,
     } = data;
 
-    // Xử lý cập nhật category
     let categoryObj = pro.category;
     if (category?.categoryId) {
       const categoryFind = await categoryModel.findById(category.categoryId);
@@ -233,7 +172,6 @@ async function updateProduct(data, id) {
       }
     }
 
-    // Xử lý cập nhật brand
     let brandObj = pro.brand;
     if (brand?.brandId) {
       const brandFind = await brandModel.findById(brand.brandId);
@@ -245,11 +183,10 @@ async function updateProduct(data, id) {
       }
     }
 
-    // Xử lý cập nhật mảng
     const updatedProcessor = Array.isArray(processor) ? processor : pro.processor || [];
-    const updatedGraphics = Array.isArray(graphics) ? graphics : pro.graphics || [];
     const updatedColor = Array.isArray(color) ? color : pro.color || [];
     const updatedImages = Array.isArray(images) ? images : pro.images || [];
+    const updatedFeatures = Array.isArray(features) ? features : pro.features || [];
 
     const result = await productModel.findByIdAndUpdate(
       id,
@@ -259,15 +196,16 @@ async function updateProduct(data, id) {
         image: image || pro.image,
         images: updatedImages,
         price: Number(price) || pro.price,
-        originalprice: Number(originalprice) || pro.originalprice,
+        originalprice: String(originalprice) || pro.originalprice,
         stock: Number(stock) || pro.stock,
         category: categoryObj,
         brand: brandObj,
         storage: storage || pro.storage,
         display: display || pro.display,
         processor: updatedProcessor,
-        graphics: updatedGraphics,
+        graphics: graphics || pro.graphics,
         color: updatedColor,
+        features: updatedFeatures,
         new: isNewBoolean,
         hot: isHotBoolean,
         view: viewNumber,
@@ -286,8 +224,42 @@ async function updateProduct(data, id) {
   }
 }
 
+// Các hàm khác giữ nguyên
+async function getAllPro() {
+  try {
+    const result = await productModel.find({ status: true });
+    return result;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Lỗi lấy dữ liệu");
+  }
+}
 
-//xóa dữ liệu
+async function getPro() {
+  try {
+    const result = await productModel.find();
+    return result;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Lỗi lấy dữ liệu");
+  }
+}
+
+async function getDetailPro(id) {
+  try {
+    const product = await productModel.findOne({ _id: id, status: true });
+    if (!product) {
+      throw new Error("Không tìm thấy sản phẩm");
+    }
+    product.view = (product.view || 0) + 1;
+    await product.save();
+    return product;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Lỗi lấy dữ liệu");
+  }
+}
+
 async function deleteProduct(id) {
   try {
     const result = await productModel.findByIdAndDelete(id);
@@ -297,7 +269,7 @@ async function deleteProduct(id) {
     throw new Error("Lỗi xóa dữ liệu");
   }
 }
-//Lấy sản phẩm mới
+
 async function newProduct() {
   try {
     const result = await productModel.find({ new: true }).limit(10);
@@ -307,7 +279,7 @@ async function newProduct() {
     throw new Error("Lỗi lấy dữ liệu");
   }
 }
-//Lấy sản phẩm hot
+
 async function hotProduct() {
   try {
     const result = await productModel.find({ hot: true }).limit(10);
@@ -317,7 +289,7 @@ async function hotProduct() {
     throw new Error("Lỗi lấy dữ liệu");
   }
 }
-//Lấy sản phẩn xem nhiều
+
 async function mostviewProduct() {
   try {
     const result = await productModel.find().sort({ view: -1 }).limit(10);
@@ -327,7 +299,7 @@ async function mostviewProduct() {
     throw new Error("Lỗi lấy dữ liệu");
   }
 }
-//Lấy sản phẩm theo category
+
 async function getProductsByCategory(categoryId) {
   try {
     const products = await productModel.find({
@@ -339,7 +311,7 @@ async function getProductsByCategory(categoryId) {
     throw new Error("Lỗi lấy sản phẩm theo danh mục");
   }
 }
-//lấy sản phẩm theo brand
+
 async function getProductsByBrand(brandId) {
   try {
     const products = await productModel.find({
@@ -351,12 +323,12 @@ async function getProductsByBrand(brandId) {
     throw new Error("Lỗi lấy sản phẩm theo thương hiệu");
   }
 }
-// Đảo ngược trạng thái sản phẩm
+
 async function toggleStatus(productId) {
   const product = await productModel.findById(productId);
   if (!product) throw new Error("Không tìm thấy sản phẩm");
 
-  product.status = !product.status; // Đảo ngược trạng thái
+  product.status = !product.status;
   await product.save();
 
   return product;

@@ -166,8 +166,8 @@ export default function OrderDetailsModal({ order, open, onClose }) {
                 <p className="font-medium">
                   {order.paymentMethod === "cash"
                     ? "Thanh toán khi nhận hàng"
-                    : order.paymentMethod === "momo"
-                    ? "Chuyển khoản qua Momo"
+                    : order.paymentMethod === "zalopay"
+                    ? "Thanh toán qua Zalopay"
                     : "Không xác định"}
                 </p>
               </div>
@@ -176,13 +176,13 @@ export default function OrderDetailsModal({ order, open, onClose }) {
 
           {/* Actions */}
           <div className="flex justify-center gap-4 mt-4">
-            <Button
+            {/* <Button
               variant="outline"
               onClick={() => alert("Tải hóa đơn sẽ bắt đầu tại đây")}
             >
               <Download className="h-4 w-4 mr-2" />
               Tải hóa đơn
-            </Button>
+            </Button> */}
             {order.status === "shipping" && (
               <Button variant="outline">
                 <Truck className="h-4 w-4 mr-2" />

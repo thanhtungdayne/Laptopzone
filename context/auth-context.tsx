@@ -49,25 +49,53 @@ export function useAuth() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Load user và token từ localStorage khi mount
   useEffect(() => {
-    try {
-      const savedUser = localStorage.getItem("user");
-      const savedToken = localStorage.getItem("token");
-      if (savedUser && savedUser !== "undefined") {
-        const parsedUser = JSON.parse(savedUser);
-        setUser(parsedUser);
+    const initializeAuth = async () => {
+      try {
+        const savedToken = localStorage.getItem("token");
         if (savedToken && savedToken !== "undefined") {
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, {
+            headers: { Authorization: `Bearer ${savedToken}` },
+          });
+
+          const userData = response.data.data;
+          if (!userData) {
+            throw new Error("Không nhận được dữ liệu người dùng");
+          }
+
+          setUser({
+            id: userData._id,
+            name: userData.name,
+            email: userData.email,
+            avatar: userData.avatar,
+            phone: userData.phone,
+            dob: userData.dob,
+            address: userData.address,
+            status: userData.status,
+            role: userData.role,
+          });
           setToken(savedToken);
+          localStorage.setItem("user", JSON.stringify(userData));
+        } else {
+          setUser(null);
+          setToken(null);
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
         }
+      } catch (error) {
+        console.error("Lỗi xác thực token:", error);
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error("Failed to parse user or token from localStorage:", error);
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-    }
+    };
+
+    initializeAuth();
   }, []);
 
   const login = async (
@@ -80,22 +108,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email,
         password,
       });
-      const userData = res.data.user || res.data.data?.user;
+      const userData = res.data.user;
       const newToken = res.data.token;
 
-      if (!userData) {
-        throw new Error("Không nhận được dữ liệu người dùng");
+      if (!userData || !newToken) {
+        throw new Error("Không nhận được dữ liệu người dùng hoặc token");
       }
 
-      setUser(userData);
+      setUser({
+        id: userData._id,
+        name: userData.name,
+        email: userData.email,
+        avatar: userData.avatar,
+        phone: userData.phone,
+        dob: userData.dob,
+        address: userData.address,
+        status: userData.status,
+        role: userData.role,
+      });
+      setToken(newToken);
       localStorage.setItem("user", JSON.stringify(userData));
-      
-      if (newToken) {
-        setToken(newToken);
-        localStorage.setItem("token", newToken);
-      } else {
-        console.warn("No token received from server");
-      }
+      localStorage.setItem("token", newToken);
 
       return { success: true, message: "Đăng nhập thành công" };
     } catch (error: any) {
@@ -117,36 +150,43 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   ): Promise<{ success: boolean; message: string }> => {
     setIsLoading(true);
     try {
-      console.log("Sending to server:", { name, email, password, repassword, role });
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
-        name,
-        email,
-        password,
-        repassword,
-        role,
-      });
-      const userData = res.data.user || res.data.data?.user;
-      const newToken = res.data.token;
+      console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
+        { name, email, password, repassword, role },
+        { validateStatus: status => status >= 200 && status < 300 }
+      );
+      console.log("Phản hồi từ backend:", res.data, "Mã trạng thái:", res.status);
 
+      const userData = res.data.newUser;
       if (!userData) {
-        throw new Error("Không nhận được dữ liệu người dùng");
+        throw new Error("Không nhận được dữ liệu người dùng từ backend");
       }
 
-      setUser(userData);
+      const newUser = {
+        id: userData._id,
+        name: userData.name,
+        email: userData.email,
+        avatar: userData.avatar || undefined,
+        phone: userData.phone || undefined,
+        dob: userData.dob || undefined,
+        address: userData.address || undefined,
+        status: userData.status ?? true,
+        role: userData.role || 0,
+      };
+
+      setUser(newUser);
       localStorage.setItem("user", JSON.stringify(userData));
-      
-      if (newToken) {
-        setToken(newToken);
-        localStorage.setItem("token", newToken);
-      } else {
-        console.warn("No token received from server");
-      }
+
+      // Backend không trả về token, nên bỏ qua lưu token
+      console.warn("Không nhận được token từ backend, tiếp tục với dữ liệu người dùng");
 
       return { success: true, message: "Đăng ký thành công" };
     } catch (error: any) {
+      console.error("Lỗi đăng ký:", error);
       return {
         success: false,
-        message: error?.response?.data?.message || "Lỗi đăng ký",
+        message: error?.response?.data?.message || `Lỗi đăng ký: ${error.message || "Không thể xử lý yêu cầu"}`,
       };
     } finally {
       setIsLoading(false);
@@ -162,7 +202,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setIsLoading(true);
     try {
-      const res = await axios.post(
+      const res = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/users/update/${user.id}`,
         userData,
         {
@@ -170,23 +210,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       );
 
-      const updatedUser = res.data.user;
-      const newToken = res.data.token;
-
+      const updatedUser = res.data.data;
       if (!updatedUser) {
         throw new Error("Không nhận được dữ liệu người dùng");
       }
 
-      // Cập nhật state và localStorage
-      setUser(updatedUser);
+      setUser({
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        avatar: updatedUser.avatar,
+        phone: updatedUser.phone,
+        dob: updatedUser.dob,
+        address: updatedUser.address,
+        status: updatedUser.status,
+        role: updatedUser.role,
+      });
       localStorage.setItem("user", JSON.stringify(updatedUser));
-
-      if (newToken) {
-        setToken(newToken);
-        localStorage.setItem("token", newToken);
-      } else {
-        console.warn("No token received from server");
-      }
 
       return { success: true, message: "Cập nhật thông tin thành công" };
     } catch (error: any) {

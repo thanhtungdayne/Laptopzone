@@ -57,17 +57,17 @@ async function placeOrder(req) {
 
   // B5: Tạo đơn hàng mới
   const order = new orderModel({
-    userId,
-    orderCode, // Thêm mã đơn hàng
-    items: orderItems,
-    shippingAddress,
-    paymentMethod,
-    totalAmount,
-    status: "pending",
-    isPaid: false,
-    createdAt: new Date(),
-    estimatedDelivery: new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000),
-  });
+  userId,
+  orderCode, // Thêm mã đơn hàng
+  items: orderItems,
+  shippingAddress,
+  paymentMethod,
+  totalAmount,
+  status: paymentMethod === "zalo" ? "paid" : "pending", // nếu thanh toán zalo thì coi như đã trả
+  isPaid: paymentMethod === "zalo", // ✅ true nếu zalo
+  createdAt: new Date(),
+  estimatedDelivery: new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000),
+});
 
   const savedOrder = await order.save();
 

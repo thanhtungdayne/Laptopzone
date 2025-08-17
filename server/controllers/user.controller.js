@@ -1,164 +1,161 @@
 const bcrypt = require("bcryptjs");
-const userModel = require("../models/users.model.js"); // Import model User
+const userModel = require("../models/users.model.js");
+const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 
-module.exports = { addUser, login, getUserById, changePassword, getAllUsers, updateUserInfo };
-// Đăng ký user
 async function addUser(data) {
   try {
-    
     const { name, email, password, repassword, role } = data;
-
-
     if (password !== repassword) {
       throw new Error("Mật khẩu nhập lại không khớp!");
     }
-
-
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({
       name,
       email,
       password: hashedPassword,
       role,
-      status: true, 
+      status: true,
     });
     await newUser.save();
     return newUser;
   } catch (error) {
-    console.error("Lỗi trong addUser:", error);  // Log chi tiết lỗi
-    throw error;  // Ném lỗi gốc lên trên để router xử lý
+    console.error("Lỗi trong addUser:", error);
+    throw error;
   }
 }
-//login
+
 async function login(data) {
-  try {
-    
-    const { email, password } = data;
-
-    // Tìm user theo email
-    const user = await userModel.findOne({ email });
-    if (!user) {
-      throw new Error("Email chưa được đăng ký");
-    }
-
-    // Kiểm tra status
-    if (user.status !== true) {
-      throw new Error("Tài khoản đã bị khóa hoặc chưa được kích hoạt");
-    }
-
-    // So sánh mật khẩu
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      throw new Error("Sai mật khẩu");
-    }
-
-    // Tạo JWT token
-    const token = jwt.sign(
-      {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    // Trả về thông tin user (ẩn password) và token
-    const userObj = user.toObject();
-    delete userObj.password;
-    return { user: userObj, token };
-  } catch (error) {
-    console.log("Lỗi đăng nhập:", error);
-    throw new Error(error.message || "Lỗi đăng nhập");
-  }
+  const { email, password } = data;
+  const user = await userModel.findOne({ email });
+  if (!user) throw new Error("Email chưa được đăng ký");
+  if (user.status !== true) throw new Error("Tài khoản bị khóa hoặc chưa kích hoạt");
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) throw new Error("Sai mật khẩu");
+  const token = jwt.sign(
+    {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "1h" }
+  );
+  const userObj = user.toObject();
+  delete userObj.password;
+  return { user: userObj, token };
 }
 
-async function updateUserInfo(req, userId, body) {
+async function updateUserInfo(req, res) {
   try {
-    const { email, ...allowedFields } = body;
+    const { id } = req.params;
+    const { name, phone, address, dob, avatar } = req.body;
 
-    const updateData = {};
-    if (allowedFields.name) updateData.name = allowedFields.name;
-    if (allowedFields.phone) updateData.phone = allowedFields.phone;
-    if (allowedFields.address) updateData.address = allowedFields.address;
-    if (allowedFields.dob) updateData.dob = allowedFields.dob;
-    if (allowedFields.avatar) updateData.avatar = allowedFields.avatar;
+    // Log debug
+    console.log('[updateUserInfo] req.params:', req.params);
+    console.log('[updateUserInfo] id:', id, '| typeof id:', typeof id);
+    console.log('[updateUserInfo] req.user:', req.user);
+    console.log('[updateUserInfo] req.body:', req.body);
+
+    // Kiểm tra ID hợp lệ
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: `ID người dùng không hợp lệ: ${id}`,
+      });
+    }
+
+    // Kiểm tra quyền
+    if (!req.user || String(req.user.id) !== String(id)) {
+      return res.status(403).json({
+        success: false,
+        message: 'Không có quyền cập nhật thông tin người dùng này',
+      });
+    }
+
+    // Không cho phép thay đổi email
+    if (req.body.email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Không được phép thay đổi email',
+      });
+    }
+
+    // Chỉ lấy các field cần update
+    const updateFields = {};
+    if (name) updateFields.name = name;
+    if (phone) updateFields.phone = phone;
+    if (address) updateFields.address = address;
+    if (dob) updateFields.dob = dob;
+    if (avatar) updateFields.avatar = avatar;
 
     const updatedUser = await userModel.findByIdAndUpdate(
-      userId,
-      { $set: updateData },
-      { new: true }
+      id,
+      { $set: updateFields },
+      { new: true, runValidators: true, lean: true }
     );
 
     if (!updatedUser) {
-      throw new Error("Người dùng không tồn tại");
+      return res.status(404).json({
+        success: false,
+        message: 'Người dùng không tồn tại',
+      });
     }
 
-    // Tạo token mới với thông tin user cập nhật
-    const token = jwt.sign(
-      {
-        id: updatedUser._id,
-        name: updatedUser.name,
-        email: updatedUser.email,
-        role: updatedUser.role,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    delete updatedUser.password;
 
-    // Trả về thông tin user (ẩn password) và token mới
-    const userObj = updatedUser.toObject();
-    delete userObj.password;
-    return { user: userObj, token };
+    return res.json({
+      success: true,
+      data: updatedUser,
+    });
   } catch (error) {
-    console.error("Lỗi cập nhật thông tin người dùng:", error);
-    throw new Error("Lỗi cập nhật thông tin người dùng");
+    console.error('Lỗi cập nhật thông tin người dùng:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Lỗi cập nhật thông tin người dùng',
+      error: error.message,
+    });
   }
 }
 
-  // Lấy thông tin người dùng theo ID
-  async function getUserById(id) {
-    try {
-      const user = await userModel.findById(id);
-      if (!user) {
-        throw new Error("Người dùng không tồn tại");
-      }
+async function getUserById(id) {
+  try {
+    const user = await userModel.findById(id);
+    if (!user) {
+      throw new Error("Người dùng không tồn tại");
+    }
+    const userObj = user.toObject();
+    delete userObj.password;
+    return userObj;
+  } catch (error) {
+    console.log("Lỗi lấy thông tin người dùng:", error);
+    throw new Error("Lỗi lấy thông tin người dùng");
+  }
+}
 
-      // Ẩn mật khẩu khi trả về
-      const userObj = user.toObject();
-      delete userObj.password;
-      return userObj;
-    } catch (error) {
-      console.log("Lỗi lấy thông tin người dùng:", error);
-      throw new Error("Lỗi lấy thông tin người dùng");
+async function changePassword(id, newPassword) {
+  try {
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const user = await userModel.findByIdAndUpdate(id, { password: hashedPassword }, { new: true });
+    if (!user) {
+      throw new Error("Người dùng không tồn tại");
     }
+    const userObj = user.toObject();
+    delete userObj.password;
+    return userObj;
+  } catch (error) {
+    console.log("Lỗi đổi mật khẩu:", error);
+    throw new Error("Lỗi đổi mật khẩu");
   }
-  //đổi mật khẩu
-  async function changePassword(id, newPassword) {
-    try {
-      const hashedPassword = await bcrypt.hash(newPassword, 10);
-      const user = await userModel.findByIdAndUpdate(id, { password: hashedPassword }, { new: true });
-      if (!user) {
-        throw new Error("Người dùng không tồn tại");
-      }
-      // Ẩn mật khẩu khi trả về
-      const userObj = user.toObject();
-      delete userObj.password;
-      return userObj;
-    } catch (error) {
-      console.log("Lỗi đổi mật khẩu:", error);
-      throw new Error("Lỗi đổi mật khẩu");
-    }
-  }
-  //lấy tất cả người dùng
+}
+
 async function getAllUsers() {
   try {
     const users = await userModel.find();
     return users.map(user => {
       const userObj = user.toObject();
-      delete userObj.password; // Ẩn mật khẩu
+      delete userObj.password;
       return userObj;
     });
   } catch (error) {
@@ -166,46 +163,38 @@ async function getAllUsers() {
     throw new Error("Lỗi lấy tất cả người dùng");
   }
 }
-// thay đổi thông tin người dùng
-async function updateUserInfo(req, userId, body) {
+
+async function getCurrentUser(req, res) {
   try {
-    const { email, ...allowedFields } = body;
-
-    const updateData = {};
-    if (allowedFields.name) updateData.name = allowedFields.name;
-    if (allowedFields.phone) updateData.phone = allowedFields.phone;
-    if (allowedFields.address) updateData.address = allowedFields.address;
-    if (allowedFields.dob) updateData.dob = allowedFields.dob;
-    if (allowedFields.avatar) updateData.avatar = allowedFields.avatar;
-
-    const updatedUser = await userModel.findByIdAndUpdate(
-      userId,
-      { $set: updateData },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      throw new Error("Người dùng không tồn tại");
+    const userId = req.user.id;
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({
+        success: false,
+        message: `ID người dùng không hợp lệ: ${userId}`,
+      });
     }
 
-    // Tạo token mới với thông tin user cập nhật
-    const token = jwt.sign(
-      {
-        id: updatedUser._id,
-        name: updatedUser.name,
-        email: updatedUser.email,
-        role: updatedUser.role,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    const user = await userModel.findById(userId).lean();
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Người dùng không tồn tại',
+      });
+    }
 
-    // Trả về thông tin user (ẩn password) và token mới
-    const userObj = updatedUser.toObject();
-    delete userObj.password;
-    return { user: userObj, token };
+    delete user.password;
+    return res.json({
+      success: true,
+      data: user,
+    });
   } catch (error) {
-    console.error("Lỗi cập nhật thông tin người dùng:", error);
-    throw new Error("Lỗi cập nhật thông tin người dùng");
+    console.error('Lỗi lấy thông tin người dùng hiện tại:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Lỗi lấy thông tin người dùng',
+      error: error.message,
+    });
   }
 }
+
+module.exports = { addUser, login, getUserById, changePassword, getAllUsers, updateUserInfo , getCurrentUser };
